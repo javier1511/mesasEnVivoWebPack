@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+    <div class="transactions-container">
+        <div class="side__menu-container">
+            <div class="side__menu-list">
+                <div class="side__menu-list-container">
+                    <a href="registerPage.html" class="side__menu">REGISTRAR CLIENTE</a>
+    
+                </div>
+
+                <div class="side__menu-list-container">
+                    <a href="clientsReport.html" class="side__menu">REPORTE DE CLIENTES</a>
+    
+                </div>
+                <div class="side__menu-list-container">
+                    <a href="clients.html" class="side__menu">CLIENTES REGISTRADOS</a>
+    
+                </div>
+                <div class="side__menu-list-container">
+                    <a href="salesReport.html" class="side__menu">REPORTE DIARIO</a>
+    
+                </div>
+    
+                <div class="side__menu-list-container">
+                    <a href="sales.html" class="side__menu">VENTAS</a>
+    
+                </div>
+
+                <div class="side__menu-list-container">
+                    <a href="salesTransacctions.html" class="side__menu">TRANSACCIONES</a>
+    
+                </div>
+                <div class="side__menu-list-container">
+                    <a href="clientsKpisReport.html" class="side__menu">REPORTE DE CLIENTES</a>
+    
+                </div>
+    
+              
+                <div class="side__menu-list-container-button">
+                    <button id ="logout" href="" class="side__menu-button">SALIR</button>
+           
+                </div>
+            
+             
+                
+             
+            
+             
+              
+            </div>
+    
+    
+        </div>
+
+        <div class="transactions">
+
+            <div class="transactions__title-container">
+                <h3 class="transactions__title">TRANSACCIONES</h3>
+            </div>
+
+
+            <div class="transactions__input-container">
+                
+                <input id="queryDate" placeholder="Fecha" type="date" class="transactions__input">
+                <input id="queryName" type="text" class="transactions__input" placeholder="Buscar por nombre">
+            </div>
+
+            <div class="transactions__data-container">
+                <div class="transactions__header-container">
+                    <p class="transactions__header">Id</p>
+                    <p class="transactions__header">Nombre</p>
+                    <p class="transactions__header">Fecha</p>
+                    <p class="transactions__header">Hora</p>
+                    <p class="transactions__header">Efectivo</p>
+                    <p class="transactions__header">Credito</p>
+                    <p class="transactions__header">Dolares</p>
+                    <p class="transactions__header">Pago</p>
+                    <p class="transactions__header">Fondo</p>
+                    <p class="transactions__header"></p>
+
+                </div>
+                <div class="transactions__api-container">
+                    
+                </div>
+
+            </div>
+
+            <div class="transactions__popup">
+                <div class="transactions__popup-container">
+                    <div class="transactions__popup-close-container">
+                        <img src="./images/close_48dp_FILL0_wght400_GRAD0_opsz48.png" alt="" class="transactions__popup-close">
+                    </div>
+        
+        
+        
+        
+                    <form action="" class="transactions__form">
+                        <div class="transactions__form-title-container">
+                            <p class="transactions__form-title">Informacion de la transaccion</p>
+                        </div>
+                        <input class="transactions__form-input" id="idEditTransaction" type="text" placeholder="Id">
+                        <input class="transactions__form-input" id="nameEditTransaction" type="text" placeholder="Nombre">
+                        <input class="transactions__form-input" id="cashEditTransaction" type="text" placeholder="Efectivo">
+                        <input class="transactions__form-input" id="creditEditTransaction" type="text" placeholder="Tarjeta">
+                        <input class="transactions__form-input" id="dollarsEditTransaction" type="text" placeholder="Dolares">
+                        <input class="transactions__form-input" id="cashInEditTransaction" type="text" placeholder="Fondo">
+                        <input class="transactions__form-input" id="paymentEditTransaction" type="text" placeholder="Pago">
+        
+                        <button class="transaction__form-delete">Eliminar</button>
+                        <div class="transactions__form-errorMessages"></div>
+        
+        
+        
+                        
+        
+        
+        
+        
+        
+                    </form>
+        
+                </div>
+        
+        
+        
+            </div>
+          
+
+
+          
+            
+            </div>
+    
+    </div>
+
+
+
+</div>
+
+    <script type="module" src="./salesTransacciones.js"></script>
+    
+</body>
+</html>
