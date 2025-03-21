@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div class="register">
+
+    <div class="side__menu-container">
+        <div class="side__menu-list">
+            <div class="side__menu-list-container">
+                <a href="http://localhost:8080/registerPage.html" class="side__menu">REGISTRAR CLIENTE</a>
+
+            </div>
+
+            <div class="side__menu-list-container">
+                <a href="http://localhost:8080/clientsReport.html" class="side__menu">REPORTE DE CLIENTES</a>
+
+            </div>
+            <div class="side__menu-list-container">
+                <a href="http://localhost:8080/clients.html" class="side__menu">CLIENTES REGISTRADOS</a>
+
+            </div>
+            <div class="side__menu-list-container">
+                <a href="http://localhost:8080/salesReport.html" class="side__menu">REPORTE DIARIO</a>
+
+            </div>
+
+            <div class="side__menu-list-container">
+                <a href="http://localhost:8080/sales.html" class="side__menu">VENTAS</a>
+
+            </div>
+
+            <div class="side__menu-list-container">
+                <a href="http://localhost:8080/salesTransacctions.html" class="side__menu">TRANSACCIONES</a>
+
+            </div>
+            <div class="side__menu-list-container">
+                <a href="http://localhost:8080/clientsKpisReport.html" class="side__menu">REPORTE DE CLIENTES</a>
+
+            </div>
+
+          
+            <div class="side__menu-list-container-button">
+                <button id ="logout" href="" class="side__menu-button">SALIR</button>
+       
+            </div>
+        
+         
+            
+         
+        
+         
+          
+        </div>
+
+
+    </div>
+
+    <div class="register__container">
+        <div class="register__title-container">
+            <h4 class="register__title">REGISTRO</h4>
+        </div>
+        <form action="" class="register__form">
+            <div class="register__form-logo-container">
+                <img class="register__form-logo"src="" alt="">
+            </div>
+
+
+            <div class="register__form-container">
+                <label class="register__form-label">Nombre:</label>
+                <input class="register__form-input" type="text" id="name" name="name" placeholder="Nombre" required minlength="3">
+
+            </div>
+
+            <div class="register__form-container">
+                <label class="register__form-label" for="">Email:</label>
+                <input class="register__form-input" type="email" id="email" name="email" placeholder="Email" required>
+
+            </div>
+   
+
+            <div class="register__form-container">
+                <label class="register__form-label" for="">Direccion:</label>
+                <input class="register__form-input" type="text" id="address" name="address" placeholder="Direccion" required>
+
+                
+            </div>
+            <div class="register__form-container">
+                <label class="register__form-label" for="">CURP:</label>
+                <input class="register__form-input" type="text" id="curp" name="curp" placeholder="CURP" required>
+
+                
+            </div>
+            <div class="register__form-container">
+                <label class="register__form-label" for="">Genero:</label>
+
+                <select  class="register__form-input"  id="gender" name="gender">
+                    <option >Masculino</option>
+                    <option >Femenino</option>
+                </select>
+                
+            </div>
+            <div class="register__form-container">
+                <label class="register__form-label" for="">Codigo del pais:</label>
+                <input  class="register__form-input " type="text" id="areamobile" name="areamobile" value="52" readonly required>
+
+                
+            </div>
+
+            <div class="register__form-container">
+                <label class="register__form-label" for="">Celular:</label>
+                <input class="register__form-input" type="text" id="mobile" name="mobile" placeholder="Celular" required>
+
+                
+            </div>
+            <div class="register__form-container">
+                <label class="register__form-label" for="">Hora:</label>
+                <input class="register__form-input" type="text" id="time" name="time" placeholder="Hora" required>
+
+                
+            </div>
+            <div class="register__form-container">
+                <label class="register__form-label" for="">Fecha:</label>
+                <input class="register__form-input" type="date" id="date" name="date" placeholder="Fecha" required>
+
+                
+            </div>
+    
+           
+
+        
+
+    
+
+        
+         
+
+            <!-- Cambiado de "celular" a "mobile" para que coincida con el JavaScript -->
+
+
+            
+            
+         
+ 
+ 
+            
+            <button class="register__button" type="submit">Guardar</button>
+            <div class="register__errorMessages" id="errorMessages" style="color: red;"></div>
+        </form>
+   
+
+     
+    </div>
+    
+</div>
+>
+</body>
+</html>
