@@ -63,8 +63,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: "login.html",
-      template: "./src/login.html",
+      filename: "index.html",
+      template: "./src/index.html",
       chunks: ["login"]
     }),
     new HtmlWebpackPlugin({

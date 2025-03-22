@@ -1509,51 +1509,6 @@ padding-left: 30px;
     box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Sombra suave */
 }  
 
-.ticket{
-    background-color: white;
-    width: 25%;
-    
-}
-
-.ticket__header-container{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.ticket__title{
-    font-size: 12px;
-    font-weight: bold;
-}
-
-
-.ticket__body-container{
-    display: grid;
-    grid-template-columns: 50% 50%;
-    text-align: center;
-    padding-bottom: 10px;
-
-}
-
-.ticket__text{
-    text-align: center;
-    font-size: 10px;
-}
-
-.ticket__footer-container{
-    width: 100%;
-    display: flex;
-    justify-content: center; 
-    padding-top: 30px;
-}
-
-.ticket__footer{
-    width: 20%;
-}
-
-.ticket__value{
-    font-size: 12px;
-}
 
 .popup__opened {
     opacity: 1;

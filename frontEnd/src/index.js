@@ -1,9 +1,5 @@
 import "../src/styles/index.css"
 import Post from "./Post.js";
-const closeIcon = document.querySelector(".register__form-logo");
-const imgCloseIcon = "./images/close_48dp_FILL0_wght400_GRAD0_opsz48.png";
-console.log(imgCloseIcon)
-closeIcon.src = imgCloseIcon;
 
 
 //REGISTERPAGE//
