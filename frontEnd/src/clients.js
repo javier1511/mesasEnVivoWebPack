@@ -192,7 +192,8 @@ deleteButton.addEventListener('click', async (event) => {
     }
 
     const token = localStorage.getItem("token")
-    const deleteClientByIdRequest = new DeleteById(`http://localhost:4000/players/${idDelete}`, token );
+    const deleteClientByIdRequest = new DeleteById(`https://juegoenvivodiamantetampico-5f11edf34527.herokuapp.com
+/players/${idDelete}`, token );
     const result = await deleteClientByIdRequest.sendDeleteByIdRequest();
 
     // Si la solicitud fue exitosa, cerrar el popup

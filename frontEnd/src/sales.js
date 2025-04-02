@@ -401,7 +401,7 @@ return salesErrors;
                     
 .ticket{
     background-color: white;
-    width: 25%;
+    width: 100%;
     
 }
 

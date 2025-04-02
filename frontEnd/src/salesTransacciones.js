@@ -59,7 +59,6 @@ const displayTransactions = async () => {
     })
     .map((object) => {
         const {_id, player, name, cash, credit, dollars, date, time,cashIn,payment} = object;
-        console.log("cashIn en objeto:", cashIn);  // <-- Verifica que cashIn tenga valor aquí
 
 
         let formattedDate = "";
@@ -188,7 +187,8 @@ const getSalesTransactions = async () => {
 
 
       
-        const response = await fetch('http://localhost:4000/sales');
+        const response = await fetch('https://juegoenvivodiamantetampico-5f11edf34527.herokuapp.com
+/sales');
         
         if (!response.ok) {
             throw new Error(`Error con la solicitud fetch: ${response.status} - ${response.statusText}`);
@@ -365,7 +365,7 @@ if(errors.length > 0){
         return;
     }
 
-const deleteSalesByIdRequest = new DeleteById(`http://localhost:4000/sales/${salesId}`, token);
+const deleteSalesByIdRequest = new DeleteById(`https://juegoenvivodiamantetampico-5f11edf34527.herokuapp.com/${salesId}`, token);
 const resultDelete = await deleteSalesByIdRequest.sendDeleteByIdRequest();
 
 if(resultDelete){

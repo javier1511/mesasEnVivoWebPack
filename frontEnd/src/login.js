@@ -17,7 +17,7 @@ const login = async (event) => {
             const data = await response.json();
             localStorage.setItem('token', data.token);
             alert('Inicio de sesión exitoso');
-             window.location.href = 'http://localhost:8080/sales.html';
+             window.location.href = 'sales.html';
         } else {
             const errorData = await response.json(); // Extraer datos del error del servidor
             alert(errorData.message);
@@ -44,7 +44,8 @@ loginForm.addEventListener("submit", login);
     const username = document.querySelector("#username").value;
     const password = document.querySelector("#password").value;
 
-    fetch('http://localhost:4000/auth/signin', {
+    fetch('https://juegoenvivodiamantetampico-5f11edf34527.herokuapp.com
+/auth/signin', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

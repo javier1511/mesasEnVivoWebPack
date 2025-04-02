@@ -1,5 +1,9 @@
 import "../src/styles/index.css"
 import Post from "./Post.js";
+import Auth from "./auth.js";
+const auth = new Auth()
+auth.protectedRoute();
+
 
 
 //REGISTERPAGE//

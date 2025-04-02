@@ -4,7 +4,7 @@ import { createRoles } from './libs/initialsetup';
 import playersRoutes from "./routes/players.routes"
 import salesRoutes from "./routes/sales.routes"
 import authRoutes from "./routes/auth.routes"
-import smsRoutes from "./routes/sms.routes."
+import smsRoutes from "./routes/sms.routes"
 import countPlayerRoutes from "./routes/countPlayersByDate.routes"
 import dailyReportByDate from "./routes/dailyReportByDate"
 

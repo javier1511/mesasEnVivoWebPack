@@ -75,19 +75,35 @@ export const createSales = async (req, res) => {
     }
 };
 
+
+
 export const getSummaryByClient = async (req, res) => {
-    try{
+    try {
+        const summaries = await Summary.find()
+            .populate('player', 'name mobile');
 
-        const summary = await Summary.find()
-        .populate('player', 'name mobile')
+        const enrichedSummaries = await Promise.all(summaries.map(async (summary) => {
+            const lastSale = await Sales.findOne({ player: summary.player._id })
+                .sort({ date: -1 }) // Orden descendente por fecha
+                .select('date');    // Solo obtenemos la fecha
 
-        res.status(200).json(summary)
+            const result = {
+                ...summary.toObject(),
+                lastPurchaseDate: lastSale ? lastSale.date : null
+            };
 
-    }catch(error){
-        res.status(500).json({error: "Error al obtener el resumen de ventas"})
+            // Mostrar en consola cada resumen enriquecido
+            console.log(result);
 
+            return result;
+        }));
+
+        res.status(200).json(enrichedSummaries);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Error al obtener el resumen de ventas" });
     }
-}
+};
 
 // Obtener todas las ventas
 export const getSales = async (req, res) => {

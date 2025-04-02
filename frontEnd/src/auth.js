@@ -6,14 +6,14 @@ export class Auth {
     logout(){
         this.isAuthenticated = false;
         localStorage.removeItem('token');
-        window.location.href = "http://localhost:8080/login.html"
+        window.location.href = "http://localhost:4000"
     }
     checkAuth(){
         return localStorage.getItem('token') !== null;
     }
     protectedRoute(){
         if(!this.isAuthenticated){
-             window.location.href = "http://localhost:8080/login.html"
+             window.location.href = "http://localhost:4000"
              alert("Inicia sesion")
 
         }
