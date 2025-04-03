@@ -977,6 +977,11 @@ background-color: #007bff;
 
 .transactions__input-container{
     display: flex;
+
+}
+
+.transactions__input-label{
+    font-style: italic;
 }
 
 @media screen and (max-width:867px) {
@@ -1276,7 +1281,13 @@ border-radius: 20px;
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 30px;
     padding-bottom: 30px;
+}
+
+.clientsReport__input-label{
+    font-style: italic;
 }
 
 .clientsReport__title{
@@ -1546,9 +1557,16 @@ padding-left: 30px;
     margin: 10px 0; /* Espaciado entre elementos */
     border: 2px solid #ccc; /* Borde inicial */
     border-radius: 8px; /* Bordes redondeados */
-    font-size: 16px; /* Tamaño de fuente */
+    font-size: 12px; /* Tamaño de fuente */
     outline: none; /* Elimina el contorno azul predeterminado */
     transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+}
+
+@media screen and (max-width:867px) {
+    .kpis__input{
+        font-size: 7px;
+    }
+    
 }
 
 .kpis__input:focus{
@@ -1625,6 +1643,13 @@ padding-left: 30px;
     color: white;
 }
 
+@media screen and (max-width:867px) {
+    .kpis__button{
+        font-size: 7px;
+    }
+    
+}
+
 .kpis__mobile{
     text-decoration: underline;
     color: #007bff;
@@ -1662,4 +1687,33 @@ padding-left: 30px;
     border-radius: 5px;
     font-size: 14px;
     white-space: nowrap;
+  }
+
+  @media screen and (max-width:867px) {
+
+    .kpis__title{
+        font-size: 24px;
+    }
+    
+  }
+
+  @media screen and (max-width:867px) {
+
+    .kpis__input::placeholder{
+        font-size: 7px;
+    }
+    
+  }
+
+  .kpis__input-label{
+    font-style: italic;
+    font-size: 14px;
+  }
+
+  @media screen and (max-width:867px) {
+
+    .kpis__input-label{
+        font-size: 7px;
+    }
+    
   }
