@@ -462,7 +462,7 @@ background-color: #007bff;
 
     .clients__value{
         width: 100%;
-        font-size: 8px;
+        font-size: 7px;
     }
     
 }
@@ -478,7 +478,7 @@ background-color: #007bff;
 
 @media screen and (max-width:867px) {
     .clients__value-name{
-        font-size: 10px;
+        font-size: 7px;
     }
     
 }
@@ -928,6 +928,13 @@ background-color: #007bff;
     font-size: 30px;
 }
 
+@media screen and (max-width:867px) {
+    .transactions__title{
+        font-size: 24px;
+    }
+    
+}
+
 .transactions__input{
     width: 100%; /* Ajusta al ancho del contenedor */
   
@@ -942,8 +949,14 @@ background-color: #007bff;
     font-size: 16px;
     text-align: center;
     overflow: hidden;
+}
 
+@media screen and (max-width:867px) {
 
+    .transactions__data-value{
+        font-size: 7px;
+    }
+    
 }
 
 .transactions__input:focus{
@@ -997,6 +1010,14 @@ border-radius: 20px;
 
 }
 
+@media screen and (max-width:867px) {
+
+    .transactions__header{
+        font-size: 7px;
+    }
+    
+}
+
 .transactions__api-container{
     display: grid;
     grid-template-columns: repeat(9, 1fr);
@@ -1010,6 +1031,14 @@ border-radius: 20px;
     text-decoration: underline;
     transition: color 0.3s ease, text-shadow 0.3s ease;
     font-size: 16px;
+   
+}
+
+@media screen and (max-width:867px) {
+    .transactions__data-name{
+        font-size: 7px;
+    }
+    
 }
 
 .transactions__data-name:hover {
@@ -1454,6 +1483,17 @@ padding-left: 30px;
     border-radius: 10px;
 }
 
+.kpis__data{
+    font-size: 16px;
+}
+
+@media screen and (max-width:867px) {
+    .kpis__data{
+        font-size: 7px;
+    }
+    
+}
+
 
 
 .kpis{
@@ -1496,6 +1536,9 @@ padding-left: 30px;
 }
 
 .kpis__input-container{
+
+    width: 100%;
+
     padding-bottom: 30px;
 }
 
@@ -1620,4 +1663,3 @@ padding-left: 30px;
     font-size: 14px;
     white-space: nowrap;
   }
-  
