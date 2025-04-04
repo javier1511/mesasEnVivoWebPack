@@ -3,7 +3,10 @@ import Get from "./Get.js";
 import Popup from "./Popup.js"
 
 const token = localStorage.getItem("token");
-console.log(token);
+import Auth from "./auth.js";
+const auth = new Auth()
+auth.protectedRoute();
+
 
 if (!token) {
     console.error("Token no encontrado en localStorage.");
