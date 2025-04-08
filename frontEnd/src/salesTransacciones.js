@@ -365,7 +365,7 @@ if(errors.length > 0){
         return;
     }
 
-const deleteSalesByIdRequest = new DeleteById(`https://juegoenvivodiamantetampico-5f11edf34527.herokuapp.com/${salesId}`, token);
+const deleteSalesByIdRequest = new DeleteById(`http://localhost:4000/sales/${salesId}`, token);
 const resultDelete = await deleteSalesByIdRequest.sendDeleteByIdRequest();
 
 if(resultDelete){
