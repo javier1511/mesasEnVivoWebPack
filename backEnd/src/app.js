@@ -1,6 +1,6 @@
 import express from 'express';
 import morgan from "morgan";
-import { createRoles } from './libs/initialsetup';
+import { createRoles } from './libs/initialSetup';
 import playersRoutes from "./routes/players.routes"
 import salesRoutes from "./routes/sales.routes"
 import authRoutes from "./routes/auth.routes"
@@ -13,7 +13,8 @@ const cors = require('cors');
 
 const app = express()
 createRoles()
-
+console.log("👉 Verificando importación de createRoles:");
+console.log(createRoles);
 app.use(morgan('dev'))
 app.use(express.json());
 app.use(cors()); 

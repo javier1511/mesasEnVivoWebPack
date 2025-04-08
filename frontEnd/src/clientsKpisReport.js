@@ -251,3 +251,4 @@ const crmButton = document.querySelector("#abrirCrm");
 crmButton.addEventListener("click", () => kpisPopup.openPopup())
 const kpisModalCloseButton = document.querySelector(".kpis__popup-close");
 kpisModalCloseButton.addEventListener("click", () => kpisPopup.closePopup())
+
