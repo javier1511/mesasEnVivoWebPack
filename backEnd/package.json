@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src --out-dir build",
-    "dev": "nodemon src/index.js --exec babel-node",
-    "start": "node build/index.js"
+    "heroku-postbuild": "npm run build",
+    "start": "node build/index.js",
+    "dev": "nodemon src/index.js --exec babel-node"
   },
   "keywords": [],
   "author": "",
@@ -22,10 +23,10 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.24.8",
-    "@babel/core": "^7.25.2",
+    "@babel/cli": "^7.27.0",
+    "@babel/core": "^7.26.10",
     "@babel/node": "^7.25.0",
-    "@babel/preset-env": "^7.25.2",
+    "@babel/preset-env": "^7.26.9",
     "nodemon": "^3.1.4"
   }
 }

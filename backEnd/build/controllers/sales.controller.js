@@ -18,112 +18,93 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 var createSales = exports.createSales = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(req, res) {
-    var _req$body, player, cash, cashIn, name, credit, dollars, date, time, payment, cashValue, creditValue, dollarsValue, paymentValue, playerId, newSale, saleSave, existingSummary, updatedNetwin, newSummary;
+  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(req, res) {
+    var _req$body, player, cashIn, cash, name, credit, dollars, payment, date, time, cashValue, creditValue, dollarsValue, paymentValue, newSale, saleSaved, netwinInc, summaryUpdated;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           _context.prev = 0;
-          _req$body = req.body, player = _req$body.player, cash = _req$body.cash, cashIn = _req$body.cashIn, name = _req$body.name, credit = _req$body.credit, dollars = _req$body.dollars, date = _req$body.date, time = _req$body.time, payment = _req$body.payment; // Convertir a números para evitar errores en los cálculos
-          cashValue = Number(cash);
-          creditValue = Number(credit);
-          dollarsValue = Number(dollars);
-          paymentValue = Number(payment); // Validar que los campos necesarios estén presentes
-          if (!(!player || !cash || !name || !credit || !dollars || !date || !time || !cashIn || !payment)) {
-            _context.next = 8;
+          _req$body = req.body, player = _req$body.player, cashIn = _req$body.cashIn, cash = _req$body.cash, name = _req$body.name, credit = _req$body.credit, dollars = _req$body.dollars, payment = _req$body.payment, date = _req$body.date, time = _req$body.time; // 1) Validaciones mínimas
+          if (!(!player || !name || date == null || time == null)) {
+            _context.next = 4;
             break;
           }
           return _context.abrupt("return", res.status(400).json({
-            error: 'Todos los campos son requeridos'
+            message: "Faltan campos requeridos en el body."
           }));
-        case 8:
-          _context.next = 10;
-          return _Players["default"].findById(player);
-        case 10:
-          playerId = _context.sent;
-          if (playerId) {
-            _context.next = 13;
+        case 4:
+          // 2) Parseo a Number
+          cashValue = Number(cash);
+          creditValue = Number(credit);
+          dollarsValue = Number(dollars);
+          paymentValue = Number(payment);
+          if (![cashValue, creditValue, dollarsValue, paymentValue].some(isNaN)) {
+            _context.next = 10;
             break;
           }
-          return _context.abrupt("return", res.status(404).send({
-            error: 'Player not found'
+          return _context.abrupt("return", res.status(400).json({
+            message: "Los montos deben ser numéricos."
           }));
-        case 13:
-          // Crear una nueva venta con el ID del jugador
+        case 10:
+          // 3) Guardar la venta
           newSale = new _Sales["default"]({
-            name: name,
-            player: playerId._id,
-            cash: cashValue,
+            player: player,
             cashIn: cashIn,
+            cash: cashValue,
+            name: name,
             credit: creditValue,
             dollars: dollarsValue,
             payment: paymentValue,
             date: date,
             time: time
-          }); // Guardar la nueva venta en la base de datos
-          _context.next = 16;
-          return newSale.save();
-        case 16:
-          saleSave = _context.sent;
-          _context.next = 19;
-          return _Summary["default"].findOne({
-            player: playerId._id
           });
-        case 19:
-          existingSummary = _context.sent;
-          if (!existingSummary) {
-            _context.next = 26;
-            break;
-          }
-          updatedNetwin = Number(existingSummary.netwin) + (cashValue + creditValue + dollarsValue - paymentValue);
-          _context.next = 24;
+          _context.next = 13;
+          return newSale.save();
+        case 13:
+          saleSaved = _context.sent;
+          // 4) Calcular netwin = cash + credit + dollars - payment
+          netwinInc = cashValue + creditValue + dollarsValue - paymentValue; // 5) Actualizar o crear el summary
+          _context.next = 17;
           return _Summary["default"].findOneAndUpdate({
-            player: playerId._id
+            player: player
           }, {
             $inc: {
               totalCash: cashValue,
               totalCredit: creditValue,
               totalDollars: dollarsValue,
-              totalPayment: paymentValue
-            },
-            $set: {
-              netwin: updatedNetwin
+              totalPayment: paymentValue,
+              netwin: netwinInc
             }
+          }, {
+            "new": true,
+            upsert: true
           });
-        case 24:
-          _context.next = 29;
-          break;
-        case 26:
-          newSummary = new _Summary["default"]({
-            player: playerId._id,
-            totalCash: cashValue,
-            totalCredit: creditValue,
-            totalDollars: dollarsValue,
-            totalPayment: paymentValue,
-            netwin: cashValue + creditValue + dollarsValue - paymentValue
-          });
-          _context.next = 29;
-          return newSummary.save();
-        case 29:
-          return _context.abrupt("return", res.status(201).json(saleSave));
-        case 32:
-          _context.prev = 32;
-          _context.t0 = _context["catch"](0);
-          return _context.abrupt("return", res.status(500).json({
-            error: 'Error al crear la venta'
+        case 17:
+          summaryUpdated = _context.sent;
+          return _context.abrupt("return", res.status(201).json({
+            sale: saleSaved,
+            summary: summaryUpdated
           }));
-        case 35:
+        case 21:
+          _context.prev = 21;
+          _context.t0 = _context["catch"](0);
+          console.error(_context.t0);
+          return _context.abrupt("return", res.status(500).json({
+            message: "Error interno del servidor",
+            error: _context.t0.message
+          }));
+        case 25:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 32]]);
+    }, _callee, null, [[0, 21]]);
   }));
   return function createSales(_x, _x2) {
     return _ref.apply(this, arguments);
   };
 }();
 var getSummaryByClient = exports.getSummaryByClient = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(req, res) {
+  var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(req, res) {
     var summaries, enrichedSummaries;
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) switch (_context3.prev = _context3.next) {
@@ -134,8 +115,8 @@ var getSummaryByClient = exports.getSummaryByClient = /*#__PURE__*/function () {
         case 3:
           summaries = _context3.sent;
           _context3.next = 6;
-          return Promise.all(summaries.map( /*#__PURE__*/function () {
-            var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(summary) {
+          return Promise.all(summaries.map(/*#__PURE__*/function () {
+            var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(summary) {
               var lastSale, result;
               return _regeneratorRuntime().wrap(function _callee2$(_context2) {
                 while (1) switch (_context2.prev = _context2.next) {
@@ -190,7 +171,7 @@ var getSummaryByClient = exports.getSummaryByClient = /*#__PURE__*/function () {
 
 // Obtener todas las ventas
 var getSales = exports.getSales = /*#__PURE__*/function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(req, res) {
+  var _ref4 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4(req, res) {
     var sales;
     return _regeneratorRuntime().wrap(function _callee4$(_context4) {
       while (1) switch (_context4.prev = _context4.next) {
@@ -224,7 +205,7 @@ var getSales = exports.getSales = /*#__PURE__*/function () {
 
 // Obtener una venta por ID
 var getSalesById = exports.getSalesById = /*#__PURE__*/function () {
-  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(req, res) {
+  var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5(req, res) {
     var sales;
     return _regeneratorRuntime().wrap(function _callee5$(_context5) {
       while (1) switch (_context5.prev = _context5.next) {
@@ -264,7 +245,7 @@ var getSalesById = exports.getSalesById = /*#__PURE__*/function () {
 
 // Actualizar una venta por ID
 var updateSaleById = exports.updateSaleById = /*#__PURE__*/function () {
-  var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(req, res) {
+  var _ref6 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6(req, res) {
     var sales;
     return _regeneratorRuntime().wrap(function _callee6$(_context6) {
       while (1) switch (_context6.prev = _context6.next) {
@@ -306,8 +287,8 @@ var updateSaleById = exports.updateSaleById = /*#__PURE__*/function () {
 
 // Eliminar una venta por ID
 var deleteSaleById = exports.deleteSaleById = /*#__PURE__*/function () {
-  var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(req, res) {
-    var sales;
+  var _ref7 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee7(req, res) {
+    var sale, player, cash, credit, dollars, payment, cashValue, creditValue, dollarsValue, paymentValue, netwinDec, summaryUpdated;
     return _regeneratorRuntime().wrap(function _callee7$(_context7) {
       while (1) switch (_context7.prev = _context7.next) {
         case 0:
@@ -315,29 +296,55 @@ var deleteSaleById = exports.deleteSaleById = /*#__PURE__*/function () {
           _context7.next = 3;
           return _Sales["default"].findByIdAndDelete(req.params.saleId);
         case 3:
-          sales = _context7.sent;
-          if (sales) {
+          sale = _context7.sent;
+          if (sale) {
             _context7.next = 6;
             break;
           }
           return _context7.abrupt("return", res.status(404).json({
-            error: 'Sale not found'
+            error: "Sale not found"
           }));
         case 6:
-          res.status(204).json(); // No content, venta eliminada
-          _context7.next = 12;
-          break;
-        case 9:
-          _context7.prev = 9;
-          _context7.t0 = _context7["catch"](0);
-          res.status(500).json({
-            error: 'Error al eliminar la venta'
+          // 2) Extraer valores para descontar
+          player = sale.player, cash = sale.cash, credit = sale.credit, dollars = sale.dollars, payment = sale.payment;
+          cashValue = Number(cash);
+          creditValue = Number(credit);
+          dollarsValue = Number(dollars);
+          paymentValue = Number(payment); // 3) Calcular netwin decrement = cash + credit + dollars - payment
+          netwinDec = cashValue + creditValue + dollarsValue - paymentValue; // 4) Actualizar el summary restando esos valores
+          _context7.next = 14;
+          return _Summary["default"].findOneAndUpdate({
+            player: player
+          }, {
+            $inc: {
+              totalCash: -cashValue,
+              totalCredit: -creditValue,
+              totalDollars: -dollarsValue,
+              totalPayment: -paymentValue,
+              netwin: -netwinDec
+            }
+          }, {
+            "new": true
           });
-        case 12:
+        case 14:
+          summaryUpdated = _context7.sent;
+          return _context7.abrupt("return", res.status(200).json({
+            message: "Sale deleted",
+            summary: summaryUpdated
+          }));
+        case 18:
+          _context7.prev = 18;
+          _context7.t0 = _context7["catch"](0);
+          console.error(_context7.t0);
+          return _context7.abrupt("return", res.status(500).json({
+            error: "Error al eliminar la venta",
+            details: _context7.t0.message
+          }));
+        case 22:
         case "end":
           return _context7.stop();
       }
-    }, _callee7, null, [[0, 9]]);
+    }, _callee7, null, [[0, 18]]);
   }));
   return function deleteSaleById(_x12, _x13) {
     return _ref7.apply(this, arguments);

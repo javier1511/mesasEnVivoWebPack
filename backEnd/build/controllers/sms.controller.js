@@ -14,7 +14,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 var username = '741CFBA57D4341319825620FC961B953-02-E';
 var password = 'qeMgo8A9v6miLcf*wyNks340qCIAt';
 var sendSMS = exports.sendSMS = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(req, res) {
+  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(req, res) {
     var _req$body, numbers, message, newSMS, postData, options, apiReq;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {

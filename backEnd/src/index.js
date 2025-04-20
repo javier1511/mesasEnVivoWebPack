@@ -1,6 +1,7 @@
-import app from './app'
+import app from './app';
+import './database';
 
-import './database'
-
-console.log('Server listen on port', 4000)
-app.listen(4000);
+const PORT = parseInt(process.env.PORT, 10) || 4000;
+app.listen(PORT, () => {
+  console.log('Server listening on port', PORT);
+});
