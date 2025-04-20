@@ -23,7 +23,7 @@ export const createPlayer = async (req, res) => {
 
 export const getPlayer = async (req, res) => {
     try {
-        const players = await Players.find()
+        const players = await Players.find().sort({ date: -1 });
         res.json(players)
         
     } catch (error) {

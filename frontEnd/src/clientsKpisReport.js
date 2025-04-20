@@ -35,6 +35,15 @@ const inputKpisPago = document.querySelector("#inputKpisPago");
 const inputFechaDesde = document.querySelector("#inputFechaDesde");
 const inputFechaHasta = document.querySelector("#inputFechaHasta");
 
+const formatearMoneda = (cantidad) => {
+    if (isNaN(cantidad)) return "$0.00";
+    return Number(cantidad).toLocaleString('es-MX', {
+        style: 'currency',
+        currency: 'MXN'
+    });
+};
+
+
 const displayKpisPlayers = async () => {
     let queryMobile = inputKpisMobile?.value.trim().toLowerCase() || '';
     let queryName = inputKpisName?.value.trim().toLowerCase() || '';
@@ -95,11 +104,12 @@ const displayKpisPlayers = async () => {
             return `
                 <p class="kpis__data">${player.name}</p>
 <p class="kpis__data kpis__mobile">${player.mobile}</p>
-                <p class="kpis__data">${totalCash}</p>
-                <p class="kpis__data">${totalCredit}</p>
-                <p class="kpis__data">${totalDollars}</p>
-                <p class="kpis__data">${totalPayment}</p>
-                <p class="kpis__data">${netwin}</p>
+            <p class="kpis__data">${formatearMoneda(totalCash)}</p>
+<p class="kpis__data">${formatearMoneda(totalCredit)}</p>
+<p class="kpis__data">${formatearMoneda(totalDollars)}</p>
+<p class="kpis__data">${formatearMoneda(totalPayment)}</p>
+<p class="kpis__data">${formatearMoneda(netwin)}</p>
+
                 <p class="kpis__data">${formattedDateKpis}</p>
             `;
         })
@@ -227,7 +237,10 @@ document.addEventListener("click", (e) => {
     kpisDataContainer.innerHTML = dataDisplayKpis || "<p>No se encontraron transacciones.</p>";
 };
 
-displayKpisPlayers();
+(async () => {
+    await displayKpisPlayers();
+})();
+
 
 // Escuchar todos los inputs
 [

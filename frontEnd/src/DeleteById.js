@@ -31,7 +31,7 @@
                 alert("Transacción eliminada con éxito");
 
                 // Recargamos la página
-                window.location.reload();
+
 
                 // Retornamos los datos obtenidos
          

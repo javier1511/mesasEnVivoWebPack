@@ -2,80 +2,88 @@ import Players from "../models/Players";
 import Sales from "../models/Sales";
 import Summary from "../models/Summary.js";
 
+
+
 export const createSales = async (req, res) => {
     try {
-        const { player, cash, cashIn, name, credit, dollars, date, time, payment } = req.body;
-
-        // Convertir a números para evitar errores en los cálculos
-        const cashValue = Number(cash);
-        const creditValue = Number(credit);
-        const dollarsValue = Number(dollars);
-        const paymentValue = Number(payment);
-
-        // Validar que los campos necesarios estén presentes
-        if (!player || !cash || !name || !credit || !dollars || !date || !time || !cashIn || !payment) {
-            return res.status(400).json({ error: 'Todos los campos son requeridos' });
-        }
-
-        // Buscar el jugador por ID
-        const playerId = await Players.findById(player);
-        if (!playerId) {
-            return res.status(404).send({ error: 'Player not found' });
-        }
-
-        // Crear una nueva venta con el ID del jugador
-        const newSale = new Sales({
-            name,
-            player: playerId._id,
-            cash: cashValue,
-            cashIn,
-            credit: creditValue,
-            dollars: dollarsValue,
-            payment: paymentValue,
-            date,
-            time
-        });
-
-        // Guardar la nueva venta en la base de datos
-        const saleSave = await newSale.save();
-
-        const existingSummary = await Summary.findOne({ player: playerId._id });
-
-        if (existingSummary) {
-            const updatedNetwin = Number(existingSummary.netwin) +
-                (cashValue + creditValue + dollarsValue - paymentValue);
-
-            await Summary.findOneAndUpdate(
-                { player: playerId._id },
-                {
-                    $inc: {
-                        totalCash: cashValue,
-                        totalCredit: creditValue,
-                        totalDollars: dollarsValue,
-                        totalPayment: paymentValue,
-                    },
-                    $set: { netwin: updatedNetwin }
-                }
-            );
-        } else {
-            const newSummary = new Summary({
-                player: playerId._id,
-                totalCash: cashValue,
-                totalCredit: creditValue,
-                totalDollars: dollarsValue,
-                totalPayment: paymentValue,
-                netwin: (cashValue + creditValue + dollarsValue - paymentValue)
-            });
-            await newSummary.save();
-        }
-
-        return res.status(201).json(saleSave);
+      const {
+        player,
+        cashIn,
+        cash,
+        name,
+        credit,
+        dollars,
+        payment,
+        date,
+        time,
+      } = req.body;
+  
+      // 1) Validaciones mínimas
+      if (!player || !name || date == null || time == null) {
+        return res
+          .status(400)
+          .json({ message: "Faltan campos requeridos en el body." });
+      }
+  
+      // 2) Parseo a Number
+      const cashValue    = Number(cash);
+      const creditValue  = Number(credit);
+      const dollarsValue = Number(dollars);
+      const paymentValue = Number(payment);
+      if (
+        [cashValue, creditValue, dollarsValue, paymentValue].some(isNaN)
+      ) {
+        return res
+          .status(400)
+          .json({ message: "Los montos deben ser numéricos." });
+      }
+  
+      // 3) Guardar la venta
+      const newSale = new Sales({
+        player,
+        cashIn,
+        cash: cashValue,
+        name,
+        credit: creditValue,
+        dollars: dollarsValue,
+        payment: paymentValue,
+        date,
+        time,
+      });
+      const saleSaved = await newSale.save();
+  
+      // 4) Calcular netwin = cash + credit + dollars - payment
+      const netwinInc = cashValue + creditValue + dollarsValue - paymentValue;
+  
+      // 5) Actualizar o crear el summary
+      const summaryUpdated = await Summary.findOneAndUpdate(
+        { player },
+        {
+          $inc: {
+            totalCash:    cashValue,
+            totalCredit:  creditValue,
+            totalDollars: dollarsValue,
+            totalPayment: paymentValue,
+            netwin:       netwinInc,
+          },
+        },
+        { new: true, upsert: true }
+      );
+  
+      return res.status(201).json({
+        sale:    saleSaved,
+        summary: summaryUpdated,
+      });
+  
     } catch (error) {
-        return res.status(500).json({ error: 'Error al crear la venta' });
+      console.error(error);
+      return res
+        .status(500)
+        .json({ message: "Error interno del servidor", error: error.message });
     }
-};
-
-
+  };
+  
+  
 
 export const getSummaryByClient = async (req, res) => {
     try {
@@ -108,7 +116,7 @@ export const getSummaryByClient = async (req, res) => {
 // Obtener todas las ventas
 export const getSales = async (req, res) => {
     try {
-        const sales = await Sales.find();
+        const sales = await Sales.find().sort({date: -1});
         res.status(200).json(sales);
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener las ventas' });
@@ -146,12 +154,62 @@ export const updateSaleById = async (req, res) => {
 // Eliminar una venta por ID
 export const deleteSaleById = async (req, res) => {
     try {
-        const sales = await Sales.findByIdAndDelete(req.params.saleId);
-        if (!sales) {
-            return res.status(404).json({ error: 'Sale not found' });
-        }
-        res.status(204).json(); // No content, venta eliminada
+      // 1) Eliminar la venta y obtener sus datos
+      const sale = await Sales.findByIdAndDelete(req.params.saleId);
+      if (!sale) {
+        return res.status(404).json({ error: "Sale not found" });
+      }
+  
+      // 2) Extraer valores para descontar
+      const {
+        player,
+        cash,
+        credit,
+        dollars,
+        payment,
+      } = sale;
+      const cashValue    = Number(cash);
+      const creditValue  = Number(credit);
+      const dollarsValue = Number(dollars);
+      const paymentValue = Number(payment);
+  
+      // 3) Calcular netwin decrement = cash + credit + dollars - payment
+      const netwinDec = cashValue + creditValue + dollarsValue - paymentValue;
+  
+      // 4) Actualizar el summary restando esos valores
+      const summaryUpdated = await Summary.findOneAndUpdate(
+        { player },
+        {
+          $inc: {
+            totalCash:    -cashValue,
+            totalCredit:  -creditValue,
+            totalDollars: -dollarsValue,
+            totalPayment: -paymentValue,
+            netwin:       -netwinDec,
+          },
+        },
+        { new: true }
+      );
+  
+      // 5) Si el summary quedó en cero (o no existe), podrías borrarlo:
+      // const shouldDelete = summaryUpdated &&
+      //   summaryUpdated.totalCash === 0 &&
+      //   summaryUpdated.totalCredit === 0 &&
+      //   summaryUpdated.totalDollars === 0 &&
+      //   summaryUpdated.totalPayment === 0;
+      // if (shouldDelete) {
+      //   await Summary.deleteOne({ player });
+      // }
+  
+      return res.status(200).json({
+        message: "Sale deleted",
+        summary: summaryUpdated,
+      });
+  
     } catch (error) {
-        res.status(500).json({ error: 'Error al eliminar la venta' });
+      console.error(error);
+      return res
+        .status(500)
+        .json({ error: "Error al eliminar la venta", details: error.message });
     }
-};
+  };

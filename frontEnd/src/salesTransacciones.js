@@ -44,6 +44,15 @@ const formTransactions = document.querySelector(".transactions__form")
 const inputName = document.querySelector("#queryName");
 
 
+const formatearMoneda = (cantidad) => {
+    if (isNaN(cantidad)) return "$0.00";
+    return Number(cantidad).toLocaleString('es-MX', {
+        style: 'currency',
+        currency: 'MXN'
+    });
+};
+
+
 const displayTransactions = async () => {
     let queryTransactions = inputTransactionsQuery.value.trim().toLowerCase();
     let queryName = inputName.value.trim().toLowerCase();
@@ -98,21 +107,11 @@ const displayTransactions = async () => {
         
     
 
-    
-        <p class="transactions__data-value">${cash}</p>
- 
-    
-        <p class="transactions__data-value">${dollars}</p>
- 
-
-        <p class="transactions__data-value">${credit}</p>
-        
-     
-
-        <p class="transactions__data-value">${cashIn}</p>
-        
-
-        <p class="transactions__data-value">${payment}</p>
+    <p class="transactions__data-value">${formatearMoneda(cash)}</p>
+<p class="transactions__data-value">${formatearMoneda(dollars)}</p>
+<p class="transactions__data-value">${formatearMoneda(credit)}</p>
+<p class="transactions__data-value">${formatearMoneda(cashIn)}</p>
+<p class="transactions__data-value">${formatearMoneda(payment)}</p>
 
 
 

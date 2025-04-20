@@ -20,7 +20,7 @@ import Put from "./Put.js";
 import DeleteById from "./DeleteById.js";
 
 const getPlayers = async () => {
-    const getRequest = new Get('https://juegoenvivo1-701fa226890c.herokuapp.com/players', token);
+    const getRequest = new Get('http://localhost:4000/players', token);
     const data = await getRequest.get();
     console.log(data)
     return data; // Asegúrate de devolver los datos
