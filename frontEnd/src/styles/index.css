@@ -72,13 +72,14 @@ body{
     border-radius: 10px;
     justify-content: center;
 
+
 }
 
 .register__title{
  
     color: #007DFF;
     font-weight: bold;
-    font-size: 50px;
+    font-size: 25px;
 
 
 }
@@ -552,17 +553,18 @@ background-color: #007bff;
 
 
 .clients__main-title-container{
-    width: 100%;
+    width: 50%;
     background-color: black;
     border-radius: 10px;
     text-align: center;
+    margin: 0 auto;
 
 }
 
 .clients__main-title{
     color: #007DFF;
     font-weight: bold;
-    font-size: 50px;
+    font-size: 25px;
 }
 
 .clients__button{
@@ -601,7 +603,7 @@ background-color: #007bff;
     align-items: center;
     gap: 25px;
     position: relative;
-    z-index: 1000;
+
 
 
 
@@ -612,7 +614,7 @@ background-color: #007bff;
     padding: 20px 10px 20px 10px;
     background-color: white;
     border-radius: 10px;
-
+    z-index: 999;
 
 }
 
@@ -692,7 +694,7 @@ background-color: #007bff;
     background-color: black;
     border-radius: 10px;
     color: #007bff;
-    font-size: 50px;
+    font-size: 25px;
 
 }
 
@@ -743,20 +745,26 @@ background-color: #007bff;
     opacity: 0;
     visibility: hidden;
     z-index: 1000;
+
 }
 
-@media screen and (max-width:867px) {
-    .sales__list{
-
-    }
+.sales__list-container{
+    height: 50vh;      /* fija la altura para que pueda scrollear */
+    overflow-y: scroll;  /* fuerza la barra vertical siempre visible */
+    overflow-x: hidden;  /* fuerza la barra vertical siempre visible */
+   
 }
+
+
 
 
 
 .sales__item{
     width: 100%;
-    display: flex;
-    justify-content: space-around   ;
+    display: grid;
+    justify-content: space-around;
+    grid-template-columns: 1fr 1fr;
+
 
 }
 
@@ -764,7 +772,7 @@ background-color: #007bff;
     text-align: center;
     background-color: white;
     border-radius: 10px;
-
+    overflow: hidden;
     width: 100%;
 
 
@@ -774,6 +782,8 @@ background-color: #007bff;
 .sales__data{
     text-align: center;
     width: 100%;
+
+
     
 }
 
@@ -814,7 +824,8 @@ background-color: #007bff;
     border-radius: 10px;
     color: #007bff;
     font-size: 25px;
- 
+/* Siempre muestra las barras horizontal y vertical */
+
 
 }
 
@@ -864,9 +875,8 @@ background-color: #007bff;
 }
 
 .sales__list-close{
-    width: 10%;
-    position: absolute;
-    bottom: 10px;
+    width: 5%;
+
     cursor: pointer;
 }
 
@@ -897,7 +907,7 @@ background-color: #007bff;
     opacity: 0;
     transition: opacity 0.8s ease, transform 0.8s ease;
     position: absolute;
-    top: 25%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;   
@@ -925,12 +935,17 @@ background-color: #007bff;
     color: #007bff;
     width: 50%;
     border-radius: 10px;
-    font-size: 30px;
+    font-size: 25px;
 }
+
+.transactions__title{
+    width: 100%;
+}
+
 
 @media screen and (max-width:867px) {
     .transactions__title{
-        font-size: 24px;
+        font-size: 20px;
     }
     
 }
@@ -1122,6 +1137,13 @@ border-radius: 20px;
     width: 10%;
 }
 
+@media screen and (max-width:867px) {
+    .transactions__popup-close{
+        width: 20%;
+    }
+    
+}
+
 .login{
     width: 100%;
     height: 100vh;
@@ -1266,9 +1288,13 @@ border-radius: 20px;
 }
 
 .clients__report-title-container{
+    margin: 0 auto;
     background-color: black;
-    width: 100%;
+    width: 50%;
     text-align: center;
+    border-radius: 10px;
+
+
 
    
 
@@ -1276,6 +1302,7 @@ border-radius: 20px;
 
 .clients__report-title{
     color:#007bff ;
+    font-size: 25px;
 }
 .clientsReport__input-container{
     width: 100%;
@@ -1550,10 +1577,20 @@ padding-left: 30px;
 
 .kpis__input-container{
 
+
     width: 100%;
+
 
     padding-bottom: 30px;
 }
+
+.kpis__input-search-title{
+    font-size: 16px;
+    color: #007DFF;
+    font-weight: bold;
+}
+
+
 
 .kpis__input{
     margin: 10px 0; /* Espaciado entre elementos */
@@ -1632,21 +1669,28 @@ padding-left: 30px;
     font-style: italic; /* Estilo cursiva */
 }
 
+.kpis__button-container{
+    width: 100%;
+    display: flex;
+    
+}
+
 .kpis__button{
-    width: 15%;
+    width: 10%;
     margin: 0 auto; 
-    font-size: 16px;
+    font-size: 12px;
     font-weight: bold;
     background-color: #007DFF;
-    ;
+    
     border-color: #007DFF;
-    ;
+
     border-radius: 5px;
     color: white;
 }
 
 @media screen and (max-width:867px) {
     .kpis__button{
+        width: 15%;
         font-size: 7px;
     }
     
@@ -1689,6 +1733,10 @@ padding-left: 30px;
     border-radius: 5px;
     font-size: 14px;
     white-space: nowrap;
+  }
+
+  .kpis__title{
+    font-size: 25px;
   }
 
   @media screen and (max-width:867px) {
