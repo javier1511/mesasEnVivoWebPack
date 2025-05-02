@@ -44,6 +44,8 @@ const getDailyReport = async () => {
         console.warn("No se encontraron ventas en el rango seleccionado.");
         clearDynamicData(); // Limpia solo los datos dinámicos
         const noDataMessage = document.createElement("p");
+
+         
         noDataMessage.textContent = "No se encontraron ventas en el rango seleccionado.";
         noDataMessage.classList.add("sales-report__dynamic");
         salesReportContainer.appendChild(noDataMessage);

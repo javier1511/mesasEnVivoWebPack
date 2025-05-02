@@ -3,6 +3,7 @@ import "../src/styles/index.css"
 let playerId = null;
 let playerName = null;
 let playerMobile = null;
+let userId = null
 import logoComplete from "./images/logo.png";
 import logoLarge from "./images/DIAMANTE.png";
 
@@ -10,6 +11,23 @@ import Print from "./Print.js";
 
 let token = localStorage.getItem('token');
 console.log(token)
+
+// Suponiendo que token === "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YTg..."}"
+const tokenId = localStorage.getItem('token');
+if (token) {
+  // 1) Partir el token en sus tres secciones
+  const payloadBase64 = token.split('.')[1];
+  // 2) Reemplazar para Base64 estándar y decodificar
+  const payloadJson = atob(payloadBase64.replace(/-/g, '+').replace(/_/g, '/'));
+  // 3) Parsear a objeto
+  const payload = JSON.parse(payloadJson);
+  userId = payload.id
+  document.querySelector("#userId").value = userId;
+
+  console.log('User ID:', payload.id);
+}
+console.log(userId)
+
 
 import Auth from "./auth.js";
 const auth = new Auth()
@@ -43,6 +61,10 @@ const listButton = document.querySelector(".sales__button")
 const salesList = document.querySelector(".sales__list")
 const popupSales = new Popup(salesList);
 const salesCloseButton = document.querySelector(".sales__list-close")
+const inputUserId = document.querySelector("#userId")
+
+
+inputUserId.value = userId
 
 const displayUserSales = async () => {
     let querySales = inputQuerySales.value;
@@ -76,6 +98,7 @@ const displayUserSales = async () => {
             playerName = element.textContent; // Asignar el nombre seleccionado a playerName
             playerId = element.getAttribute("data-id"); // Asignar el ID seleccionado a playerId
             playerMobile = element.getAttribute("data-mobile");
+
             const playerNumber = element.closest('.sales__item').querySelector('.sales__item-container:nth-child(2) .sales__value').textContent;
             
             console.log("Nombre seleccionado:", playerName);
@@ -86,6 +109,7 @@ const displayUserSales = async () => {
             salesFormName.value = playerName; // Ejemplo: asignar el nombre al input de ventas
             salesFormId.value = playerId;
             salesFormMobile.value = playerNumber;
+    
 
             popupSales.closePopup();
 
@@ -199,25 +223,33 @@ const popupSales = () => {
 
     const validateSalesForm = () => {
 
-        const salesInputName = document.querySelector("#salesName").value
-const salesInputMobile = document.querySelector("#salesMobile").value
-const salesInputId = document.querySelector("#salesId").value
+  const salesInputName     = document.querySelector("#salesName").value.trim();
+  const salesInputMobile   = document.querySelector("#salesMobile").value.trim();
+  const salesInputId       = document.querySelector("#salesId").value.trim();
+  const salesInputUserId   = document.querySelector("#userId").value.trim();
+
 
 
 let salesErrors = [];
 
-if(salesInputName.length < 3 || salesInputName.length > 30){
-    salesErrors.push('El nombre debe tener entre 3 y 30 caracteres')
-}
+if (salesInputName.length < 3 || salesInputName.length > 30) {
+    salesErrors.push('El nombre debe tener entre 3 y 30 caracteres');
+  }
 
-if(salesInputMobile.length !== 10 || salesInputMobile === "1234567890"){
-    salesErrors.push('El telefono debe ser de 10 digitos o no debe ser 1234567890')
-}
+  // Móvil: exactamente 10 dígitos y distinto de "1234567890"
+  if (salesInputMobile.length !== 10 || salesInputMobile === "1234567890") {
+    salesErrors.push('El teléfono debe ser de 10 dígitos y no puede ser 1234567890');
+  }
 
-if(salesInputId.length === ""){
-    salesErrors.push('Este campo no puede ir vacio')
-}
+  // ID de jugador obligatorio
+  if (!salesInputId) {
+    salesErrors.push('El ID del jugador no puede ir vacío');
+  }
 
+  // ID de usuario obligatorio
+  if (!salesInputUserId) {
+    salesErrors.push('El ID de usuario no puede ir vacío');
+  }
 
 
 
@@ -279,6 +311,12 @@ return salesErrors;
 
     salesMain.addEventListener('submit', async (event) => {
         event.preventDefault();
+
+           // 1. Confirmación previa al envío
+    if (!confirm('¿Estás seguro de que deseas enviar esta venta?')) {
+        // Si el usuario pulsa “Cancelar”, se detiene todo el proceso
+        return;
+    }
     
         errorsContainer.innerHTML = '';
     
@@ -297,6 +335,7 @@ return salesErrors;
     
         const salesFormData = {
             player: document.querySelector("#salesId").value.toUpperCase(),
+            user: userId,
             cash: document.querySelector("#cash").value || "0",
             cashIn: document.querySelector("#cashIn").value || "0",
             name: document.querySelector('#salesName').value.toUpperCase(),
@@ -489,8 +528,7 @@ return salesErrors;
     // Iniciamos una sola instancia de Calculator para todos los inputs
     const calculator = new Calculator(calculatorDisplay, calculatorButtons, clearButton, enterButton, calculatorPopup);
     
-
-
+    //miles//
 
 
     

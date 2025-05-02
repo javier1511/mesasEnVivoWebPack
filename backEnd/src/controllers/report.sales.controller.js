@@ -5,7 +5,7 @@ export const getSalesReport = async (req, res) => {
         const { fechaInicio, fechaFin } = req.query;
 
         if (!fechaInicio || !fechaFin) {
-            return res.status(400).json({ error: "Debes proporcionar fechaInicio y fechaFin en formato YYYY-MM-DD" });
+            return res.status(400).json({ error: "Debes proporcionar fecha de inicio y fecha fin" });
         }
 
         // Convertir fechas en objetos Date

@@ -6,6 +6,9 @@ const saleSchema = new Schema({
     player:{
         type:Schema.Types.ObjectId, ref:'Player'
     },
+    user:{
+        type:Schema.Types.ObjectId, ref:'User'
+    },
     cashIn:{
         type:Number,
 

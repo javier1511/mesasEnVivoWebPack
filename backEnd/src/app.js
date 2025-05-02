@@ -7,7 +7,7 @@ import authRoutes from "./routes/auth.routes"
 import smsRoutes from "./routes/sms.routes"
 import countPlayerRoutes from "./routes/countPlayersByDate.routes"
 import dailyReportByDate from "./routes/dailyReportByDate"
-
+import dailyReportByUser from "./routes/dailyUserReportByDate"
 
 const cors = require('cors');
 
@@ -28,4 +28,5 @@ app.use('/auth', authRoutes)
 app.use('/sendsms', smsRoutes)
 app.use('/countplayers', countPlayerRoutes)
 app.use('/dailyreport', dailyReportByDate)
+app.use('/dailyreportusers', dailyReportByUser)
 export default app  

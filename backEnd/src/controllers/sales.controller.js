@@ -8,6 +8,7 @@ export const createSales = async (req, res) => {
     try {
       const {
         player,
+        user,
         cashIn,
         cash,
         name,
@@ -19,7 +20,7 @@ export const createSales = async (req, res) => {
       } = req.body;
   
       // 1) Validaciones mínimas
-      if (!player || !name || date == null || time == null) {
+      if (!player || !name || !user || date == null || time == null) {
         return res
           .status(400)
           .json({ message: "Faltan campos requeridos en el body." });
@@ -41,6 +42,7 @@ export const createSales = async (req, res) => {
       // 3) Guardar la venta
       const newSale = new Sales({
         player,
+        user,
         cashIn,
         cash: cashValue,
         name,

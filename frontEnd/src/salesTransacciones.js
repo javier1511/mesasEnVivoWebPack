@@ -67,7 +67,7 @@ const displayTransactions = async () => {
         return matchesName && matchesDate;
     })
     .map((object) => {
-        const {_id, player, name, cash, credit, dollars, date, time,cashIn,payment} = object;
+        const {_id, player, user, name, cash, credit, dollars, date, time,cashIn,payment} = object;
 
 
         let formattedDate = "";
@@ -93,9 +93,12 @@ const displayTransactions = async () => {
     data-name="${name}" 
     data-cash="${cash}"
     data-payment="${payment}"
+    data-user="${user}"
     data-cashin="${cashIn}">
     ${name}
 </p>
+
+  <p class="transactions__data-value">${user}</p>
         
     
 
@@ -106,11 +109,12 @@ const displayTransactions = async () => {
         <p class="transactions__data-value">${time}</p>
         
     
-
-    <p class="transactions__data-value">${formatearMoneda(cash)}</p>
-<p class="transactions__data-value">${formatearMoneda(dollars)}</p>
-<p class="transactions__data-value">${formatearMoneda(credit)}</p>
 <p class="transactions__data-value">${formatearMoneda(cashIn)}</p>
+    <p class="transactions__data-value">${formatearMoneda(cash)}</p>
+    <p class="transactions__data-value">${formatearMoneda(credit)}</p>
+<p class="transactions__data-value">${formatearMoneda(dollars)}</p>
+
+
 <p class="transactions__data-value">${formatearMoneda(payment)}</p>
 
 
