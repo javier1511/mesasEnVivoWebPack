@@ -13,6 +13,7 @@ var _auth = _interopRequireDefault(require("./routes/auth.routes"));
 var _sms = _interopRequireDefault(require("./routes/sms.routes"));
 var _countPlayersByDate = _interopRequireDefault(require("./routes/countPlayersByDate.routes"));
 var _dailyReportByDate = _interopRequireDefault(require("./routes/dailyReportByDate"));
+var _dailyUserReportByDate = _interopRequireDefault(require("./routes/dailyUserReportByDate"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 var cors = require('cors');
 var app = (0, _express["default"])();
@@ -31,4 +32,5 @@ app.use('/auth', _auth["default"]);
 app.use('/sendsms', _sms["default"]);
 app.use('/countplayers', _countPlayersByDate["default"]);
 app.use('/dailyreport', _dailyReportByDate["default"]);
+app.use('/dailyreportusers', _dailyUserReportByDate["default"]);
 var _default = exports["default"] = app;

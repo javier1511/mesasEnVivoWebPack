@@ -132,88 +132,6 @@ salesCloseButton.addEventListener("click", () => popupSales.closePopup());
 
 
 
-
-
-
-
-/*
-const salesNameContainer = document.querySelector(".sales__name-container")
-const salesMobileContainer = document.querySelector(".sales__mobile-container")
-const salesIdContainer = document.querySelector(".sales__id-container")
-const checkboxSalesContainer = document.querySelector(".sales__checkbox-container")
-const salesInputName = document.querySelector("#salesName")
-const salesInputMobile = document.querySelector("#salesMobile")
-const salesInputId = document.querySelector("#salesId")
-const formButton = document.querySelector(".form__button")
-const salesFormMain = document.querySelector(".sales__list")
-const salesForm = document.querySelector(".sales__form")
-const errorsContainer = document.querySelector(".sales__errorMessages")
-const salesMain = document.querySelector(".sales__form")
-
-
-
-
-
-
-const selectPlayer = (clients) => {
-    clients.forEach(client => {
-        // Crear elementos de texto para el nombre, móvil y ID
-        const salesNameElement = document.createElement("p");
-        salesNameElement.textContent = client.name;
-        salesNameContainer.appendChild(salesNameElement);
-
-        const mobileSalesElement = document.createElement("p");
-        mobileSalesElement.textContent = client.mobile;
-        salesMobileContainer.appendChild(mobileSalesElement);
-
-        const salesIdElement = document.createElement("p");
-        salesIdElement.textContent = client._id;
-        salesIdContainer.appendChild(salesIdElement);
-
-        // Crear checkbox y agregar valores de mobile y _id como atributos data
-        const checkboxSalesElement = document.createElement("input");
-        checkboxSalesElement.type = "checkbox";
-        checkboxSalesElement.value = client.name;
-        checkboxSalesElement.setAttribute("data-mobile", client.mobile);
-        checkboxSalesElement.setAttribute("data-id", client._id);
-        checkboxSalesContainer.appendChild(checkboxSalesElement);
-
-        // Evento change para el checkbox
-        checkboxSalesElement.addEventListener('change', (event) => {
-            if (event.target.checked) {
-                salesInputName.value = event.target.value; // Nombre
-                salesInputMobile.value = event.target.getAttribute("data-mobile"); // Mobile
-                salesInputId.value = event.target.getAttribute("data-id"); // ID
-            } else {
-                salesInputName.value = "";
-                salesInputMobile.value = "";
-                salesInputId.value = "";
-            }
-        });
-    });
-}
-
-
-
-
-const popupSales = () => {
-    salesFormMain.classList.add("sales__opened")
-
-            
-    }
-    
-    
-    salesInputName.addEventListener("click", popupSales)
-
-        salesForm.addEventListener("submit", (event) => {
-            event.preventDefault();
-            salesFormMain.classList.remove("sales__opened")
-        }
-    )*/
-
-
-//POPUP//
-
         //SALES//
 
 
@@ -272,10 +190,7 @@ return salesErrors;
 
         const currentTime = `${hours}:${minutes}:${seconds}`;
 
-        /*const day = now.getDate();
-        const month = now.getMonth() + 1;
-        const year = now.getFullYear();
-        const formattedDate = `${day}/${month}/${year}`; // Cambié los separadores a /*/
+     
 
         const fechaInput = document.querySelector("#salesDate");
      
@@ -482,7 +397,7 @@ return salesErrors;
 }
 
 .ticket__value{
-    font-size: 12px;
+    font-size: 16px;
 }
                 </style>
                     <body>
@@ -527,89 +442,6 @@ return salesErrors;
     
     // Iniciamos una sola instancia de Calculator para todos los inputs
     const calculator = new Calculator(calculatorDisplay, calculatorButtons, clearButton, enterButton, calculatorPopup);
-    
-    //miles//
 
 
     
-
-  /*  //CALCULADORA//
-
-    // Selección de los elementos
-    const salesCashId = document.querySelector("#cash");
-    const salesCardId = document.querySelector("#card");
-    const salesUsdId = document.querySelector("#usd");
-    const calculator = document.querySelector(".calculadora-container");
-    const calculatorPopup = new Popup(calculator);
-    let currentValue = '';
-    const calculatorDisplay = document.querySelector(".calculadora__display");
-
-    // Función para abrir el popup
-    const openCalculatorPopup = () => {
-        calculatorPopup.openPopup();
-    };
-
-    // Lista de elementos que tendrán el evento
-    const elements = [salesCashId, salesCardId, salesUsdId];
-
-    // Asignación del eventListener a cada elemento
-    elements.forEach(element => {
-        if (element) { // Verifica que el elemento exista
-            element.addEventListener("click", openCalculatorPopup ());
-            document.addEventListener('keydown', handleKeyPress); // Escuchar el teclado cuando se abre la calculadora
-
-        }
-    });
-
-
-
-        
-    const calculatorButtons = document.querySelectorAll(".calculadora__buttons-container");
-
-    calculatorButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const value = button.getAttribute('data-value');
-
-            if(value){
-                currentValue = currentValue + value;
-                calculatorDisplay.textContent = currentValue
-            }
-
-            if(button.id === 'clear-btn'){
-                currentValue = '';
-                calculatorDisplay.textContent = '0';
-            }
-
-            if(button.id === 'enter-btn'){
-                elements.value = currentValue;
-                document.removeEventListener('keydown',handleKeyPress)
-            }
-        })
-    })
-
-    function handleKeyPress(event){
-        const key = event.key;
-        
-        if(!isNaN(key)){
-            currentValue = currentValue + key;
-            calculatorDisplay.textContent = currentValue
-        }
-
-        if(key === 'Enter') {
-            elements.value = currentValue;
-            calculatorPopup.closePopup();
-        }
-
-        if(key === 'Backspace' || key === "Delete"){
-            currentValue = '';
-            calculatorDisplay.textContent = '0';
-        }
-
-        if(key === 'Escape'){
-            calculatorPopup.closePopup
-        }
-
-
-    }
-
-    handleKeyPress();*/

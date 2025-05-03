@@ -10,6 +10,10 @@ var saleSchema = new _mongoose.Schema({
     type: _mongoose.Schema.Types.ObjectId,
     ref: 'Player'
   },
+  user: {
+    type: _mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
   cashIn: {
     type: Number
   },

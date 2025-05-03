@@ -19,13 +19,13 @@ function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 var createSales = exports.createSales = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(req, res) {
-    var _req$body, player, cashIn, cash, name, credit, dollars, payment, date, time, cashValue, creditValue, dollarsValue, paymentValue, newSale, saleSaved, netwinInc, summaryUpdated;
+    var _req$body, player, user, cashIn, cash, name, credit, dollars, payment, date, time, cashValue, creditValue, dollarsValue, paymentValue, newSale, saleSaved, netwinInc, summaryUpdated;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           _context.prev = 0;
-          _req$body = req.body, player = _req$body.player, cashIn = _req$body.cashIn, cash = _req$body.cash, name = _req$body.name, credit = _req$body.credit, dollars = _req$body.dollars, payment = _req$body.payment, date = _req$body.date, time = _req$body.time; // 1) Validaciones mínimas
-          if (!(!player || !name || date == null || time == null)) {
+          _req$body = req.body, player = _req$body.player, user = _req$body.user, cashIn = _req$body.cashIn, cash = _req$body.cash, name = _req$body.name, credit = _req$body.credit, dollars = _req$body.dollars, payment = _req$body.payment, date = _req$body.date, time = _req$body.time; // 1) Validaciones mínimas
+          if (!(!player || !name || !user || date == null || time == null)) {
             _context.next = 4;
             break;
           }
@@ -49,6 +49,7 @@ var createSales = exports.createSales = /*#__PURE__*/function () {
           // 3) Guardar la venta
           newSale = new _Sales["default"]({
             player: player,
+            user: user,
             cashIn: cashIn,
             cash: cashValue,
             name: name,

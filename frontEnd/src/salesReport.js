@@ -8,9 +8,20 @@ const salesReportContainer = document.querySelector(".sales-report__data-contain
 const token = localStorage.getItem("token");
 console.log(token)
 
+
+
 import Auth from "./auth.js";
 const auth = new Auth()
 auth.protectedRoute();
+
+const formatearMoneda = (cantidad) => {
+    if(isNaN(cantidad)) return "0.00";
+    return Number(cantidad).toLocaleString('es-MX', {
+        style: 'currency',
+        currency: 'MXN'
+    }) 
+}
+
 
 
 const logout = document.querySelector("#logout");
@@ -30,7 +41,7 @@ const getDailyReport = async () => {
     }
 
     // Construir la URL dinámica
-    const url = `http://localhost:4000/dailyreport?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`;
+    const url = `https://juegoenvivo1-701fa226890c.herokuapp.com/dailyreport?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`;
     const getDailyReportRequest = new Get(url, token);
 
     // Llamar a la API y obtener los datos
@@ -75,36 +86,37 @@ const selectReport = (reports) => {
 
         const cashInElement = document.createElement("p");
         cashInElement.classList.add("sales-report__dynamic__text");
-        cashInElement.textContent = report.totalCashIn
+        cashInElement.textContent = formatearMoneda(report.totalCashIn)
         row.appendChild(cashInElement);
-
         const efectivoElement = document.createElement("p");
-        efectivoElement.classList.add("sales-report__dynamic__text")
-        efectivoElement.textContent = report.totalCash;
+        efectivoElement.classList.add("sales-report__dynamic__text");
+        // PASO CORRECTO: pasamos el número, no el elemento
+        efectivoElement.textContent = formatearMoneda(report.totalCash);
         row.appendChild(efectivoElement);
+        
 
         const tarjetaElement = document.createElement("p");
-        tarjetaElement.textContent = report.totalCredit;
+        tarjetaElement.textContent = formatearMoneda(report.totalCredit);
         tarjetaElement.classList.add("sales-report__dynamic__text")
         row.appendChild(tarjetaElement);
 
         const dolaresElement = document.createElement("p");
-        dolaresElement.textContent = report.totalDollar;
+        dolaresElement.textContent = formatearMoneda(report.totalDollar);
         dolaresElement.classList.add("sales-report__dynamic__text")
         row.appendChild(dolaresElement);
 
         const enCajaElement = document.createElement("p");
-        enCajaElement.textContent = report.caja;
+        enCajaElement.textContent = formatearMoneda(report.caja);
         enCajaElement.classList.add("sales-report__dynamic__text")
         row.appendChild(enCajaElement);
 
         const netwinElement = document.createElement("p");
-        netwinElement.textContent = report.netwin;
+        netwinElement.textContent = formatearMoneda(report.netwin);
         netwinElement.classList.add("sales-report__dynamic__text")
         row.appendChild(netwinElement);
 
         const paymentElement = document.createElement("p");
-        paymentElement.textContent = report.totalPayment;
+        paymentElement.textContent = formatearMoneda(report.totalPayment);
         paymentElement.classList.add("sales-report__dynamic__text");
         row.appendChild(paymentElement);
 
