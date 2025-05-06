@@ -1797,3 +1797,31 @@ padding-left: 30px;
     }
     
   }
+
+  .users-reports__dynamic{
+    width: 100%;
+    display: grid
+;
+    grid-template-columns: repeat(9, 1fr);
+    text-align: center;
+  }
+
+
+.users-report__container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    text-align: center; 
+}
+
+.users-reports__dynamic__text{
+    font-size: 12px;
+    overflow: hidden;
+}
+
+@media screen and (max-width:867px) {
+    .users-reports__dynamic__text{
+        font-size: 8px;
+    }
+    
+}

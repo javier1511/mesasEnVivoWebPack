@@ -21,7 +21,8 @@ module.exports = {
     Put: "./src/Put.js",
     sales: "./src/sales.js",
     salesReport: "./src/salesReport.js",
-    salesTransacciones: "./src/salesTransacciones.js"
+    salesTransacciones: "./src/salesTransacciones.js",
+    userReport:"./src/userReport.js"
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -101,6 +102,11 @@ module.exports = {
       filename: "clientsKpisReport.html",
       template: "./src/clientsKpisReport.html",
       chunks: ["clientsKpisReport"]
+    }),
+    new HtmlWebpackPlugin({
+      filename: "userReport.html",
+      template: "./src/userReport.html",
+      chunks: ["userReport"]
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css", // ✅ Genera un archivo CSS por cada entrada
