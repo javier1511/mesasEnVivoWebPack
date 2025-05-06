@@ -37,7 +37,7 @@ const getDailyReportUser = async () => {
     }
   
     // 2) Construir URL y llamar a la API
-    const url = `http://localhost:4000/dailyreportusers?fechaInicioUser=${fechaInicioUser}&fechaFinUser=${fechaFinalUser}`;
+    const url = `https://juegoenvivo1-701fa226890c.herokuapp.com/dailyreportusers?fechaInicioUser=${fechaInicioUser}&fechaFinUser=${fechaFinalUser}`;
     const getDailyReportRequestUser = new Get(url, token);
     const dailyReportDataUser = await getDailyReportRequestUser.get();
   
@@ -50,7 +50,7 @@ const getDailyReportUser = async () => {
       clearDynamicData();
       const noDataMessage = document.createElement("p");
       noDataMessage.textContent = "No se encontraron ventas en el rango seleccionado.";
-      noDataMessage.classList.add("sales-report__dynamic");
+      noDataMessage.classList.add("users-reports__dynamic");
       userReportContainer.appendChild(noDataMessage);
     }
   
@@ -125,6 +125,6 @@ const selectedReportUsers = (reports) => {
 
 
 const clearDynamicData = () => {
-  const existingData = document.querySelectorAll(".sales-report__dynamic");
+  const existingData = document.querySelectorAll(".users-reports__dynamic");
   existingData.forEach(element => element.remove());
 };
