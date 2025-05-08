@@ -1825,3 +1825,28 @@ padding-left: 30px;
     }
     
 }
+
+
+.chart{
+
+    width: 100%;
+    display: grid;
+    grid-template-columns: 10% 90%;
+    grid-template-rows: 1fr;
+    height: 100vh;
+}
+
+.chart__iframe{
+    padding:50px;
+}
+
+
+@media screen and (max-width:867px) {
+
+    .chart{
+        grid-template-columns: auto;
+        grid-template-rows: auto, auto;
+        height: auto;
+    }
+    
+}
