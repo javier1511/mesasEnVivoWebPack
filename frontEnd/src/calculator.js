@@ -81,7 +81,7 @@ class Calculator {
   eventListeners() {
     document.addEventListener('keydown', this.handleKeyPress);
 
-    document.querySelectorAll("#cash, #card, #usd, #cashIn, #payment")
+    document.querySelectorAll("#cash, #card, #usd, #cashIn, #payment, #salesPokerCash")
       .forEach(input => {
         input.addEventListener('click', () => {
           this.setActiveInput(input);

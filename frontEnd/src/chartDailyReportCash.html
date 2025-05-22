@@ -6,9 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="sales-report">
 
-
+    <div class="chart">
         <div class="side__menu-container">
             <div class="side__menu-list">
                 <div class="side__menu-list-container">
@@ -47,7 +46,8 @@
                     <a href="clientsKpisReport.html" class="side__menu">REPORTE DE CLIENTES</a>
     
                 </div>
-
+    
+              
                 <div class="side__menu-list-container">
                     <a href="./userReport.html" class="side__menu">
                       REPORTE DE USUARIOS
@@ -67,8 +67,6 @@
                     </a>
                   </div>
                   
-    
-              
                 <div class="side__menu-list-container-button">
                     <button id ="logout" href="" class="side__menu-button">SALIR</button>
            
@@ -85,42 +83,17 @@
     
         </div>
 
-        <div class="sales__report-main">
-            <div class="sales-report__input-container">
-                <label for="" class="sales-report__input-label">Fecha de inicio</label>
-                <input id="initialDate" type="date" class="sales-report__input">
-                <label for="" class="sales-report__input-label">Fecha final</label>
-                <input id="finalDate" type="date" class="sales-report__input"> 
-                <button class="sales-report__button" id="getReportButton">Consultar Reporte</button>
-    
-            </div>
 
-            <div class="sales-report__container">
-                <p class="sales-report__data">Fecha</p>
-                <p class="sales-report__data">Fondo</p>
-                <p class="sales-report__data">Deposito Efectivo</p>
-                <p class="sales-report__data">Deposito Tarjeta</p>
-                <p class="sales-report__data">Deposito Dolares</p>
-                <p class="sales-report__data">En caja</p>
-                <p class="sales-report__data">Netwin</p>
-                <p class="sales-report__data">Pago</p>
-    
-            </div>
-    
-            <div class="sales-report__data-container">
-    
-            </div>
+        <div class="chart__iframe">
+            <iframe style="background: #21313C;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="100%" height="480" src="https://charts.mongodb.com/charts-project-0-eqqwsal/embed/charts?id=71c3de9b-f5dc-4c5b-afcb-76e68020e006&maxDataAge=60&theme=dark&autoRefresh=true"></iframe>
 
         </div>
 
-    
 
-  
-
-
+        
+        
     </div>
 
-
-       
+    
 </body>
 </html>

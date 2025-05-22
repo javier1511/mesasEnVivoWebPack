@@ -6,8 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="sales">
-
+    <div class="poker">
         <div class="side__menu-container">
             <div class="side__menu-list">
                 <div class="side__menu-list-container">
@@ -33,6 +32,7 @@
     
                 </div>
     
+    
                 <div class="side__menu-list-container">
                     <a href="sales.html" class="side__menu">VENTAS</a>
     
@@ -46,7 +46,6 @@
                     <a href="clientsKpisReport.html" class="side__menu">REPORTE DE CLIENTES</a>
     
                 </div>
-
                 <div class="side__menu-list-container">
                     <a href="./userReport.html" class="side__menu">
                       REPORTE DE USUARIOS
@@ -58,15 +57,12 @@
                       VENTAS CASH
                     </a>
                   </div>
-
                         <div class="side__menu-list-container">
                     <a href="./chartDailyReportCash.html" class="side__menu">
                       REPORTE DIARIO TABLA CASH
                     </a>
                   </div>
                   
-
-         
               
                 <div class="side__menu-list-container-button">
                     <button id ="logout" href="" class="side__menu-button">SALIR</button>
@@ -84,75 +80,84 @@
     
         </div>
 
-        <div class="sales__form-container">
+        <div class="poker__form-container">
    
 
-            <div class="sales__form-title-container">
-                <h3 class="sales__form-title">VENTAS </h3>
+            <div class="poker__form-title-container">
+                <h3 class="poker__form-title">VENTAS </h3>
 
-                <div class="sales__form-report">
+                <div class="poker__form-report">
 
                 </div>
             </div>
 
-            <form class="sales__form">
+            <form class="poker__form">
 
-                <div class="sales__form-input-container">
+                <div class="poker__form-input-container">
                     
-                 <label for="" class="sales__label">Fecha</label>
-                 <input type="date" class="sales__input" placeholder="Fecha" id="salesDate">
+                 <label for="" class="poker__label">Fecha</label>
+                 <input type="date" class="poker__input" placeholder="Fecha" id="pokerDate">
                 </div>
 
-                <div class="sales__form-input-container">
-                    <label for="" class="sales__label">Hora</label>
-                    <input type="text" class="sales__input" placeholder="Hora" id="salesTime">
+                <div class="poker__form-input-container">
+                    <label for="" class="poker__label">Hora</label>
+                    <input type="text" class="poker__input" placeholder="Hora" id="pokerTime">
                 </div>
-                <div class="sales__form-input-container">
-                    <label for="" class="sales__label">Nombre</label>
-                    <input id="salesName" type="text" class="sales__input" placeholder="Nombre">
-                </div>
-
-                <div class="sales__form-input-container">
-                    <label for="" class="sales__label">Celular</label>
-                    <input id="salesMobile" type="text" class="sales__input" placeholder="Celular">
+                <div class="poker__form-input-container">
+                    <label for="" class="poker__label">Nombre</label>
+                    <input id="pokerFormName" type="text" class="poker__input" placeholder="Nombre">
                 </div>
 
-                <div class="sales__form-input-container">
-                    <label for="" class="sales__label">Id</label>
-                    <input id="salesId" type="text" class="sales__input" placeholder="Id" readonly>
+                <div class="poker__form-input-container">
+                    <label for="" class="poker__label">Celular</label>
+                    <input id="pokerFormMobile" type="text" class="poker__input" placeholder="Celular">
                 </div>
 
-                <div class="sales__form-input-container">
-                    <label for="" class="sales__label">Usuario</label>
-                    <input id="userId" type="text" class="sales__input" placeholder="Id De Usuario" readonly>
+                <div class="poker__form-input-container">
+                    <label for="" class="poker__label">Id</label>
+                    <input id="pokerFormId" type="text" class="poker__input" placeholder="Id" readonly>
                 </div>
 
-                <div class="sales__form-input-container">
-                    <label for="" class="sales__label sales__label-fondo">Fondo</label>
-                    <input type="number" class="sales__input" id="cashIn" placeholder="Fondo">
+             <!--
+<div class="poker__form-input-container">
+  <label for="" class="poker__label">Usuario</label>
+  <input id="userIdPoker" type="text" class="poker__input" placeholder="Id De Usuario" readonly>
+</div>
+-->
 
-                </div>
+<!-- 
+                <div class="poker__form-input-container">
+                    <label for="" class="poker__label poker__label-fondo">Fondo</label>
+                    <input type="number" class="poker__input" id="cashInPoker" placeholder="Fondo">
 
-                <div class="sales__form-input-container">
-                    <label for="" class="sales__label sales__label-cash ">Efectivo</label>
-                    <input type="number" class="sales__input" id="cash" placeholder="Efectivo">
+                </div>-->
 
-                </div>
-
-                <div class="sales__form-input-container">
-                    <label for="" class="sales__label sales__label-card">Tarjeta</label>
-                    <input type="number" class="sales__input" id="card" placeholder="Tarjeta">
+                <div class="poker__form-input-container">
+                    <label for="" class="poker__label poker__label-cash ">Efectivo</label>
+                    <input type="number" class="poker__input" id="cashPoker" placeholder="Efectivo">
 
                 </div>
 
-                <div class="sales__form-input-container">
-                    <label for="" class="sales__label sales__label-dollar">Dolares</label>
-                    <input type="number" class="sales__input" id="usd" placeholder="Dolares">
+                <div class="poker__form-input-container">
+                    <label for="" class="poker__label poker__label-card">Tarjeta</label>
+                    <input type="number" class="poker__input" id="cardPoker" placeholder="Tarjeta">
 
                 </div>
-                <div class="sales__form-input-container">
-                    <label for="" class="sales__label sales__label-payment">Pago</label>
-                    <input type="number" class="sales__input" id="payment" placeholder="Pago">
+
+                <div class="poker__form-input-container">
+                    <label for="" class="poker__label poker__label-dollar">Dolares</label>
+                    <input type="number" class="poker__input" id="usdPoker" placeholder="Dolares">
+
+                </div>
+                <div class="poker__form-input-container">
+                    <label for="" class="poker__label poker__label-payment">Pago</label>
+                    <input type="number" class="poker__input" id="paymentPoker" placeholder="Pago">
+
+                </div>
+
+                 <div class="poker__form-input-container">
+                    <label for="" class="poker__label poker__label-rake">Rake</label>
+                    <input type="number" class="poker__input" id="rake" placeholder="Rake">
 
                 </div>
 
@@ -163,28 +168,39 @@
         
     
     
-                <div class="sales__errorMessages" id="errorMessages" style="color:red"></div>
-                <div class="sales__button-container">
-                    <button class="sales__button">Vender</button>
+                <div class="poker__errorMessages" id="errorMessages" style="color:red"></div>
+                <div class="poker__button-container">
+                    <button class="poker__button">Vender</button>
                     
                 </div>
              
             </form>
 
-            <div class="sales__list">
+            <div class="poker__list" id="pokerList">
              
-                <div class="sales__list-container">
-                    <div class="sales__list-close-container">
-                        <img src="<%= require('./images/close_48dp_FILL0_wght400_GRAD0_opsz48.png') %>" alt="" class="sales__list-close">
+                <div class="poker__list-container">
+                    <div class="poker__list-close-container">
+                        <img id="pokerPopupClose" src="<%= require('./images/close_48dp_FILL0_wght400_GRAD0_opsz48.png') %>" alt="" class="poker__list-close">
                     </div>
-                    <div class="sales__list-title-container">
-                        <h3 class="sales__list-title">CLIENTES</h3>
+                    <div class="poker__list-title-container">
+                        <h3 class="poker__list-title">CLIENTES</h3>
                     </div>
-                    <form class="sales__list-form">
+                    <form class="poker__list-form">
                   
-                        <input type="text" class="sales__form-text" placeholder="Buscar por celular">
+                        <input id="pokerFormText" type="text" class="poker__form-text" placeholder="Buscar por celular">
     
-                        <div class="sales__data">
+                        <div id="pokerApi" class="poker__api_container">
+                            <div class="poker__data-headers-container">
+
+                                    <p class="poker__data">Nombre</p>
+                            <p class="poker__data">Celular</p>
+
+                            </div>
+
+                            <div id="pokerData" class="poker__data_container">
+
+                            </div>
+                        
                   
                         </div>
     

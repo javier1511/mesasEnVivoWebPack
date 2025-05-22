@@ -8,6 +8,8 @@ import smsRoutes from "./routes/sms.routes"
 import countPlayerRoutes from "./routes/countPlayersByDate.routes"
 import dailyReportByDate from "./routes/dailyReportByDate"
 import dailyReportByUser from "./routes/dailyUserReportByDate"
+import pokerRoutes from "./routes/poker.routes";
+
 
 const cors = require('cors');
 
@@ -29,4 +31,5 @@ app.use('/sendsms', smsRoutes)
 app.use('/countplayers', countPlayerRoutes)
 app.use('/dailyreport', dailyReportByDate)
 app.use('/dailyreportusers', dailyReportByUser)
+app.use('/poker', pokerRoutes)
 export default app  
