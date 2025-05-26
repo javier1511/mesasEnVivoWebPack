@@ -1,6 +1,6 @@
 
 //SALES//
-const API_URL = "http://localhost:4000/players";
+const API_URL = "https://juegoenvivo1-701fa226890c.herokuapp.com/players";
 
 const getPlayers = async () => {
     try {

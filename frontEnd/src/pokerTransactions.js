@@ -18,7 +18,7 @@ logout.addEventListener("click", () => auth.logout())
 
 
 const pokerGetTransactions = async () => {
-    const getPokerRequest = new Get('http://localhost:4000/poker', token)
+    const getPokerRequest = new Get('https://juegoenvivo1-701fa226890c.herokuapp.com/poker', token)
     const pokerData = await getPokerRequest.get();
     console.log(pokerData)
     return pokerData
@@ -215,7 +215,7 @@ pokerTransactionsForm.addEventListener("submit", async(event) => {
         return;
     }
 
-    const deleteSalesByIdRequest = new DeleteById(`http://localhost:4000/poker/${pokerSalesId}`, token);
+    const deleteSalesByIdRequest = new DeleteById(`https://juegoenvivo1-701fa226890c.herokuapp.com/poker/${pokerSalesId}`, token);
 const resultDelete = await deleteSalesByIdRequest.sendDeleteByIdRequest();
 
 if(resultDelete){

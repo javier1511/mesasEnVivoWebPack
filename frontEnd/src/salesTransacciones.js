@@ -20,7 +20,7 @@ logout.addEventListener("click", () => auth.logout())
 
 
 const getTransactions = async () => {
-    const getSalesrequest = new Get('http://localhost:4000/sales', token);
+    const getSalesrequest = new Get('https://juegoenvivo1-701fa226890c.herokuapp.com/sales', token);
     const data = await getSalesrequest.get()
     console.log(data)
     return data
@@ -368,7 +368,7 @@ if(errors.length > 0){
         return;
     }
 
-const deleteSalesByIdRequest = new DeleteById(`http://localhost:4000/sales/${salesId}`, token);
+const deleteSalesByIdRequest = new DeleteById(`https://juegoenvivo1-701fa226890c.herokuapp.com/sales/${salesId}`, token);
 const resultDelete = await deleteSalesByIdRequest.sendDeleteByIdRequest();
 
 if(resultDelete){

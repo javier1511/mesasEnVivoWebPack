@@ -15,7 +15,7 @@ logout.addEventListener("click", () => auth.logout())
 import Get from "./Get.js";
 
 const getCountByDate = async () => {
-    const getCountRequest = new Get("http://localhost:4000/countplayers", token);
+    const getCountRequest = new Get("https://juegoenvivo1-701fa226890c.herokuapp.com/countplayers", token);
     const data = await getCountRequest.get();
     console.log(data);
     return data;

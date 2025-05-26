@@ -43,7 +43,7 @@ import Get from "./Get.js";
 import Popup from "./Popup.js";
 
 const getPlayersInSales = async () => {
-    const getRequestInSales = new Get('http://localhost:4000/players', token);
+    const getRequestInSales = new Get('https://juegoenvivo1-701fa226890c.herokuapp.com/players', token);
     const data = await getRequestInSales.get();
     console.log(data);
     return data;
@@ -271,7 +271,7 @@ return salesErrors;
                 return;
             }
     
-            const response = await fetch('http://localhost:4000/sales', {
+            const response = await fetch('https://juegoenvivo1-701fa226890c.herokuapp.com/sales', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

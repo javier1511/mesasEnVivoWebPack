@@ -43,7 +43,7 @@ import Get from "./Get.js";
 import Popup from "./Popup.js";
 
 const getPlayersInPokerSales = async () => {
-    const getRequestInPoker = new Get('http://localhost:4000/players', token);
+    const getRequestInPoker = new Get('https://juegoenvivo1-701fa226890c.herokuapp.com/players', token);
     const dataPoker = await  getRequestInPoker.get();
     console.log(dataPoker);
     return dataPoker;
@@ -239,7 +239,7 @@ pokerMain.addEventListener('submit', async (event) => {
               return;
         }
 
-        const response = await fetch("http://localhost:4000/poker", {
+        const response = await fetch("https://juegoenvivo1-701fa226890c.herokuapp.com/poker", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
