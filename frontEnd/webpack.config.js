@@ -25,7 +25,8 @@ module.exports = {
     userReport:"./src/userReport.js",
     chartDailyReport:"./src/chartDailyReport.js",
     salesPoker: "./src/salesPoker.js",
-    chartDailyReportCash: "./src/chartDailyReportCash.js"
+    chartDailyReportCash: "./src/chartDailyReportCash.js",
+    pokerTransactions: "./src/pokerTransactions.js"
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -125,6 +126,11 @@ module.exports = {
       filename: "chartDailyReportCash.html",
       template: "./src/chartDailyReportCash.html",
       chunks: ["chartDailyReportCash"]
+    }),
+       new HtmlWebpackPlugin({
+      filename: "pokerTransactions.html",
+      template: "./src/pokerTransactions.html",
+      chunks: ["pokerTransactions"]
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css",

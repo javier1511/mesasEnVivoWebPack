@@ -29,6 +29,7 @@
                 }
 
                 alert("Transacción eliminada con éxito");
+                  window.location.reload();
 
                 // Recargamos la página
 

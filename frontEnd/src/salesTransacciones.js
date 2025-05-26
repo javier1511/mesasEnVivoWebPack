@@ -42,7 +42,7 @@ const cashInPopup = document.querySelector("#cashInEditTransaction");
 const paymentPopup = document.querySelector("#paymentEditTransaction")
 const formTransactions = document.querySelector(".transactions__form")
 const inputName = document.querySelector("#queryName");
-
+const errorTransactionContainer = document.querySelector(".transactions__form-errorMessages")
 
 const formatearMoneda = (cantidad) => {
     if (isNaN(cantidad)) return "$0.00";
@@ -233,7 +233,7 @@ const dollarsEditTransaction = document.querySelector("#dollarsEditTransaction")
 const closeTransactionForm = document.querySelector(".transactions__popup-close")
 const formContainer = document.querySelector(".transactions__popup")
 const formTransactions = document.querySelector(".transactions__form")
-const errorTransactionContainer = document.querySelector(".transactions__form-errorMessages")
+
 
 
 

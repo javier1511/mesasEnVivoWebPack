@@ -390,3 +390,22 @@ pokerMain.addEventListener('submit', async (event) => {
         
     }
 })
+
+
+//CALCULADORA//
+
+
+    import Calculator from "./calculator.js";
+
+    
+    const calculatorContainer = document.querySelector(".calculadora-container");
+    const calculatorDisplay = document.querySelector(".calculadora__display");
+    const calculatorButtons = document.querySelectorAll(".calculadora__button");
+    const clearButton = document.querySelector("#clear-btn");
+    const enterButton = document.querySelector("#enter-btn");
+    
+    const calculatorPopup = new Popup(calculatorContainer);
+    
+    // Iniciamos una sola instancia de Calculator para todos los inputs
+    const calculator = new Calculator(calculatorDisplay, calculatorButtons, clearButton, enterButton, calculatorPopup);
+

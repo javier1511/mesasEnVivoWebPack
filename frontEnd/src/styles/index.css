@@ -1036,9 +1036,7 @@ background-color: #007bff;
     }
 }
 
-.transactions__input-img{
-    width: 20%;
-}
+
 
 .transactions__data-container{
 width: 100%;
@@ -1061,13 +1059,13 @@ border-radius: 20px;
 
 }
 
-@media screen and (max-width:867px) {
+    @media screen and (max-width:867px) {
 
-    .transactions__header{
-        font-size: 7px;
+        .transactions__header{
+            font-size: 7px;
+        }
+        
     }
-    
-}
 
 .transactions__api-container{
     display: grid;
@@ -2019,11 +2017,6 @@ padding-left: 30px;
 
 }
 
-.popup__opened {
-    opacity: 1;
-    visibility: visible;
-
-}
 
 .poker__data_container{
     width: 100%;
@@ -2162,6 +2155,256 @@ padding-left: 30px;
 
     .poker{
         grid-template-columns: auto;
+    }
+    
+}
+
+
+.pokerTransactions-container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 10% auto;
+    height: 100vh;
+}
+
+@media screen and (max-width:867px) {
+
+    .pokerTransactions-container{
+        grid-template-columns: auto;
+    }
+    
+}
+
+
+.pokerTransactions__popup{
+    width: 20%;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;   
+}
+
+
+@media screen and (max-width:867px) {
+    .pokerTransactions__popup{
+        width: 40%;
+    }
+    
+}
+
+.pokerTransactions{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+ 
+}
+
+.pokerTransactions__title-container{
+    text-align: center;
+    background-color: black;
+    color: #007bff;
+    width: 50%;
+    border-radius: 10px;
+    font-size: 25px;
+}
+
+
+.pokerTransactions__title{
+    width: 100%;
+}
+
+
+@media screen and (max-width:867px) {
+    .pokerTransactions__title{
+        font-size: 20px;
+    }
+    
+}
+
+
+.pokerTransactions__input{
+    width: 100%; /* Ajusta al ancho del contenedor */
+  
+    border: 2px solid #ccc; /* Borde inicial */
+    border-radius: 8px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño de fuente */
+    outline: none; /* Elimina el contorno azul predeterminado */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+}
+
+.pokerTransactions__data-value{
+    font-size: 16px;
+    text-align: center;
+    overflow: hidden;
+}
+
+
+@media screen and (max-width:867px) {
+
+    .pokerTransactions__data-value{
+        font-size: 7px;
+    }
+    
+}
+
+
+.pokerTransactions__input:focus{
+    border-color: #4CAF50; /* Cambia el color del borde */
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Sombra suave */
+}
+
+.pokerTransactions__input:placeholder{
+    color: #aaa; /* Color tenue para el placeholder */
+    font-style: italic; /* Estilo cursiva */
+}
+
+
+.pokerTransactions__container{
+    width: 100%;
+
+  
+ 
+}
+
+.pokerTransactions__input-container{
+    display: flex;
+
+}
+
+.pokerTransactions__input-label{
+    font-style: italic;
+}
+
+
+@media screen and (max-width:867px) {
+    .pokerTransactions__input-container{
+        display: block;
+    }
+}
+
+
+.pokerTransactions__data-container{
+width: 100%;
+background-color: white;
+border-radius: 20px;
+}
+
+
+.pokerTransactions__data{
+    width: 100%;
+    text-align: center;
+  
+}
+
+
+.pokerTransactions__header-container{
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+
+}
+
+
+@media screen and (max-width:867px) {
+
+    .pokerTransactions__header{
+        font-size: 7px;
+    }
+    
+}
+
+
+.pokerTransactions__api-container{
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    overflow: hidden;
+}
+
+.popup__opened {
+    opacity: 1;
+    visibility: visible;
+
+}
+
+
+.pokerTransactions__data-name{
+    color: #007bff;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    font-size: 16px;
+   
+}
+
+@media screen and (max-width:867px) {
+    .pokerTransactions__data-name{
+        font-size: 7px;
+    }
+    
+}
+
+
+.pokerTransactions__data-name:hover {
+    color: #0056b3; /* Color un poco más oscuro al pasar el mouse */
+    text-shadow: 0px 0px 10px rgba(0, 123, 255, 0.5); /* Añadir un efecto de sombra al pasar el mouse */
+}
+
+.pokerTransactions__form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 50px 10px 50px 10px;
+    background-color: #007bff;
+}
+
+.pokerTransactions__form-input{
+    background-color: black;
+    color: white;
+    font-size: 16px;
+}
+
+.pokerTransaction__form-delete{
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+}
+
+.pokerTransactions__popup-container{
+    width: 100%;
+
+
+}
+
+.pokerTransactions__form-title-container{
+    text-align: center;
+}
+
+.pokerTransactions__popup-close-container{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.pokerTransactions__popup-close{
+    width: 10%;
+}
+
+@media screen and (max-width:867px) {
+    .pokerTransactions__popup-close{
+        width: 20%;
     }
     
 }
