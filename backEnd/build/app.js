@@ -14,6 +14,7 @@ var _sms = _interopRequireDefault(require("./routes/sms.routes"));
 var _countPlayersByDate = _interopRequireDefault(require("./routes/countPlayersByDate.routes"));
 var _dailyReportByDate = _interopRequireDefault(require("./routes/dailyReportByDate"));
 var _dailyUserReportByDate = _interopRequireDefault(require("./routes/dailyUserReportByDate"));
+var _poker = _interopRequireDefault(require("./routes/poker.routes"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 var cors = require('cors');
 var app = (0, _express["default"])();
@@ -33,4 +34,5 @@ app.use('/sendsms', _sms["default"]);
 app.use('/countplayers', _countPlayersByDate["default"]);
 app.use('/dailyreport', _dailyReportByDate["default"]);
 app.use('/dailyreportusers', _dailyUserReportByDate["default"]);
+app.use('/poker', _poker["default"]);
 var _default = exports["default"] = app;
