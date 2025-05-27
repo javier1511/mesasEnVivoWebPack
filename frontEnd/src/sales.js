@@ -367,7 +367,7 @@ return salesErrors;
     
 
 .ticket__title{
-    font-size: 12px;
+    font-size: 16px;
     font-weight: bold;
 }
 
@@ -382,7 +382,7 @@ return salesErrors;
 
 .ticket__text{
     text-align: center;
-    font-size: 10px;
+    font-size: 16px;
 }
 
 .ticket__footer-container{
@@ -397,7 +397,7 @@ return salesErrors;
 }
 
 .ticket__value{
-    font-size: 16px;
+    font-size: 17px;
 }
                 </style>
                     <body>
