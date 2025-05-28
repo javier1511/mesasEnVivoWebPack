@@ -9,7 +9,7 @@ router.get('/', playerController.getPlayer)
 router.post('/', [checkDuplicateMobile,playerController.createPlayer])
 router.put('/:playerId', [authJwt.verifyToken, authJwt.isUser], playerController.updatePlayersById)
 router.get('/:playerId', playerController.getPlayersById)
-router.delete('/:playerId'[authJwt.verifyToken, authJwt.isAdmin], playerController.deletePlayerById)
+router.delete('/:playerId',[authJwt.verifyToken, authJwt.isAdmin], playerController.deletePlayerById)
 
 
 export default router;
