@@ -57,7 +57,7 @@ const displayUsers = async () => {
             return matchesMobile && matchesEmail && matchesName;
         })
         .map((object) => {
-            const { _id, date, time, name, mobile, email, address, curp, gender } = object;
+            const { _id, date, time, name, mobile, email, address, curp, gender, source } = object;
             let formattedDate = "";
             if (date) {
                 const [year, month, day] = date.split('T')[0].split('-');
@@ -91,6 +91,7 @@ const displayUsers = async () => {
                 
                
                         <p class="clients__value">${gender}</p>
+                        <p class="clients__value">${source}</p>
              
            
             `;
