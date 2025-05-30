@@ -15,6 +15,6 @@ router.get('/', _middlewares.authJwt.verifyToken, salesController.getSales);
 router.get('/summary', _middlewares.authJwt.verifyToken, salesController.getSummaryByClient);
 router.post('/', [_middlewares.authJwt.verifyToken, _middlewares.authJwt.isUser], salesController.createSales);
 router.put('/:saleId', [_middlewares.authJwt.verifyToken, _middlewares.authJwt.isAdmin], salesController.updateSaleById);
-router.get('/:saleId', [_middlewares.authJwt.verifyToken, _middlewares.authJwt.isUser, _middlewares.authJwt.isAdmin], salesController.getSalesById);
+router.get('/:saleId', [_middlewares.authJwt.verifyToken, _middlewares.authJwt.isUser], salesController.getSalesById);
 router["delete"]('/:saleId', [_middlewares.authJwt.verifyToken, _middlewares.authJwt.isAdmin], salesController.deleteSaleById);
 var _default = exports["default"] = router;
