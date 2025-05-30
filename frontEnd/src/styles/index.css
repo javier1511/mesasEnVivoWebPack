@@ -299,14 +299,14 @@ padding: 50px 10px 50px 10px;
     background-color: #007bff;
     color: white;
 
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(9, 1fr);
 
 }
 
 .clientes__data-container{
 
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(9, 1fr);
  
     overflow: hidden;
 }

@@ -4,8 +4,8 @@ import Players from "../models/Players";
 
 export const createPlayer = async (req, res) => {
     try {
-        const {name, mobile, email, curp, address, date, time, gender, areamobile} = req.body;
-        const newPlayer = new Players({name, mobile, email, curp, address, time, gender, date, areamobile});
+        const {name, mobile, email, curp, address, date, time, gender, areamobile, source} = req.body;
+        const newPlayer = new Players({name, mobile, email, curp, address, time, gender, date, areamobile, source});
         
         // Intentamos guardar el nuevo jugador
         const playerSave = await newPlayer.save();
@@ -17,6 +17,8 @@ export const createPlayer = async (req, res) => {
         res.status(400).json({ message: error.message });
     }
 };
+
+
 
 
 
