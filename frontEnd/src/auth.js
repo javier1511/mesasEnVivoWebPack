@@ -6,14 +6,14 @@ export class Auth {
     logout(){
         this.isAuthenticated = false;
         localStorage.removeItem('token');
-        window.location.href = "http://localhost:8080/"
+        window.location.href = "https://www.juegoenvivodiamantecasino.com/"
     }
     checkAuth(){
         return localStorage.getItem('token') !== null;
     }
     protectedRoute(){
         if(!this.isAuthenticated){
-             window.location.href = "http://localhost:8080/"
+             window.location.href = "https://www.juegoenvivodiamantecasino.com/"
              alert("Inicia sesion")
 
         }
