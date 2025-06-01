@@ -38,6 +38,10 @@ var playerSchema = new _mongoose.Schema({
     type: String,
     required: true
   },
+  source: {
+    type: String,
+    required: true
+  },
   time: {
     type: String,
     required: true
