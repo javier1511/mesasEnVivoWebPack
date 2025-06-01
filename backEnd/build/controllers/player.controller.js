@@ -12,12 +12,12 @@ function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 var createPlayer = exports.createPlayer = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(req, res) {
-    var _req$body, name, mobile, email, curp, address, date, time, gender, areamobile, newPlayer, playerSave;
+    var _req$body, name, mobile, email, curp, address, date, time, gender, areamobile, source, newPlayer, playerSave;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           _context.prev = 0;
-          _req$body = req.body, name = _req$body.name, mobile = _req$body.mobile, email = _req$body.email, curp = _req$body.curp, address = _req$body.address, date = _req$body.date, time = _req$body.time, gender = _req$body.gender, areamobile = _req$body.areamobile;
+          _req$body = req.body, name = _req$body.name, mobile = _req$body.mobile, email = _req$body.email, curp = _req$body.curp, address = _req$body.address, date = _req$body.date, time = _req$body.time, gender = _req$body.gender, areamobile = _req$body.areamobile, source = _req$body.source;
           newPlayer = new _Players["default"]({
             name: name,
             mobile: mobile,
@@ -27,7 +27,8 @@ var createPlayer = exports.createPlayer = /*#__PURE__*/function () {
             time: time,
             gender: gender,
             date: date,
-            areamobile: areamobile
+            areamobile: areamobile,
+            source: source
           }); // Intentamos guardar el nuevo jugador
           _context.next = 5;
           return newPlayer.save();

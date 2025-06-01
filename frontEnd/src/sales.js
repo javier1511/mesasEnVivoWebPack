@@ -51,7 +51,8 @@ const getPlayersInSales = async () => {
 
 getPlayersInSales();
 
-const inputQuerySales = document.querySelector(".sales__form-text");
+const inputQuerySales = document.querySelector("#lookByMobile");
+const inputQueryName = document.querySelector("#lookByName")
 const displayDataSales = document.querySelector(".sales__data");
 const salesFormName = document.querySelector("#salesName")
 const salesFormId = document.querySelector("#salesId")
@@ -67,27 +68,34 @@ const inputUserId = document.querySelector("#userId")
 inputUserId.value = userId
 
 const displayUserSales = async () => {
-    let querySales = inputQuerySales.value;
+    let querySales = inputQuerySales.value.trim().toLowerCase();
+    let queryName = inputQueryName.value.trim().toLowerCase();
     const payloadSales = await getPlayersInSales();
 
-    let dataDisplaySales = payloadSales.filter((eventData) => {
-        if (querySales === '') return true;
-        return eventData.mobile?.toLowerCase().includes(querySales.toLowerCase());
-    }).map((object) => {
-        const { _id, name, mobile } = object;
-        return `
-        <div class="sales__item">
-            <div class="sales__item-container">
-                <p class="sales__text">Nombre</p>
-                <p class="sales__value sales__value-name" data-id="${_id}" data-mobile="${mobile}">${name}</p>
+    // Aquí corregimos el return para que no quede en una línea separada
+    let dataDisplaySales = payloadSales
+        .filter((eventData) => {
+            
+            const matchesName = queryName === '' || eventData.name?.toLowerCase().includes(queryName);
+            const matchesMobile = querySales === '' || eventData.mobile?.toLowerCase().includes(querySales);
+            return matchesMobile && matchesName;
+        })
+        .map((object) => {
+            const { _id, name, mobile } = object;
+            return `
+            <div class="sales__item">
+                <div class="sales__item-container">
+                    <p class="sales__text">Nombre</p>
+                    <p class="sales__value sales__value-name" data-id="${_id}" data-mobile="${mobile}">${name}</p>
+                </div>
+                <div class="sales__item-container">
+                    <p class="sales__text">Teléfono</p>
+                    <p class="sales__value">${mobile}</p>
+                </div>
             </div>
-            <div class="sales__item-container">
-                <p class="sales__text">Teléfono</p>
-                <p class="sales__value">${mobile}</p>
-            </div>
-        </div>
-        `;
-    }).join('');
+            `;
+        })
+        .join('');
 
     displayDataSales.innerHTML = dataDisplaySales || '<p>No se encontraron jugadores.</p>';
 
@@ -95,37 +103,32 @@ const displayUserSales = async () => {
     const salesValueNames = document.querySelectorAll(".sales__value-name");
     salesValueNames.forEach((element) => {
         element.addEventListener("click", () => {
-            playerName = element.textContent; // Asignar el nombre seleccionado a playerName
-            playerId = element.getAttribute("data-id"); // Asignar el ID seleccionado a playerId
-            playerMobile = element.getAttribute("data-mobile");
+            playerName = element.textContent; // Nombre seleccionado
+            playerId = element.getAttribute("data-id"); // ID seleccionado
+            playerMobile = element.getAttribute("data-mobile"); // Móvil seleccionado
 
-            const playerNumber = element.closest('.sales__item').querySelector('.sales__item-container:nth-child(2) .sales__value').textContent;
-            
+            const playerNumber = element
+                .closest('.sales__item')
+                .querySelector('.sales__item-container:nth-child(2) .sales__value')
+                .textContent;
+
             console.log("Nombre seleccionado:", playerName);
             console.log("ID seleccionado:", playerId);
             console.log("Número de teléfono seleccionado:", playerNumber);
-            
-            // Aquí puedes usar playerName, playerId y playerNumber como necesites
-            salesFormName.value = playerName; // Ejemplo: asignar el nombre al input de ventas
+
+            // Rellenar inputs del formulario con los datos seleccionados
+            salesFormName.value = playerName;
             salesFormId.value = playerId;
             salesFormMobile.value = playerNumber;
-    
 
             popupSales.closePopup();
-
-          
-            
-
-                
-           
         });
-        
     });
-    
 };
 
 displayUserSales();
 inputQuerySales.addEventListener('input', displayUserSales);
+inputQueryName.addEventListener('input', displayUserSales);
 
 salesFormName.addEventListener('click', () => popupSales.openPopup()); // Asegúrate de tener el método openPopup en Popup.js
 salesCloseButton.addEventListener("click", () => popupSales.closePopup());
