@@ -73,8 +73,8 @@ const validateForm = function () {
 
 
     // Validación del nombre
-    if (name.length < 3 || name.length > 30) {
-        errors.push('El nombre debe tener entre 3 y 30 caracteres');
+    if (name.length < 3 || name.length > 50) {
+        errors.push('El nombre debe tener entre 3 y 50 caracteres');
     }
 
     // Validación del email
