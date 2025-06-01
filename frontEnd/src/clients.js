@@ -174,7 +174,8 @@ form.addEventListener('submit', async (event) => {
 
     if (!id) {
         alert('No se ha seleccionado ningún jugador para editar.');
-        return;}
+        return;
+    }
 
     const formClientData = {
         name: nameEditElement.value.toUpperCase(),
@@ -183,10 +184,11 @@ form.addEventListener('submit', async (event) => {
     };
     const formId = id;
 
-    const putClientRequest = new Put(`https://juegoenvivo1-701fa226890c.herokuapp.com/players/${formId}`, formClientData);
+    const putClientRequest = new Put(`http://localhost:4000/players/${formId}`, formClientData);
     await putClientRequest.sendPutRequest();
     popupClient.closePopup();
 });
+
 
 // Manejo del botón de eliminar cliente
 /*const deleteButton = document.querySelector("#deleteButton");
