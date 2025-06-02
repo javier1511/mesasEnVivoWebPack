@@ -184,9 +184,33 @@ form.addEventListener('submit', async (event) => {
     };
     const formId = id;
 
-    const putClientRequest = new Put(`http://localhost:4000/players/${formId}`, formClientData);
-    await putClientRequest.sendPutRequest();
-    popupClient.closePopup();
+    // Obtenemos el token
+    const token = localStorage.getItem('token');
+
+    try {
+      const response = await fetch(`https://juegoenvivo1-701fa226890c.herokuapp.com/players/${formId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          // Aquí agregas el token en Authorization
+          'x-access-token': token
+        },
+        body: JSON.stringify(formClientData)
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Error en la petición PUT');
+      }
+
+      const updatedPlayer = await response.json();
+      console.log('Jugador actualizado:', updatedPlayer);
+      popupClient.closePopup();
+        window.location.reload();
+    } catch (err) {
+      console.error(err);
+      alert('Ocurrió un error al actualizar el jugador.');
+    }
 });
 
 
