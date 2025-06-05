@@ -148,10 +148,15 @@ salesCloseButton.addEventListener("click", () => popupSales.closePopup());
   const salesInputMobile   = document.querySelector("#salesMobile").value.trim();
   const salesInputId       = document.querySelector("#salesId").value.trim();
   const salesInputUserId   = document.querySelector("#userId").value.trim();
+  const salesInputDate = document.querySelector("#salesDate").value.trim();
 
 
 
 let salesErrors = [];
+
+if(salesInputDate === ""){
+    salesErrors.push('La fecha no puede ir vacia')
+}
 
 if (salesInputName.length < 3 || salesInputName.length > 30) {
     salesErrors.push('El nombre debe tener entre 3 y 30 caracteres');
