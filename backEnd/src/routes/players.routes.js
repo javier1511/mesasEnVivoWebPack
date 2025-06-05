@@ -1,15 +1,13 @@
-import {Router} from "express"
-const router = Router()
-import * as playerController from "../controllers/player.controller"
+// Archivo: src/routes/player.routes.js
+import { Router } from "express";
+import * as playerController from "../controllers/player.controller";
 import { checkDuplicateMobile } from "../middlewares/verifyNewPlayer";
-import {authJwt} from "../middlewares"
 
+// Importa la función nombrada
 
-router.get('/', playerController.getPlayer)
-router.post('/', [checkDuplicateMobile,playerController.createPlayer])
-router.put('/:playerId', [authJwt.verifyToken, authJwt.isUser], playerController.updatePlayersById)
-router.get('/:playerId', playerController.getPlayersById)
-router.delete('/:playerId',[authJwt.verifyToken, authJwt.isAdmin], playerController.deletePlayerById)
+const router = Router();
 
+router.get("/", playerController.getPlayer);
+router.post("/", [checkDuplicateMobile, playerController.createPlayer]);
 
 export default router;
