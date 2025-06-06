@@ -66,11 +66,14 @@ const validateForm = function () {
     const name = document.querySelector("#name").value;
     const email = document.querySelector("#email").value;
     const mobile = document.querySelector('#mobile').value;
+    const date = document.querySelector("#date").value;
 
     let errors = [];
 
-
-
+    if(date.length === ''){
+        errors.push('La fecha no puede ir vacia')
+    }
+    
 
     // Validación del nombre
     if (name.length < 3 || name.length > 50) {
