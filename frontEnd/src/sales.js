@@ -144,39 +144,41 @@ salesCloseButton.addEventListener("click", () => popupSales.closePopup());
 
     const validateSalesForm = () => {
 
-  const salesInputName     = document.querySelector("#salesName").value.trim();
-  const salesInputMobile   = document.querySelector("#salesMobile").value.trim();
-  const salesInputId       = document.querySelector("#salesId").value.trim();
-  const salesInputUserId   = document.querySelector("#userId").value.trim();
-  const salesInputDate = document.querySelector("#salesDate").value.trim();
-
-
+ const salesInputName     = document.querySelector("#salesName").value.trim();
+const salesInputMobile   = document.querySelector("#salesMobile").value.trim();
+const salesInputId       = document.querySelector("#salesId").value.trim();
+const salesInputUserId   = document.querySelector("#userId").value.trim();
+const salesInputDate     = document.querySelector("#salesDate").value.trim();
+const salesInputTime     = document.querySelector("#salesTime").value.trim();
 
 let salesErrors = [];
 
-if(salesInputDate === ""){
-    salesErrors.push('La fecha no puede ir vacia')
+if (salesInputName === '') {
+  salesErrors.push('El nombre no puede ir vacío');
 }
 
-if (salesInputName.length < 3 || salesInputName.length > 30) {
-    salesErrors.push('El nombre debe tener entre 3 y 30 caracteres');
-  }
+if (salesInputMobile === '') {
+  salesErrors.push('El celular no puede ir vacío');
+}
 
-  // Móvil: exactamente 10 dígitos y distinto de "1234567890"
-  if (salesInputMobile.length !== 10 || salesInputMobile === "1234567890") {
-    salesErrors.push('El teléfono debe ser de 10 dígitos y no puede ser 1234567890');
-  }
+if (salesInputDate === '') {
+  salesErrors.push('La fecha no puede ir vacía');
+}
 
-  // ID de jugador obligatorio
-  if (!salesInputId) {
-    salesErrors.push('El ID del jugador no puede ir vacío');
-  }
+// ID de jugador obligatorio
+if (salesInputId === '') {
+  salesErrors.push('El ID del jugador no puede ir vacío');
+}
 
-  // ID de usuario obligatorio
-  if (!salesInputUserId) {
-    salesErrors.push('El ID de usuario no puede ir vacío');
-  }
+// ID de usuario obligatorio (solo una vez)
+if (salesInputUserId === '') {
+  salesErrors.push('El ID de usuario no puede ir vacío');
+}
 
+// Hora obligatoria (si la quieres validar)
+if (salesInputTime === '') {
+  salesErrors.push('La hora no puede ir vacía');
+}
 
 
 
