@@ -67,6 +67,7 @@ const validateForm = function () {
     const email = document.querySelector("#email").value;
     const mobile = document.querySelector('#mobile').value;
     const date = document.querySelector("#date").value;
+    const time = document.querySelector("#time").value;
 
     let errors = [];
 
@@ -94,6 +95,10 @@ const validateForm = function () {
     const phonePattern = /^\d+$/;
     if (!phonePattern.test(mobile)) {
         errors.push('El teléfono celular solo debe contener números');
+    }
+
+    if(time === ''){
+        errors.push('La hora no puede ir vacia')
     }
 
     // Devuelve los errores
