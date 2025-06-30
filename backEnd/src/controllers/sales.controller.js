@@ -118,7 +118,7 @@ export const getSummaryByClient = async (req, res) => {
 // Obtener todas las ventas
 export const getSales = async (req, res) => {
     try {
-        const sales = await Sales.find().sort({date: -1});
+        const sales = await Sales.find().sort({date: -1, time: -1});
         res.status(200).json(sales);
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener las ventas' });
