@@ -24,7 +24,7 @@ export const createPokerSale = async (req, res) => {
 export const getPokerSale = async(req, res) => {
     try {
 
-        const PokerSales = await SalesPoker.find()
+        const PokerSales = await SalesPoker.find().sort({date:-1, time: -1})
         res.json(PokerSales)
 
         

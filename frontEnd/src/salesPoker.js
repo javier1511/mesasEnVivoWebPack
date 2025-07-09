@@ -308,7 +308,7 @@ pokerMain.addEventListener('submit', async (event) => {
                     printWindow.document.write(`
                         <html>
                             <head>
-                                <title>Ticket de Venta</title>
+                                <title>Ticket de Venta Cash</title>
                           
                             </head>
                             <style>
