@@ -30,6 +30,28 @@ const getTransactions = async () => {
 getTransactions()
 
 
+const onLoadDate = () => {
+    const now = new Date();
+    let day = now.getDate();
+    let month = now.getMonth() + 1;
+    let year = now.getFullYear();
+
+    day = day < 10 ? '0' + day : day;
+    month = month  < 10 ? '0' + month : month;
+
+    const formattedDateOnload = `${year}-${month}-${day}`;
+
+    const dateInputTransactions = document.querySelector("#queryDate");
+    dateInputTransactions.value = formattedDateOnload;
+}
+
+window.onload = () => {
+    onLoadDate();
+    displayTransactions();
+}
+
+
+
 const inputTransactionsQuery = document.querySelector("#queryDate")
 const dataContainer = document.querySelector(".transactions__api-container")
 
