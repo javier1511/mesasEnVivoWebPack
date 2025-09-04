@@ -51,7 +51,6 @@ window.onload = () => {
 }
 
 
-
 const inputTransactionsQuery = document.querySelector("#queryDate")
 const dataContainer = document.querySelector(".transactions__api-container")
 

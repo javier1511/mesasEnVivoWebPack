@@ -7,10 +7,9 @@
 </head>
 <body>
 
-    <div class="transactions-container">
+    <div class="chart">
         <div class="side__menu-container">
-  
-      <div class="side__menu-list">
+            <div class="side__menu-list">
                     <div class="side__menu-list-container">
                         <a href="registerPage.html" class="side__menu">REGISTRAR CLIENTE</a>
         
@@ -48,7 +47,6 @@
                         <a href="chartSummarySalesReport.html" class="side__menu">REPORTE MENSUAL ACUMULADO</a>
         
                     </div>
-        
         
                     <div class="side__menu-list-container">
                         <a href="sales.html" class="side__menu">VENTAS</a>
@@ -100,97 +98,20 @@
                 
                 
                 </div>
+    
+    
         </div>
 
-        <div class="transactions">
 
-            <div class="transactions__title-container">
-                <h3 class="transactions__title">TRANSACCIONES</h3>
-            </div>
+        <div class="chart__iframe">
+           <iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="100%" height="480" src="https://charts.mongodb.com/charts-project-0-eqqwsal/embed/charts?id=95eb0db5-d3a3-407d-904a-88e30e3644f1&maxDataAge=60&theme=light&autoRefresh=true"></iframe>
 
-
-            <div class="transactions__input-container">
-
-                <label for="queryDate" class="transactions__input-label">Busqueda por fecha</label>
-                <input id="queryDate" placeholder="Fecha" type="date" class="transactions__input">
-                <input id="queryName" type="text" class="transactions__input" placeholder="Buscar por nombre">
-            </div>
-
-            <div class="transactions__data-container">
-                <div class="transactions__header-container">
-                    <p class="transactions__header">Id</p>
-                    <p class="transactions__header">Nombre</p>
-                    <p class="transactions__header">User Id</p>
-               
-                    <p class="transactions__header">Fecha</p>
-                    <p class="transactions__header">Hora</p>
-                    <p class="transactions__header">Fondo</p>
-                    <p class="transactions__header">Efectivo</p>
-                    <p class="transactions__header">Credito</p>
-                    <p class="transactions__header">Dolares</p>
-                    <p class="transactions__header">Pago</p>
-             
-                    <p class="transactions__header"></p>
-
-                </div>
-                <div class="transactions__api-container">
-                    
-                </div>
-
-            </div>
-
-            <div class="transactions__popup">
-                <div class="transactions__popup-container">
-                    <div class="transactions__popup-close-container">
-                        <img src="<%= require('./images/close_48dp_FILL0_wght400_GRAD0_opsz48.png') %>"  alt="" class="transactions__popup-close">
-                    </div>
-        
-        
-        
-        
-                    <form action="" class="transactions__form">
-                        <div class="transactions__form-title-container">
-                            <p class="transactions__form-title">Informacion de la transaccion</p>
-                        </div>
-                        <input class="transactions__form-input" id="idEditTransaction" type="text" placeholder="Id" readonly>
-                        <input class="transactions__form-input" id="nameEditTransaction" type="text" placeholder="Nombre">
-                        <input class="transactions__form-input" id="cashEditTransaction" type="text" placeholder="Efectivo">
-                        <input class="transactions__form-input" id="creditEditTransaction" type="text" placeholder="Tarjeta">
-                        <input class="transactions__form-input" id="dollarsEditTransaction" type="text" placeholder="Dolares">
-                        <input class="transactions__form-input" id="cashInEditTransaction" type="text" placeholder="Fondo">
-                        <input class="transactions__form-input" id="paymentEditTransaction" type="text" placeholder="Pago">
-        
-                        <button class="transaction__form-delete">Eliminar</button>
-                        <div class="transactions__form-errorMessages"></div>
-        
-        
-        
-                        
-        
-        
-        
-        
-        
-                    </form>
-        
-                </div>
-        
-        
-        
-            </div>
-          
+        </div>
 
 
-          
-            
-            </div>
-    
+        
+        
     </div>
-
-
-
-</div>
-
 
     
 </body>

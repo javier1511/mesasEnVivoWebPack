@@ -7,8 +7,6 @@ let userId = null
 import logoComplete from "./images/logo.png";
 import logoLarge from "./images/DIAMANTE.png";
 
-import Print from "./Print.js";
-
 let token = localStorage.getItem('token');
 console.log(token)
 
