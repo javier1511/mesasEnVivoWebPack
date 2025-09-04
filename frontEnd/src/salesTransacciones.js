@@ -157,7 +157,7 @@ const displayTransactions = async () => {
 
 }
 
-displayTransactions();
+
 inputTransactionsQuery.addEventListener('input', displayTransactions);
 inputName.addEventListener('input', displayTransactions);
 
