@@ -145,7 +145,11 @@ module.exports = {
       template: "./src/chartSummarySalesReport.html",
       chunks: ["chartSummarySalesReport"]
     }),
-
+    new HtmlWebpackPlugin({
+      filename: "aforo.html",
+      template: "./src/aforo.html", // asegúrate de que este archivo exista
+      chunks: ["aforo"]
+}),
     new MiniCssExtractPlugin({
       filename: "[name].css",
     })
