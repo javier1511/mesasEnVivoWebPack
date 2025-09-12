@@ -29,7 +29,8 @@ module.exports = {
     pokerTransactions: "./src/pokerTransactions.js",
     chartDailyPlayerReport: "./src/chartDailyPlayerReport.js",
     aforo:"./src/aforo.js",
-    kpisPorFechaYCliente:"./src/reportByDateAndPlayer.js"
+    reportByDateAndPlayer:"./src/reportByDateAndPlayer.js",
+    chartSummarySalesReport:"./src/chartSummarySalesReport"
   },
   output: {
     path: path.resolve(__dirname, "dist"),
