@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +7,11 @@
 </head>
 <body>
 
-    <div class="chart">
-        <div class="side__menu-container">
-         <div class="side__menu-list">
+    <div class="reportByDateAndPlayer-container">
+
+        
+          <div class="side__menu-container">
+            <div class="side__menu-list">
                     <div class="side__menu-list-container">
                         <a href="registerPage.html" class="side__menu">REGISTRAR CLIENTE</a>
         
@@ -104,18 +106,70 @@
                 
                 
                 </div>
+
+              
     
     
         </div>
 
 
-        <div class="chart__iframe">
-            <iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="100%" height="480" src="https://charts.mongodb.com/charts-project-0-eqqwsal/embed/charts?id=ec88f913-6cc2-48c6-af82-9931675ec36c&maxDataAge=60&theme=light&autoRefresh=true"></iframe>
-        </div>
 
 
-        
-        
+
+
+          <div class="reportByDateAndPlayer">
+
+                    <div class="reportByDateAndPlayer__input-container">
+                        <label for="" class="reportByDateAndPlayer__label">Fecha de inicio</label>
+                        <input id="initialDate" type="date" class="reportByDateAndPlayer__input">
+                                <label for="" class="reportByDateAndPlayer__label">Fecha final</label>
+                        <input id="finalDate" type="date" class="reportByDateAndPlayer__input">
+                                               <label for="" class="reportByDateAndPlayer__label">Jugadores</label>
+                        <input id="player" type="text" class="reportByDateAndPlayer__input">
+                        <button class="reportByDateAndPlayer__button" id="getReportButton">Consultar datos</button>
+                    </div>
+
+                    <div class="reportByDateAndPlayer__headers-container">
+                        <p class="reportByDateAndPlayer__headers">Fecha</p>
+                        <p class="reportByDateAndPlayer__headers">Efectivo</p>
+                        <p class="reportByDateAndPlayer__headers">Credito</p>
+                        <p class="reportByDateAndPlayer__headers">Dolares</p>
+                        <p class="reportByDateAndPlayer__headers">Pagos</p>
+                        <p class="reportByDateAndPlayer__headers">Netwin</p>
+                    </div>
+
+                    <div class="reportByDateAndPlayer__data-container">
+
+                    </div>
+
+
+
+
+                </div>
+
+                     <div class="sales__list">
+             
+                <div class="sales__list-container">
+                    <div class="sales__list-close-container">
+                        <img src="<%= require('./images/close_48dp_FILL0_wght400_GRAD0_opsz48.png') %>" alt="" class="sales__list-close">
+                    </div>
+                    <div class="sales__list-title-container">
+                        <h3 class="sales__list-title">CLIENTES</h3>
+                    </div>
+                    <form class="sales__list-form">
+                        
+                                          <input id="lookByName" type="text" class="sales__form-text" placeholder="Buscar por nombre">
+
+                        <input id="lookByMobile" type="text" class="sales__form-text" placeholder="Buscar por celular">
+    
+                        <div class="sales__data">
+                  
+                        </div>
+    
+              
+                    </form>
+                </div>
+            </div>
     </div>
 
     
