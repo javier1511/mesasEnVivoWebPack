@@ -2407,3 +2407,120 @@ border-radius: 20px;
     }
     
 }
+
+
+.reportByDateAndPlayer-container{
+     width: 100%;
+    display: grid;
+    grid-template-columns: 10% 90%;
+    height: 100vh;
+    z-index: 999;  
+}
+
+@media screen and (max-width:867px) {
+    .reportByDateAndPlayer-container{
+        grid-template-columns: 1fr;
+    }
+    
+}
+
+.reportByDateAndPlayer__input-container{
+        display: flex;
+    justify-content: space-around;
+    padding-bottom: 50px;
+    background-color: white;
+}
+
+@media screen and (max-width: 867px) {
+    .reportByDateAndPlayer__input-container{
+        flex-wrap: wrap;
+    }
+    
+}
+
+
+.reportByDateAndPlayer__input{
+    
+
+    border: 2px solid #ccc; /* Borde inicial */
+    border-radius: 8px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño de fuente */
+    outline: none; /* Elimina el contorno azul predeterminado */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+}
+
+@media screen and (max-width:867px) {
+
+    .reportByDateAndPlayer__input{
+        font-size: 8px;
+    }
+    
+}
+
+
+
+.reportByDateAndPlayer__input:focus{
+    border-color: #4CAF50; /* Cambia el color del borde */
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Sombra suave */
+}
+
+.reportByDateAndPlayer__button{
+    background-color: black; /* Color inicial */
+    border: transparent;
+    border-radius: 5px;
+    width: 30%;
+    font-size: 16px;
+    color: white;
+    transition: background-color 1s ease; /* Animación suave */  
+}
+
+@media screen and (max-width:867px) {
+
+    .reportByDateAndPlayer__button{
+        font-size: 8px;
+    }
+    
+}
+
+.reportByDateAndPlayer__headers-container{
+     width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    text-align: center;
+    font-weight: bold;
+    background-color: #007bff;
+    color: white;
+}
+
+@media screen and (max-width:867px) {
+
+    .reportByDateAndPlayer__headers{
+        font-size: 7px;
+    }
+    
+}
+
+.clientAndDate-reports__dynamic{
+   width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    text-align: center;
+    background-color: white;
+}
+
+
+@media screen and (max-width:867px) {
+
+    .reportByDateAndPlayer__label{
+    font-size: 8px;
+}
+    
+}
+
+
+@media screen and (max-width:867px) {
+    .clientAndDate-report__dynamic__text{
+        font-size: 7px;
+    }
+    
+}

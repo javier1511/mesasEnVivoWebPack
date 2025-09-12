@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    
 
-    <div class="sales-report user-report">
+    <div class="reportByDateAndPlayer-container">
 
-
-        <div class="side__menu-container">
-          <div class="side__menu-list">
+        
+          <div class="side__menu-container">
+            <div class="side__menu-list">
                     <div class="side__menu-list-container">
                         <a href="registerPage.html" class="side__menu">REGISTRAR CLIENTE</a>
         
@@ -22,10 +21,11 @@
                     <a href="clientsReport.html" class="side__menu">REPORTE DE CLIENTES REGISTRADOS</a>
     
                 </div>
-                  <div class="side__menu-list-container">
+                    <div class="side__menu-list-container">
                     <a href="reportByDateAndPlayer.html" class="side__menu">KPIS POR CLIENTE Y FECHA</a>
     
                 </div>
+
 
                    <div class="side__menu-list-container">
                     <a href="chartDailyPlayerReport.html" class="side__menu">REPORTE DE CLIENTES DIARIO</a>
@@ -106,57 +106,70 @@
                 
                 
                 </div>
-          
-                  
+
               
-             
-            
-             
-                
-             
-            
-             
-              
-            </div>
     
     
-       
-    
-
-        <div class="sales__report-main users__report-main">
-            <div class="sales-report__input-container users-report__input-container">
-                <label for="" class="sales-report__input-label users-report__input-label">Fecha de inicio</label>
-                <input id="initialDateUser" type="date" class="sales-report__input">
-                <label for="" class="sales-report__input-label users-report__input-label">Fecha final</label>
-                <input id="finalDateUser" type="date" class="sales-report__input users-report__input"> 
-                <button class="sales-report__button users-report__button" id="getReportButtonUsers">Consultar Reporte</button>
-    
-            </div>
-
-            <div class="sales-report__container users-report__container">
-                <p class="sales-report__data users__report-data">Usuario id</p>
-                <p class="sales-report__data users__report-data">Usuario</p>
-                <p class="sales-report__data users__report-data">Fondo</p>
-                <p class="sales-report__data users__report-data">Deposito Efectivo</p>
-                <p class="sales-report__data users__report-data">Deposito Tarjeta</p>
-                <p class="sales-report__data users__report-data">Deposito Dolares</p>
-                <p class="sales-report__data users__report-data">Pago</p>           
-                <p class="sales-report__data users__report-data">En caja</p>
-                <p class="sales-report__data users__report-data">Netwin</p>
-    
-            </div>
-    
-            <div id="usersReportDataContainer" class="sales-report__data-container users-report__data-container">
-    
-            </div>
-
         </div>
 
+
+
+
+
+
+          <div class="reportByDateAndPlayer">
+
+                    <div class="reportByDateAndPlayer__input-container">
+                        <label for="" class="reportByDateAndPlayer__label">Fecha de inicio</label>
+                        <input id="initialDate" type="date" class="reportByDateAndPlayer__input">
+                                <label for="" class="reportByDateAndPlayer__label">Fecha final</label>
+                        <input id="finalDate" type="date" class="reportByDateAndPlayer__input">
+                                               <label for="" class="reportByDateAndPlayer__label">Jugadores</label>
+                        <input id="player" type="text" class="reportByDateAndPlayer__input">
+                        <button class="reportByDateAndPlayer__button" id="getReportButton">Consultar datos</button>
+                    </div>
+
+                    <div class="reportByDateAndPlayer__headers-container">
+                        <p class="reportByDateAndPlayer__headers">Fecha</p>
+                        <p class="reportByDateAndPlayer__headers">Efectivo</p>
+                        <p class="reportByDateAndPlayer__headers">Credito</p>
+                        <p class="reportByDateAndPlayer__headers">Dolares</p>
+                        <p class="reportByDateAndPlayer__headers">Pagos</p>
+                        <p class="reportByDateAndPlayer__headers">Netwin</p>
+                    </div>
+
+                    <div class="reportByDateAndPlayer__data-container">
+
+                    </div>
+
+
+
+
+                </div>
+
+                     <div class="sales__list">
+             
+                <div class="sales__list-container">
+                    <div class="sales__list-close-container">
+                        <img src="<%= require('./images/close_48dp_FILL0_wght400_GRAD0_opsz48.png') %>" alt="" class="sales__list-close">
+                    </div>
+                    <div class="sales__list-title-container">
+                        <h3 class="sales__list-title">CLIENTES</h3>
+                    </div>
+                    <form class="sales__list-form">
+                        
+                                          <input id="lookByName" type="text" class="sales__form-text" placeholder="Buscar por nombre">
+
+                        <input id="lookByMobile" type="text" class="sales__form-text" placeholder="Buscar por celular">
     
-
-  
-
-
+                        <div class="sales__data">
+                  
+                        </div>
+    
+              
+                    </form>
+                </div>
+            </div>
     </div>
 
     

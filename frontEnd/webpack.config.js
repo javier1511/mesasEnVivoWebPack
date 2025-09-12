@@ -29,7 +29,11 @@ module.exports = {
     pokerTransactions: "./src/pokerTransactions.js",
     chartDailyPlayerReport: "./src/chartDailyPlayerReport.js",
     aforo:"./src/aforo.js",
+<<<<<<< HEAD
     chartSummarySalesReport:"./src/chartSummarySalesReport.js"
+=======
+    kpisPorFechaYCliente:"./src/reportByDateAndPlayer.js"
+>>>>>>> main
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -145,11 +149,19 @@ module.exports = {
       template: "./src/chartSummarySalesReport.html",
       chunks: ["chartSummarySalesReport"]
     }),
+<<<<<<< HEAD
     new HtmlWebpackPlugin({
       filename: "aforo.html",
       template: "./src/aforo.html", // asegúrate de que este archivo exista
       chunks: ["aforo"]
 }),
+=======
+       new HtmlWebpackPlugin({
+      filename: "reportByDateAndPlayer.html",
+      template: "./src/reportByDateAndPlayer.html",
+      chunks: ["kpisPorFechaYCliente"]
+    }),
+>>>>>>> main
     new MiniCssExtractPlugin({
       filename: "[name].css",
     })
