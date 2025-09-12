@@ -45,7 +45,7 @@ const getPlayersReport = async () => {
     }
 
 
-    const url = `http://localhost:4000/playeranddate?fechaInicio=${fechaDeInicio}&fechaFin=${fechaFinal}&name=${player}`
+    const url = `https://juegoenvivo1-701fa226890c.herokuapp.com/playeranddate?fechaInicio=${fechaDeInicio}&fechaFin=${fechaFinal}&name=${player}`
     const getDailyReportByDateAndPlayer = new Get(url, token);
 
     const dailyReportDataByDateAndPlayer = await getDailyReportByDateAndPlayer.get()
@@ -128,7 +128,7 @@ const clearDynamicData = () => {
 
 
 const getPlayersInReportByDateAndName = async () => {
-    const getRequestInSales = new Get('http://localhost:4000/players', token);
+    const getRequestInSales = new Get('https://juegoenvivo1-701fa226890c.herokuapp.com/players', token);
     const data = await getRequestInSales.get();
     console.log(data);
     return data;
