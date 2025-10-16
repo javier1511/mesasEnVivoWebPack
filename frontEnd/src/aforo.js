@@ -94,7 +94,7 @@ const dynamicReport = (lista) => {
         row.appendChild(itemFecha);
 
         const itemAforo = document.createElement("p");
-        itemAforo.classList.add("aforo_dynamic__text");
+        itemAforo.classList.add("aforo__dynamic__text");
         itemAforo.textContent = item.aforoClientes ?? "-";
         row.appendChild(itemAforo);
 
