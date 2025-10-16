@@ -1,16 +1,15 @@
-    <!DOCTYPE html>
-    <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    
-    </head>
-    <body>
-        <div class="clientsReport">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
 
-            <div class="side__menu-container">
-             <div class="side__menu-list">
+    <div class="chart">
+           <div class="side__menu-container">
+            <div class="side__menu-list">
                     <div class="side__menu-list-container">
                         <a href="registerPage.html" class="side__menu">REGISTRAR CLIENTE</a>
         
@@ -20,14 +19,8 @@
                     <a href="clientsReport.html" class="side__menu">REPORTE DE CLIENTES REGISTRADOS</a>
     
                 </div>
-                    <div class="side__menu-list-container">
+                 <div class="side__menu-list-container">
                     <a href="reportByDateAndPlayer.html" class="side__menu">KPIS POR CLIENTE Y FECHA</a>
-    
-                </div>
-
-
-                   <div class="side__menu-list-container">
-                    <a href="chartDailyPlayerReport.html" class="side__menu">REPORTE DE CLIENTES DIARIO</a>
     
                 </div>
 
@@ -74,6 +67,9 @@
                           REPORTE DE USUARIOS
                         </a>
                       </div>
+                        <div class="side__menu-list-container">
+                        <a href="./businessDay.html" class="side__menu">REPORTE DIAS ABIERTOS</a>
+                      </div>
 
                       
                          <div class="side__menu-list-container">
@@ -105,40 +101,47 @@
                 
                 
                 </div>
-        
-        
+    
+    
+        </div>
+
+        <div class="chartRegisterReport__container">
+             <div class="transactions__title-container">
+                <h3 class="transactions__title">REPORTE DE CLIENTES REGISTRADOS POR DIA</h3>
             </div>
-            <div class="clients__report-container">
 
-                <div class="clients__report-title-container">
-                    <h3 class="clients__report-title">REGISTROS POR FECHA</h3>
+            <div class="chartRegisterReport__input-container">
+                <label for="" class="chartRegisterReport__input-label">Fecha de inicio</label>
+                <input type="date" class="transactions__input" id="fechaInicio">
+                <label for="" class="chartRegisterReport__input-label">Fecha final</label>
+                <input type="date" class="transactions__input" id="fechaFinal">
+                <button class="transactions-report__button" id="getReportButton">Consultar reporte</button>
+                                <button class="transactions-report__button" id="exportButton">Exportar CSV</button>
 
-                </div>
-
-                <div class="clientsReport__input-container">
-                    <label for ="fecha" class="clientsReport__input-label">Busqueda por fecha</label>
-                    <input id="fecha" type="date" class="clientsReport__input">
-                </div>
-        
-            
-                <div class="clientsReport__header">
-                    <h3 class="clientsReport__title">Fecha</h3>
-                    <h3 class="clientsReport__title">Clientes</h3>
-                </div>
-        
-                <div class="clientsReport__data">
-        
-                </div>
 
             </div>
-        
 
-        
+            <div class="charRegisterReport__api-container">
+                 <div class="chartRegisterReport__headers-container">
+                <div class="charRegisterReport__headers">Fecha</div>
+                <div class="charRegisterReport__headers">Clientes</div>
+
+            </div>
+
+            <div class="charRegisterReport__data-container"></div>
+
+            </div>
+
+           
+
 
 
         </div>
 
-        
+
+
+
+
     
-    </body>
-    </html>
+</body>
+</html>

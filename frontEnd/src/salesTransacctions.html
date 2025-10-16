@@ -8,9 +8,8 @@
 <body>
 
     <div class="transactions-container">
-        <div class="side__menu-container">
-  
-      <div class="side__menu-list">
+     <div class="side__menu-container">
+            <div class="side__menu-list">
                     <div class="side__menu-list-container">
                         <a href="registerPage.html" class="side__menu">REGISTRAR CLIENTE</a>
         
@@ -18,15 +17,10 @@
 
                         <div class="side__menu-list-container">
                     <a href="clientsReport.html" class="side__menu">REPORTE DE CLIENTES REGISTRADOS</a>
-                </div>
-
-                     <div class="side__menu-list-container">
-                    <a href="reportByDateAndPlayer.html" class="side__menu">KPIS POR CLIENTE Y FECHA</a>
     
                 </div>
-
-                   <div class="side__menu-list-container">
-                    <a href="chartDailyPlayerReport.html" class="side__menu">REPORTE DE CLIENTES DIARIO</a>
+                 <div class="side__menu-list-container">
+                    <a href="reportByDateAndPlayer.html" class="side__menu">KPIS POR CLIENTE Y FECHA</a>
     
                 </div>
 
@@ -73,6 +67,9 @@
                           REPORTE DE USUARIOS
                         </a>
                       </div>
+                        <div class="side__menu-list-container">
+                        <a href="./businessDay.html" class="side__menu">REPORTE DIAS ABIERTOS</a>
+                      </div>
 
                       
                          <div class="side__menu-list-container">
@@ -104,6 +101,8 @@
                 
                 
                 </div>
+    
+    
         </div>
 
         <div class="transactions">
@@ -117,16 +116,21 @@
 
                 <label for="queryDate" class="transactions__input-label">Busqueda por fecha</label>
                 <input id="queryDate" placeholder="Fecha" type="date" class="transactions__input">
-                <input id="queryName" type="text" class="transactions__input" placeholder="Buscar por nombre">
+                <input id="queryName" type="text" class="transactions__input" placeholder="Buscar por nombre" re>
+                    <button class="transactions-report__button" id="getReportButton">Consultar Reporte</button>
+                    <button id="exportCsv" class="transactions-report__button">Exportar CSV</button>
+
+<!-- Contenedor de errores (opcional, si validas el form) -->
+
             </div>
 
             <div class="transactions__data-container">
                 <div class="transactions__header-container">
-                    <p class="transactions__header">Id</p>
+                    <p class="transactions__header">Fecha</p>
                     <p class="transactions__header">Nombre</p>
                     <p class="transactions__header">User Id</p>
                
-                    <p class="transactions__header">Fecha</p>
+                
                     <p class="transactions__header">Hora</p>
                     <p class="transactions__header">Fondo</p>
                     <p class="transactions__header">Efectivo</p>
@@ -157,15 +161,15 @@
                             <p class="transactions__form-title">Informacion de la transaccion</p>
                         </div>
                         <input class="transactions__form-input" id="idEditTransaction" type="text" placeholder="Id" readonly>
-                        <input class="transactions__form-input" id="nameEditTransaction" type="text" placeholder="Nombre">
-                        <input class="transactions__form-input" id="cashEditTransaction" type="text" placeholder="Efectivo">
-                        <input class="transactions__form-input" id="creditEditTransaction" type="text" placeholder="Tarjeta">
-                        <input class="transactions__form-input" id="dollarsEditTransaction" type="text" placeholder="Dolares">
-                        <input class="transactions__form-input" id="cashInEditTransaction" type="text" placeholder="Fondo">
-                        <input class="transactions__form-input" id="paymentEditTransaction" type="text" placeholder="Pago">
+                        <input class="transactions__form-input" id="nameEditTransaction" type="text" placeholder="Nombre" readonly>
+                        <input class="transactions__form-input" id="cashEditTransaction" type="text" placeholder="Efectivo" readonly>
+                        <input class="transactions__form-input" id="creditEditTransaction" type="text" placeholder="Tarjeta" readonly>
+                        <input class="transactions__form-input" id="dollarsEditTransaction" type="text" placeholder="Dolares" readonly>
+                        <input class="transactions__form-input" id="cashInEditTransaction" type="text" placeholder="Fondo" readonly>
+                        <input class="transactions__form-input" id="paymentEditTransaction" type="text" placeholder="Pago" readonly>
         
                         <button class="transaction__form-delete">Eliminar</button>
-                        <div class="transactions__form-errorMessages"></div>
+<div class="transactions__errors" style="color:#c00;font-weight:600;"></div>
         
         
         
@@ -182,6 +186,35 @@
         
         
             </div>
+
+
+            
+                     <div class="sales__list">
+             
+                <div class="sales__list-container">
+                    <div class="sales__list-close-container">
+                        <img src="<%= require('./images/close_48dp_FILL0_wght400_GRAD0_opsz48.png') %>" alt="" class="sales__list-close">
+                    </div>
+                    <div class="sales__list-title-container">
+                        <h3 class="sales__list-title">CLIENTES</h3>
+                    </div>
+                    <form class="sales__list-form">
+                        
+                                          <input id="lookByName" type="text" class="sales__form-text" placeholder="Buscar por nombre">
+
+                        <input id="lookByMobile" type="text" class="sales__form-text" placeholder="Buscar por celular">
+    
+                        <div class="sales__data">
+                  
+                        </div>
+    
+              
+                    </form>
+                </div>
+            </div>
+
+
+            
           
 
 

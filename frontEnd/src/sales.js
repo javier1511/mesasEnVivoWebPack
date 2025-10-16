@@ -187,17 +187,7 @@ return salesErrors;
     }
 
     const setSalesTime = () => {
-        const now = new Date();
-        let hours = now.getHours();
-        let minutes = now.getMinutes();
-        let seconds = now.getSeconds();
-
-        hours = hours < 10 ? '0' + hours : hours;
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-        seconds = seconds < 10 ? '0' + seconds : seconds
-
-        const currentTime = `${hours}:${minutes}:${seconds}`;
-
+      
      
 
         const fechaInput = document.querySelector("#salesDate");
@@ -215,19 +205,35 @@ return salesErrors;
         
     
 
-        document.querySelector("#salesTime").value = currentTime
    
 
         /*document.querySelector("#salesDate").value = formattedDate*/
  
     }
 
+    const time = () => {
+          const now = new Date();
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+        let seconds = now.getSeconds();
+
+        hours = hours < 10 ? '0' + hours : hours;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds
+
+        const currentTime = `${hours}:${minutes}:${seconds}`;
+                document.querySelector("#salesTime").value = currentTime
 
 
-
-    window.onload = function() {
-        setSalesTime()
     }
+
+
+
+window.onload = () => {
+  time();
+};
+
+
 
 
 
@@ -254,7 +260,7 @@ return salesErrors;
             return;
         }
     
-        setSalesTime();
+    
     
         const salesFormData = {
             player: document.querySelector("#salesId").value.toUpperCase(),
@@ -265,8 +271,8 @@ return salesErrors;
             credit: document.querySelector('#card').value || "0",
             dollars: document.querySelector('#usd').value || "0",
             payment: document.querySelector("#payment").value || "0",
-            date: document.querySelector('#salesDate').value.toUpperCase(),
-            time: document.querySelector('#salesTime').value.toUpperCase()
+            date: document.querySelector('#salesDate').value,
+            time: document.querySelector('#salesTime').value
         };
     
         console.log('Datos que se enviarán:', salesFormData);
@@ -287,10 +293,12 @@ return salesErrors;
                 },
                 body: JSON.stringify(salesFormData)
             });
+
+            const data = await response.json();
     
             if (!response.ok) {
-                const errorData = await response.json();
-                alert(errorData.message);
+                const errorData = data.error
+                alert(errorData);
                 return;
             }
     
@@ -453,3 +461,225 @@ return salesErrors;
 
 
     
+
+
+
+const startOperation = async () => {
+
+          const starOperationButton = document.querySelector("#startOperation");
+              const inputDate = document.querySelector("#salesDate");
+    try {
+
+  
+  
+        starOperationButton.addEventListener("click", async (e) => {
+                  e.preventDefault(); // por si el botón está dentro de un form
+
+
+ // 1) Poner hoy
+      const now = new Date();
+      let day = String(now.getDate()).padStart(2, "0");
+      let month = String(now.getMonth() + 1).padStart(2, "0");
+      const year = now.getFullYear();
+      const formattedDateOnload = `${year}-${month}-${day}`;
+
+      if (inputDate) {
+        inputDate.value = formattedDateOnload;
+        // 2) GUARDAR inmediatamente (programmatic set NO dispara 'change')
+        localStorage.setItem("fechaSeleccionada", formattedDateOnload);
+      }
+
+
+  
+                const dateValue = (inputDate.value || "").trim();
+      if (!dateValue) {
+        alert("La fecha no puede ir vacía");
+        inputDate.focus();
+        return;
+      }
+
+            const response = await fetch("http://localhost:4000/businessDay/open", {
+                method:'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ date: dateValue })
+            });
+
+            const data = await response.json()
+
+            if(!response.ok){
+                const errorData = data.error
+                alert(errorData);
+                return;
+            }
+
+    
+
+            console.log(data);
+            alert("OPERACION INICIADA");
+            
+                        setSalesTime();
+
+            return data;
+
+
+
+        })
+
+
+
+
+        
+    } catch (error) {
+        console.error(error);
+        alert(error.message)
+        
+    }
+}
+
+const saveDate = () => {
+      const fechaInput = document.querySelector("#salesDate");
+  const guardada = localStorage.getItem("fechaSeleccionada");
+  if (fechaInput && guardada) {
+    fechaInput.value = guardada;
+  }
+    
+}
+saveDate()
+startOperation()
+// 1) Ver en consola
+console.log("Fecha guardada:", localStorage.getItem("fechaSeleccionada"));
+
+// 2) Mostrarla en la UI (si existe un span/p)
+const lbl = document.querySelector("#fechaGuardadaLabel");
+if (lbl) lbl.textContent = localStorage.getItem("fechaSeleccionada") ?? "—";
+
+
+const closeOperation = async () => {
+    const closeOperationButton = document.querySelector("#closedOperation");
+const inputDate = document.querySelector("#salesDate");
+
+try {
+
+    closeOperationButton.addEventListener("click", async (e) => {
+
+          const dateValue = (inputDate.value || "").trim();
+      if (!dateValue) {
+        alert("La fecha no puede ir vacía");
+        inputDate.focus();
+        return;
+      }
+
+      const response = await fetch("http://localhost:4000/businessDay/close", {
+        method:"POST",
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({date: dateValue, status:"closed", closeBy:userId})
+      });
+
+      const data = await response.json();
+
+      if(!response.ok){
+        const erroData = data.error
+        alert(erroData);
+        return;
+      }
+
+      console.log(data);
+      alert("OPERACION CERRADA");
+
+      return data;
+
+
+    })
+
+            
+
+    
+} catch (error) {
+
+     console.error(error);
+        alert(error.message)
+    
+}
+}
+
+closeOperation()
+
+
+
+
+const reopenOperationContainer = document.querySelector(".reopenOperation__container")
+   const reopenPopup = new Popup(reopenOperationContainer)
+   
+const reopenOperationPopupClose = document.querySelector(".reopenOperation__list-close")
+reopenOperationPopupClose.addEventListener("click", () => reopenPopup.closePopup() )
+
+
+const reopenOperation = async () => {
+      const reopenOperationButton = document.querySelector("#reopenOperation");
+      const inputDate = document.querySelector("#salesDate");
+      const closeOperationDate = document.querySelector("#reopenOperationDate");
+      const reopenDayButton = document.querySelector("#reopenOperationButton");
+      
+         
+
+      try {
+
+        reopenOperationButton.addEventListener("click", () => reopenPopup.openPopup())
+
+        reopenDayButton.addEventListener("click", async (e) => {
+            e.preventDefault();
+
+            const dateValue = (closeOperationDate.value || "").trim();
+            if(!dateValue){
+                alert("La fecha no puede ir vacia");
+                closeOperationDate.focus();
+                return;
+            } 
+
+            const response = await fetch("http://localhost:4000/businessDay/reopen", {
+                method:"POST",
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify({date: dateValue})
+            });
+
+            const data = await response.json();
+            if(!response.ok){
+                const errorData = data.error;
+                alert(errorData);
+                return;
+            }
+
+                       console.log(data);
+            alert("OPERACION RE-ABIERTA");
+
+            inputDate.value = closeOperationDate.value;
+            reopenPopup.closePopup();
+
+         
+
+            return data;
+
+
+
+
+        })
+
+
+
+        
+      } catch (error) {
+          console.error(error);
+        alert(error.message)
+        
+      }
+
+
+}
+
+reopenOperation()

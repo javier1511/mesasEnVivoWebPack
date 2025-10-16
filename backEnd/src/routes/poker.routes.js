@@ -4,9 +4,9 @@ import * as pokerController from "../controllers/salesPoker.controller";
 import {authJwt} from "../middlewares"
 
 router.get('/', authJwt.verifyToken, pokerController.getPokerSale);
-router.post('/', [authJwt.verifyToken, authJwt.isUser], pokerController.createPokerSale);
+router.post('/', [authJwt.verifyToken, authJwt.isModerator], pokerController.createPokerSale);
 router.put('/:pokerId', [authJwt.verifyToken, authJwt.isAdmin], pokerController.updatePokerSaleById);
-router.get('/:pokerId', [authJwt.verifyToken, authJwt.isUser], pokerController.getPokerSaleById);
+router.get('/:pokerId', [authJwt.verifyToken, authJwt.isModerator], pokerController.getPokerSaleById);
 router.delete('/:pokerId', [authJwt.verifyToken, authJwt.isAdmin], pokerController.deletePokerSaleById);
 
 

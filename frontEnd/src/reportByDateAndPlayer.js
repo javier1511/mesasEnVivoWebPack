@@ -6,7 +6,7 @@ import Popup from "./Popup.js";
 const startDate = document.querySelector("#initialDate");
 const endDate = document.querySelector("#finalDate");
 const players = document.querySelector("#player")
-const dataContainer = document.querySelector(".reportByDateAndPlayer__data-container")
+const dataContainer = document.querySelector(".reportByDateAndPlayer__data")
 const popupContainer = document.querySelector(".sales__list")
 const popupDateAndPlayer = new Popup(popupContainer)
 
