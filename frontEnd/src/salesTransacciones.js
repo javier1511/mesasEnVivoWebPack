@@ -92,7 +92,7 @@ async function getTransactions() {
   const playerNameInput = playerInput.value.trim();
 
   // Construye URL segura
-  const urlObj = new URL("http://localhost:4000/sales");
+  const urlObj = new URL("https://juegoenvivo1-701fa226890c.herokuapp.com/sales");
   urlObj.searchParams.set("date", fechaQuery);
   if (playerNameInput) urlObj.searchParams.set("name", playerNameInput);
   const url = urlObj.toString();
@@ -293,7 +293,7 @@ const clearDynamicData = () => {
 // BUSCAR JUGADORES (popup)
 // ---------------------------
 const getPlayersInReportByDateAndName = async () => {
-  const getRequestInSales = new Get("http://localhost:4000/players", token);
+  const getRequestInSales = new Get("https://juegoenvivo1-701fa226890c.herokuapp.com/players", token);
   const data = await getRequestInSales.get();
   console.log(data);
   return data;
@@ -395,7 +395,7 @@ formTransactions.addEventListener("submit", async (event) => {
     return;
   }
 
-  const deleteSalesByIdRequest = new DeleteById(`http://localhost:4000/sales/${salesId}`, token);
+  const deleteSalesByIdRequest = new DeleteById(`https://juegoenvivo1-701fa226890c.herokuapp.com/sales/${salesId}`, token);
   const resultDelete = await deleteSalesByIdRequest.sendDeleteByIdRequest();
 
   if (resultDelete) {
@@ -755,11 +755,9 @@ transactions.forEach(transaction => {
 }
 */
 
-const popupClose = document.querySelector(".transactions__popup-close")
-
-popupClose.addEventListener("click", () => popupSales.closePopup())
 
 
+/*
 
 const validateTransactionForm = () => {
 
@@ -819,4 +817,4 @@ if(resultDelete){
 }
 
 
-})
+})*/

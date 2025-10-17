@@ -498,7 +498,7 @@ const startOperation = async () => {
         return;
       }
 
-            const response = await fetch("http://localhost:4000/businessDay/open", {
+            const response = await fetch("https://juegoenvivo1-701fa226890c.herokuapp.com/businessDay/open", {
                 method:'POST',
                 headers:{
                     'Content-Type': 'application/json'
@@ -571,7 +571,7 @@ try {
         return;
       }
 
-      const response = await fetch("http://localhost:4000/businessDay/close", {
+      const response = await fetch("https://juegoenvivo1-701fa226890c.herokuapp.com/businessDay/close", {
         method:"POST",
         headers:{
             'Content-Type': 'application/json'
@@ -640,7 +640,7 @@ const reopenOperation = async () => {
                 return;
             } 
 
-            const response = await fetch("http://localhost:4000/businessDay/reopen", {
+            const response = await fetch("https://juegoenvivo1-701fa226890c.herokuapp.com/businessDay/reopen", {
                 method:"POST",
                 headers:{
                     'Content-Type':'application/json'

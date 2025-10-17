@@ -32,7 +32,7 @@ const getDailyRegisterReport = async() => {
     }
  
 
-        const getRegisterData = new Get(`http://localhost:4000/countPlayers?fechaInicio=${fechaQueryInicio}&fechaFin=${fechaQueryFinal}`, token)
+        const getRegisterData = new Get(`https://juegoenvivo1-701fa226890c.herokuapp.com/countPlayers?fechaInicio=${fechaQueryInicio}&fechaFin=${fechaQueryFinal}`, token)
         const {porFecha = [], fechaInicio, fechaFin, totalGeneral} = await getRegisterData.get();
 
           lastDownloadPayload = {porFecha, fechaInicio, fechaFin, totalGeneral};

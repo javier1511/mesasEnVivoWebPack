@@ -235,7 +235,7 @@ pokerMain.addEventListener('submit', async (event) => {
 
         if(!token){
             alert("Inicia sesion nuevamente");
-              window.location.href = "http://localhost:8080/"
+              window.location.href = "https://www.juegoenvivodiamantecasino.com/"
               return;
         }
 

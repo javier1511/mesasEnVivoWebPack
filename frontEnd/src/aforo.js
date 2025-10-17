@@ -51,7 +51,7 @@ const getAforoReport = async () => {
  
 
 
-        const getAforoData = new Get(`http://localhost:4000/aforo?fechaInicio=${fechaQueryInicio}&fechaFin=${fechaQueryFinal}`, token)
+        const getAforoData = new Get(`https://juegoenvivo1-701fa226890c.herokuapp.com/aforo?fechaInicio=${fechaQueryInicio}&fechaFin=${fechaQueryFinal}`, token)
         const {porFecha = [], fechaInicio, fechaFin, totalAforo} = await getAforoData.get()
                   lastDownloadPayload = {porFecha, fechaInicio, fechaFin, totalAforo};
 
