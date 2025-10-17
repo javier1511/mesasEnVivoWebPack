@@ -10,7 +10,7 @@
     <div class="reportByDateAndPlayer-container">
 
         
-          <div class="side__menu-container">
+             <div class="side__menu-container">
             <div class="side__menu-list">
                     <div class="side__menu-list-container">
                         <a href="registerPage.html" class="side__menu">REGISTRAR CLIENTE</a>
@@ -21,14 +21,8 @@
                     <a href="clientsReport.html" class="side__menu">REPORTE DE CLIENTES REGISTRADOS</a>
     
                 </div>
-                    <div class="side__menu-list-container">
+                 <div class="side__menu-list-container">
                     <a href="reportByDateAndPlayer.html" class="side__menu">KPIS POR CLIENTE Y FECHA</a>
-    
-                </div>
-
-
-                   <div class="side__menu-list-container">
-                    <a href="chartDailyPlayerReport.html" class="side__menu">REPORTE DE CLIENTES DIARIO</a>
     
                 </div>
 
@@ -75,6 +69,9 @@
                           REPORTE DE USUARIOS
                         </a>
                       </div>
+                        <div class="side__menu-list-container">
+                        <a href="./businessDay.html" class="side__menu">REPORTE DIAS ABIERTOS</a>
+                      </div>
 
                       
                          <div class="side__menu-list-container">
@@ -106,8 +103,6 @@
                 
                 
                 </div>
-
-              
     
     
         </div>
@@ -119,6 +114,10 @@
 
           <div class="reportByDateAndPlayer">
 
+            <div class="transactions__title-container">
+                <h3 class="transactions__title">KPIS POR CLIENTE Y FECHA</h3>
+            </div>
+
                     <div class="reportByDateAndPlayer__input-container">
                         <label for="" class="reportByDateAndPlayer__label">Fecha de inicio</label>
                         <input id="initialDate" type="date" class="reportByDateAndPlayer__input">
@@ -129,7 +128,11 @@
                         <button class="reportByDateAndPlayer__button" id="getReportButton">Consultar datos</button>
                     </div>
 
-                    <div class="reportByDateAndPlayer__headers-container">
+                   
+
+
+                    <div class="reportByDateAndPlayer__api-container">
+                         <div class="reportByDateAndPlayer__headers-container">
                         <p class="reportByDateAndPlayer__headers">Fecha</p>
                         <p class="reportByDateAndPlayer__headers">Efectivo</p>
                         <p class="reportByDateAndPlayer__headers">Credito</p>
@@ -137,10 +140,12 @@
                         <p class="reportByDateAndPlayer__headers">Pagos</p>
                         <p class="reportByDateAndPlayer__headers">Netwin</p>
                     </div>
-
-                    <div class="reportByDateAndPlayer__data-container">
+                          <div class="reportByDateAndPlayer__data">
 
                     </div>
+
+                    </div>
+
 
 
 

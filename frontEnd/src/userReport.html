@@ -10,9 +10,8 @@
 
     <div class="sales-report user-report">
 
-
-        <div class="side__menu-container">
-          <div class="side__menu-list">
+     <div class="side__menu-container">
+            <div class="side__menu-list">
                     <div class="side__menu-list-container">
                         <a href="registerPage.html" class="side__menu">REGISTRAR CLIENTE</a>
         
@@ -22,13 +21,8 @@
                     <a href="clientsReport.html" class="side__menu">REPORTE DE CLIENTES REGISTRADOS</a>
     
                 </div>
-                  <div class="side__menu-list-container">
+                 <div class="side__menu-list-container">
                     <a href="reportByDateAndPlayer.html" class="side__menu">KPIS POR CLIENTE Y FECHA</a>
-    
-                </div>
-
-                   <div class="side__menu-list-container">
-                    <a href="chartDailyPlayerReport.html" class="side__menu">REPORTE DE CLIENTES DIARIO</a>
     
                 </div>
 
@@ -75,6 +69,9 @@
                           REPORTE DE USUARIOS
                         </a>
                       </div>
+                        <div class="side__menu-list-container">
+                        <a href="./businessDay.html" class="side__menu">REPORTE DIAS ABIERTOS</a>
+                      </div>
 
                       
                          <div class="side__menu-list-container">
@@ -106,24 +103,19 @@
                 
                 
                 </div>
-          
-                  
-              
-             
-            
-             
-                
-             
-            
-             
-              
-            </div>
+    
+    
+        </div>
     
     
        
     
 
         <div class="sales__report-main users__report-main">
+                  <div class="transactions__title-container">
+                <h3 class="transactions__title">REPORTE DE USUARIOS</h3>
+            </div>
+
             <div class="sales-report__input-container users-report__input-container">
                 <label for="" class="sales-report__input-label users-report__input-label">Fecha de inicio</label>
                 <input id="initialDateUser" type="date" class="sales-report__input">
@@ -133,7 +125,8 @@
     
             </div>
 
-            <div class="sales-report__container users-report__container">
+            <div class="sales-report__api-container">
+                   <div class="sales-report__container users-report__container">
                 <p class="sales-report__data users__report-data">Usuario id</p>
                 <p class="sales-report__data users__report-data">Usuario</p>
                 <p class="sales-report__data users__report-data">Fondo</p>
@@ -149,6 +142,10 @@
             <div id="usersReportDataContainer" class="sales-report__data-container users-report__data-container">
     
             </div>
+
+            </div>
+
+         
 
         </div>
 

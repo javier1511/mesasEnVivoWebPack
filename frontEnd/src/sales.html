@@ -8,7 +8,7 @@
 <body>
     <div class="sales">
 
-        <div class="side__menu-container">
+     <div class="side__menu-container">
             <div class="side__menu-list">
                     <div class="side__menu-list-container">
                         <a href="registerPage.html" class="side__menu">REGISTRAR CLIENTE</a>
@@ -19,14 +19,8 @@
                     <a href="clientsReport.html" class="side__menu">REPORTE DE CLIENTES REGISTRADOS</a>
     
                 </div>
-                    <div class="side__menu-list-container">
+                 <div class="side__menu-list-container">
                     <a href="reportByDateAndPlayer.html" class="side__menu">KPIS POR CLIENTE Y FECHA</a>
-    
-                </div>
-
-
-                   <div class="side__menu-list-container">
-                    <a href="chartDailyPlayerReport.html" class="side__menu">REPORTE DE CLIENTES DIARIO</a>
     
                 </div>
 
@@ -73,6 +67,9 @@
                           REPORTE DE USUARIOS
                         </a>
                       </div>
+                        <div class="side__menu-list-container">
+                        <a href="./businessDay.html" class="side__menu">REPORTE DIAS ABIERTOS</a>
+                      </div>
 
                       
                          <div class="side__menu-list-container">
@@ -108,6 +105,7 @@
     
         </div>
 
+
         <div class="sales__form-container">
    
 
@@ -118,13 +116,20 @@
 
                 </div>
             </div>
+            <div class="sales__form-operation-container">
+                <button id="startOperation" class="sales__form-operation-button sales__button">INICIAR OPERACION</button>
+                                <button id="closedOperation" class="sales__form-operation-button sales__button">CERRAR OPERACION</button>
+
+                                                <button id="reopenOperation" class="sales__form-operation-button sales__button">REABRIR OPERACION</button>
+
+            </div>
 
             <form class="sales__form">
 
                 <div class="sales__form-input-container">
                     
                  <label for="" class="sales__label">Fecha</label>
-                 <input type="date" class="sales__input" placeholder="Fecha" id="salesDate">
+                 <input type="date" class="sales__input" placeholder="Fecha" id="salesDate" >
                 </div>
 
                 <div class="sales__form-input-container">
@@ -246,6 +251,27 @@
                 </div>
 
 
+            </div>
+
+            <div class="reopenOperation__container">
+                <div class="reopenOperation-close-container">
+                        <img src="<%= require('./images/close_48dp_FILL0_wght400_GRAD0_opsz48.png') %>" alt="" class="reopenOperation__list-close">
+                    </div>
+
+                <div class="reopenOperation">
+                    <div class="reopenOperation__title-container">
+                        <h3 class="reopenOperation__title">¿Que dia quieres abrir?</h3>
+                    </div>
+                    <div class="reopenOperation__input-container">
+                                         <input type="date" class="sales__input" placeholder="Fecha" id="reopenOperationDate">
+
+
+                    </div>
+
+                    <div class="reopenOperation__button-container">
+                        <button id="reopenOperationButton"  class="reopenOperation__button sales__button">Abrir dia</button>
+                    </div>
+                </div>
             </div>
 
           

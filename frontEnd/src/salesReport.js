@@ -79,10 +79,10 @@ const selectReport = (reports) => {
         dateElement.classList.add("sales-report__dynamic__text");
 
         // Formatear la fecha a dd/mm/yyyy
-        let [year, month, day] = report.fecha.split('-');
-        let formattedDate = `${day}/${month}/${year}`;
-        dateElement.textContent = formattedDate;
-        row.appendChild(dateElement);
+            let [year, month, day] = report.fecha.split('-');
+            let formattedDate = `${day}/${month}/${year}`;
+            dateElement.textContent = formattedDate;
+            row.appendChild(dateElement);
 
         const cashInElement = document.createElement("p");
         cashInElement.classList.add("sales-report__dynamic__text");

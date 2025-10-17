@@ -27,10 +27,10 @@ module.exports = {
     salesPoker: "./src/salesPoker.js",
     chartDailyReportCash: "./src/chartDailyReportCash.js",
     pokerTransactions: "./src/pokerTransactions.js",
-    chartDailyPlayerReport: "./src/chartDailyPlayerReport.js",
     aforo:"./src/aforo.js",
     reportByDateAndPlayer:"./src/reportByDateAndPlayer.js",
-    chartSummarySalesReport:"./src/chartSummarySalesReport"
+    chartSummarySalesReport:"./src/chartSummarySalesReport.js",
+    businessDay:"./src/businessDay.js"
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -136,25 +136,20 @@ module.exports = {
       template: "./src/pokerTransactions.html",
       chunks: ["pokerTransactions"]
     }),
-        new HtmlWebpackPlugin({
-      filename: "chartDailyPlayerReport.html",
-      template: "./src/chartDailyPlayerReport.html",
-      chunks: ["chartDailyPlayerReport"]
-    }),
       new HtmlWebpackPlugin({
       filename: "chartSummarySalesReport.html",
       template: "./src/chartSummarySalesReport.html",
       chunks: ["chartSummarySalesReport"]
     }),
-    new HtmlWebpackPlugin({
+      new HtmlWebpackPlugin({
       filename: "aforo.html",
       template: "./src/aforo.html", // asegúrate de que este archivo exista
       chunks: ["aforo"]
     }),
        new HtmlWebpackPlugin({
       filename: "reportByDateAndPlayer.html",
-      template: "./src/reportByDateAndPlayer.html", // asegúrate de que este archivo exista
-      chunks: ["reportByDateAndPlayer"]
+      template: "./src/reportByDateAndPlayer.html",
+      chunks: ["kpisPorFechaYCliente"]
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css",

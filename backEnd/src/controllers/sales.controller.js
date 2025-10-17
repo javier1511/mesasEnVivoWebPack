@@ -1,11 +1,20 @@
 import Players from "../models/Players";
 import Sales from "../models/Sales";
 import Summary from "../models/Summary.js";
+import BusinessDay from "../models/BusinessDay.js";
 
+
+const normalizeYMD = (val) => {
+  if (typeof val !== "string") return null;
+  const s = val.trim();
+  const ymd = s.includes("T") ? s.split("T")[0] : s; // corta ISO
+  return /^\d{4}-\d{2}-\d{2}$/.test(ymd) ? ymd : null;
+};
 
 
 export const createSales = async (req, res) => {
     try {
+
       const {
         player,
         user,
@@ -18,6 +27,14 @@ export const createSales = async (req, res) => {
         date,
         time,
       } = req.body;
+
+       const ymd = normalizeYMD(date);
+    if (!ymd) return res.status(400).json({ message: "Fecha de venta inválida" });
+
+    const day = await BusinessDay.findOne({ date: ymd }).lean();
+    if (!day || day.status !== "open") {
+      return res.status(409).json({ error: "Revisa el estatus del dia" });
+    }
   
       // 1) Validaciones mínimas
       if (!player || !name || !user || date == null || time == null) {
@@ -115,15 +132,92 @@ export const getSummaryByClient = async (req, res) => {
     }
 };
 
-// Obtener todas las ventas
+// Helper para evitar inyección/regex inválidos
+const escapeRegex = (s = "") => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
 export const getSales = async (req, res) => {
-    try {
-        const sales = await Sales.find().sort({date: -1, time: -1});
-        res.status(200).json(sales);
-    } catch (error) {
-        res.status(500).json({ error: 'Error al obtener las ventas' });
+  try {
+    const { date, name } = req.query;
+
+    if (!date) {
+      return res.status(400).json({ error: "Debes proporcionar fecha (YYYY-MM-DD)" });
     }
+
+    // Rango del día local
+    const startDate = new Date(date);
+    startDate.setHours(0, 0, 0, 0);
+    const endDate = new Date(date);
+    endDate.setHours(23, 59, 59, 999);
+
+    // Filtro base por fecha
+    const match = { date: { $gte: startDate, $lt: endDate } };
+
+    // Si viene name, filtra por coincidencia parcial (contiene)
+    if (name && name.trim()) {
+      match.name = { $regex: escapeRegex(name.trim()), $options: "i" };
+      // Si prefieres "empieza con", usa: new RegExp(`^${escapeRegex(name.trim())}`, "i")
+    }
+
+    const [result] = await Sales.aggregate([
+      { $match: match },
+      {
+        $facet: {
+          sales: [
+            { $sort: { date: -1, time: -1 } },
+            // { $project: { player:1, user:1, cashIn:1, cash:1, credit:1, dollars:1, payment:1, name:1, date:1, time:1 } }
+          ],
+          totals: [
+            {
+              $group: {
+                _id: null,
+                cash:    { $sum: { $toDouble: { $ifNull: ["$cash", 0] } } },
+                credit:  { $sum: { $toDouble: { $ifNull: ["$credit", 0] } } },
+                dollars: { $sum: { $toDouble: { $ifNull: ["$dollars", 0] } } },
+                payment: { $sum: { $toDouble: { $ifNull: ["$payment", 0] } } },
+                cashIn:  { $sum: { $toDouble: { $ifNull: ["$cashIn", 0] } } }
+              }
+            },
+            {
+              $project: {
+                _id: 0,
+                cash: 1, credit: 1, dollars: 1, payment: 1, cashIn: 1,
+                user:   { $literal: "NA" },
+                name:   { $literal: "NA" },
+                player: { $literal: "NA" },
+                time:   { $literal: "NA" }
+              }
+            }
+          ]
+        }
+      }
+    ]);
+
+    const defaults = { cash: 0, credit: 0, dollars: 0, payment: 0, cashIn: 0, user: "NA", name: "NA", player: "NA", time: "NA" };
+    const totalsDoc = result?.totals?.[0] ?? defaults;
+
+    res.status(200).json({
+      date,
+      name: name ?? null, // eco del filtro usado
+      totals: {
+        cash: totalsDoc.cash,
+        credit: totalsDoc.credit,
+        dollars: totalsDoc.dollars,
+        payment: totalsDoc.payment,
+        cashIn: totalsDoc.cashIn,
+        user: totalsDoc.user,
+        name: totalsDoc.name,
+        player: totalsDoc.player,
+        time: totalsDoc.time
+      },
+      sales: result?.sales || []
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al obtener las ventas" });
+  }
 };
+
 
 // Obtener una venta por ID
 export const getSalesById = async (req, res) => {

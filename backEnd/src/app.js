@@ -9,8 +9,9 @@ import countPlayerRoutes from "./routes/countPlayersByDate.routes"
 import dailyReportByDate from "./routes/dailyReportByDate"
 import dailyReportByUser from "./routes/dailyUserReportByDate"
 import pokerRoutes from "./routes/poker.routes";
-import reportByPlayerAndDate from "./routes/reportByPlayerAndDate.routes"
-
+import reportByPlayerAndDate from "./routes/reportByPlayerAndDate.routes";
+import aforoController from "./routes/uniqueCount.routes"
+import businessDay from "./routes/businessDay.routes"
 
 const cors = require('cors');
 
@@ -19,7 +20,7 @@ createRoles()
 console.log("👉 Verificando importación de createRoles:");
 console.log(createRoles);
 app.use(morgan('dev'))
-app.use(express.json());
+app.use(express.json());    
 app.use(cors()); 
 app.get('/', (req, res) =>{
     res.json("Diamante Mesas En Vivo")
@@ -34,4 +35,6 @@ app.use('/dailyreport', dailyReportByDate)
 app.use('/dailyreportusers', dailyReportByUser)
 app.use('/poker', pokerRoutes)
 app.use('/playeranddate', reportByPlayerAndDate)
+app.use('/aforo', aforoController)
+app.use('/businessDay', businessDay)
 export default app  
