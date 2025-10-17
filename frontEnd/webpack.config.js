@@ -141,15 +141,20 @@ module.exports = {
       template: "./src/chartSummarySalesReport.html",
       chunks: ["chartSummarySalesReport"]
     }),
-      new HtmlWebpackPlugin({
+    new HtmlWebpackPlugin({
       filename: "aforo.html",
       template: "./src/aforo.html", // asegúrate de que este archivo exista
       chunks: ["aforo"]
     }),
        new HtmlWebpackPlugin({
       filename: "reportByDateAndPlayer.html",
-      template: "./src/reportByDateAndPlayer.html",
-      chunks: ["kpisPorFechaYCliente"]
+      template: "./src/reportByDateAndPlayer.html", // asegúrate de que este archivo exista
+      chunks: ["reportByDateAndPlayer"]
+    }),
+     new HtmlWebpackPlugin({
+      filename: "businessDay.html",
+      template: "./src/businessDay.html", // asegúrate de que este archivo exista
+      chunks: ["businessDay"]
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
