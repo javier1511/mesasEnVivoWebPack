@@ -651,8 +651,7 @@ const reopenOperation = async () => {
 
             const data = await response.json();
             if(!response.ok){
-                const errorData = data.error;
-                alert(errorData);
+                  alert(data.message || data.error?.message);
                 return;
             }
 
