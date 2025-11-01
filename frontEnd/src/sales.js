@@ -643,15 +643,15 @@ const reopenOperation = async () => {
             const response = await fetch("https://juegoenvivo1-701fa226890c.herokuapp.com/businessDay/reopen", {
                 method:"POST",
                 headers:{
-                    'Content-Type':'application/json'
+                    'Content-Type':'application/json',
+                    'x-access-token':token
                 },
                 body: JSON.stringify({date: dateValue})
             });
 
             const data = await response.json();
             if(!response.ok){
-                const errorData = data.error;
-                alert(errorData);
+                  alert(data.message || data.error?.message);
                 return;
             }
 
