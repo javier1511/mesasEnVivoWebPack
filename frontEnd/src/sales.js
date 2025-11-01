@@ -643,7 +643,8 @@ const reopenOperation = async () => {
             const response = await fetch("http://localhost:4000/businessDay/reopen", {
                 method:"POST",
                 headers:{
-                    'Content-Type':'application/json'
+                    'Content-Type':'application/json',
+                    'x-access-token':token
                 },
                 body: JSON.stringify({date: dateValue})
             });
