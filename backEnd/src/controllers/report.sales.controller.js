@@ -38,8 +38,8 @@ export const getSalesReport = async (req, res) => {
                     totalCash: 1,
                     totalCredit: 1,
                     totalDollar: 1,
-                    totalCashIn:1,
-                    totalPayment:1,
+                    totalCashIn: 1,
+                    totalPayment: 1,
                     caja: { 
                         $subtract: [
                             { $add: ["$totalCashIn", "$totalCash", "$totalDollar"] }, 
@@ -57,7 +57,37 @@ export const getSalesReport = async (req, res) => {
             { $sort: { fecha: 1 } } // Ordenar por fecha ascendente
         ]);
 
-        res.json(result.length > 0 ? result : { message: "No hay ventas en este rango de fechas" });
+        if (result.length === 0) {
+            return res.json({ message: "No hay ventas en este rango de fechas" });
+        }
+
+        // Calcular total general sumando todas las filas
+        const totalGeneral = result.reduce((acc, item) => {
+            acc.totalCash   += item.totalCash   || 0;
+            acc.totalCredit += item.totalCredit || 0;
+            acc.totalDollar += item.totalDollar || 0;
+            acc.totalCashIn += item.totalCashIn || 0;
+            acc.totalPayment+= item.totalPayment|| 0;
+            acc.caja        += item.caja        || 0;
+            acc.netwin      += item.netwin      || 0;
+            return acc;
+        }, {
+            totalCash: 0,
+            totalCredit: 0,
+            totalDollar: 0,
+            totalCashIn: 0,
+            totalPayment: 0,
+            caja: 0,
+            netwin: 0
+        });
+
+        // Agregar fila TOTAL al final
+        result.push({
+            fecha: "TOTAL",
+            ...totalGeneral
+        });
+
+        return res.json(result);
 
     } catch (error) {
         console.error("Error en getSalesReport:", error);
@@ -66,6 +96,7 @@ export const getSalesReport = async (req, res) => {
 };
 
 export default getSalesReport;
+
 
 
 export const getSalesReportByDateAndName = async(req, res) => {
