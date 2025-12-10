@@ -42,7 +42,7 @@ const getDailyReport = async () => {
     }
 
     // Construir la URL dinámica
-    const url = `http://localhost:4000/dailyreport?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`;
+    const url = `https://juegoenvivo1-701fa226890c.herokuapp.com/dailyreport?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`;
     const getDailyReportRequest = new Get(url, token);
 
     // Llamar a la API y obtener los datos
