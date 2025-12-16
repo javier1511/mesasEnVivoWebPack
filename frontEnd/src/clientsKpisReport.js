@@ -65,7 +65,7 @@ const showLoading = () => {
 };
 
 const getPlayersKpis = async () => {
-  const request = new Get("http://localhost:4000/sales/summary", token);
+  const request = new Get("hhttps://juegoenvivo1-701fa226890c.herokuapp.com/sales/summary", token);
   const data = await request.get();
   console.log("KPIs payload:", data);
   return data;
@@ -222,7 +222,7 @@ enviarMensajeBtn.addEventListener("click", async () => {
 
     try {
         // Enviar la solicitud POST
-        const response = await fetch("http://localhost:4000/sendsms/", {
+        const response = await fetch("https://juegoenvivo1-701fa226890c.herokuapp.com/sendsms/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
