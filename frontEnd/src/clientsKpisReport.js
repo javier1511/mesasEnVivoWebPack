@@ -65,7 +65,7 @@ const showLoading = () => {
 };
 
 const getPlayersKpis = async () => {
-  const request = new Get("https://juegoenvivo1-701fa226890c.herokuapp.com/sales/summary", token);
+  const request = new Get("http://localhost:4000/sales/summary", token);
   const data = await request.get();
   console.log("KPIs payload:", data);
   return data;
@@ -204,31 +204,35 @@ let isSending = false;
 
 
 enviarMensajeBtn.addEventListener("click", async () => {
-    const message = textarea?.value.trim();
 
-    // Validación: Verificar que haya números y que el mensaje no esté vacío
-    if (mobiles.length === 0) {
-        return alert("No hay números seleccionados.");
-    }
+    if (isSending) return;                 // evita doble envío
+  isSending = true;
+  enviarMensajeBtn.disabled = true; 
+  const message = (textarea?.value || "").trim();
+  if (mobiles.length === 0) return alert("No hay números seleccionados.");
+  if (!message) return alert("El mensaje no puede estar vacío.");
+  if (message.length > 159) return alert("El texto excede 159 caracteres.");
 
-    if (!message) {
-        return alert("El mensaje no puede estar vacío.");
-    }
+  // MINIMO CAMBIO: ahora el payload es { from, text, to: [] }
+  const FROM = "DIAMANTE";
+  const to = Array.from(new Set(
+    mobiles
+      .map(n => String(n).trim())
+      .filter(Boolean)
+      .map(n => (n.startsWith("+") ? n : "+" + n))
+  ));
 
-    const body = {
-        numbers: mobiles,
-        message: message
-    };
+  const payload = { from: FROM, text: message, to };
 
-    try {
-        // Enviar la solicitud POST
-        const response = await fetch("https://juegoenvivo1-701fa226890c.herokuapp.com/sendsms/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(body)
-        });
+  try {
+    const res = await fetch("https://crmdiamantetampico-5bcdf021f94c.herokuapp.com/sendsms", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": token
+      },
+      body: JSON.stringify(payload)
+    });
 
 
 
