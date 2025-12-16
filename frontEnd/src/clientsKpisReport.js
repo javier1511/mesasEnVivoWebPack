@@ -65,7 +65,7 @@ const showLoading = () => {
 };
 
 const getPlayersKpis = async () => {
-  const request = new Get("http://localhost:4000/sales/summary", token);
+  const request = new Get("https://crmdiamantetampico-5bcdf021f94c.herokuapp.com/sales/summary", token);
   const data = await request.get();
   console.log("KPIs payload:", data);
   return data;
