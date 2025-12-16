@@ -65,7 +65,7 @@ const showLoading = () => {
 };
 
 const getPlayersKpis = async () => {
-  const request = new Get("hhttps://juegoenvivo1-701fa226890c.herokuapp.com/sales/summary", token);
+  const request = new Get("https://juegoenvivo1-701fa226890c.herokuapp.com/sales/summary", token);
   const data = await request.get();
   console.log("KPIs payload:", data);
   return data;
