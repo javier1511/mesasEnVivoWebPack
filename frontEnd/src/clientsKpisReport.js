@@ -225,7 +225,7 @@ enviarMensajeBtn.addEventListener("click", async () => {
   const payload = { from: FROM, text: message, to };
 
   try {
-    const res = await fetch("https://crmdiamantetampico-5bcdf021f94c.herokuapp.com/sendsms", {
+    const res = await fetch("http://localhost:4000/sendsms", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
