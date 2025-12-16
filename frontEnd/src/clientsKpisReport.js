@@ -65,7 +65,7 @@ const showLoading = () => {
 };
 
 const getPlayersKpis = async () => {
-  const request = new Get("https://crmdiamantetampico-5bcdf021f94c.herokuapp.com/sales/summary", token);
+  const request = new Get("https://juegoenvivo1-701fa226890c.herokuapp.com/sales/summary", token);
   const data = await request.get();
   console.log("KPIs payload:", data);
   return data;
@@ -225,7 +225,7 @@ enviarMensajeBtn.addEventListener("click", async () => {
   const payload = { from: FROM, text: message, to };
 
   try {
-    const res = await fetch("https://crmdiamantetampico-5bcdf021f94c.herokuapp.com/sendsms", {
+    const res = await fetch("https://juegoenvivo1-701fa226890c.herokuapp.com/sendsms", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
