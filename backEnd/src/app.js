@@ -17,10 +17,11 @@ const cors = require('cors');
 
 const app = express()
 createRoles()
-console.log("👉 Verificando importación de createRoles:");
-console.log(createRoles);
+app.use(express.json({ limit: "2mb" })); // ajusta lo necesario
+app.use(express.urlencoded({ extended: true, limit: "2mb" }));
+
 app.use(morgan('dev'))
-app.use(express.json());    
+
 app.use(cors()); 
 app.get('/', (req, res) =>{
     res.json("Diamante Mesas En Vivo")

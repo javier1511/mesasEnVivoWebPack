@@ -578,7 +578,7 @@ const errorTransactionContainer = document.querySelector(".transactions__form-er
 
 }
 
-displayTransactions();
+
 inputTransactionsQuery.addEventListener('input', displayTransactions);
 inputName.addEventListener('input', displayTransactions);*/
 
@@ -754,3 +754,67 @@ transactions.forEach(transaction => {
 
 }
 */
+
+
+
+/*
+
+const validateTransactionForm = () => {
+
+    let errors = [];
+
+  
+
+
+
+    if (namePopup.value === "" || cashPopup.value === "" || creditPopup.value === "" || dollarsPopup.value === "") {
+        errors.push("Estos valores no pueden ir vacíos");
+    }
+    
+
+
+    
+
+return errors
+
+
+}
+
+
+formTransactions.addEventListener("submit", async(event) => {
+event.preventDefault();
+
+
+const errors = validateTransactionForm();
+if(errors.length > 0){
+    errors.forEach(error => {
+        const errorTransactionElement = document.createElement("p");
+        errorTransactionElement.textContent = error;
+        errorTransactionContainer.appendChild(errorTransactionElement)
+        
+    })
+    return
+}
+
+
+    if(!salesId){
+        alert('No se ha seleccionado ninguna transaccion para eliminar');
+        return;
+    }
+
+    const token = localStorage.getItem("token"); // ✅ Obtener el token antes de eliminar
+
+    if (!token) {
+        alert("No tienes permiso para eliminar esta transacción. Inicia sesión nuevamente.");
+        return;
+    }n
+
+const deleteSalesByIdRequest = new DeleteById(`http://localhost:4000/sales/${salesId}`, token);
+const resultDelete = await deleteSalesByIdRequest.sendDeleteByIdRequest();
+
+if(resultDelete){
+    popupSales.closePopup()
+}
+
+
+})*/
