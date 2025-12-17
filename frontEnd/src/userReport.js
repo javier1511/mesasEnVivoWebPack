@@ -37,7 +37,7 @@ const getDailyReportUser = async () => {
     }
   
     // 2) Construir URL y llamar a la API
-    const url = `https://juegoenvivo1-701fa226890c.herokuapp.com/dailyreportusers?fechaInicioUser=${fechaInicioUser}&fechaFinUser=${fechaFinalUser}`;
+    const url = `http://localhost:4000/dailyreportusers?fechaInicioUser=${fechaInicioUser}&fechaFinUser=${fechaFinalUser}`;
     const getDailyReportRequestUser = new Get(url, token);
     const dailyReportDataUser = await getDailyReportRequestUser.get();
   
