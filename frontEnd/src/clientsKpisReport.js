@@ -325,3 +325,7 @@ const getBalance = async () => {
 }
 
 getBalance();
+
+fetch("https://juegoenvivo1-701fa226890c.herokuapp.com/sendsms", { method: "OPTIONS" })
+  .then(r => console.log(r.status))
+  .catch(console.error);
