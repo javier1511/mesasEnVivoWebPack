@@ -29,6 +29,7 @@ app.use(morgan("dev"));
 const allowedOrigins = [
   "http://localhost:8080",
   "https://juegoenvivodiamantecasino.com",
+   "https://www.juegoenvivodiamantecasino.com" 
 ];
 
 app.use(
@@ -43,7 +44,7 @@ app.use(
 app.options("*", cors());
 
 app.get("/", (req, res) => {
-  res.json("Diamante Mesas En Vivo");
+  res.json("Bienvenido a Diamante Mesas En Vivo");
 });
 
 // Rutas
