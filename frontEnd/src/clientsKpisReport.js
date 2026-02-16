@@ -225,7 +225,7 @@ enviarMensajeBtn.addEventListener("click", async () => {
   const payload = { from: FROM, text: message, to };
 
   try {
-    const res = await fetch("https://juegoenvivo1-701fa226890c.herokuapp.com/sendsms", {
+    const res = await fetch("https://crmdiamantetampico-5bcdf021f94c.herokuapp.com/sendsms", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -325,3 +325,4 @@ const getBalance = async () => {
 }
 
 getBalance();
+
