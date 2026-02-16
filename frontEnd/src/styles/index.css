@@ -2901,6 +2901,13 @@ display: grid;
     }
     
 }
+
+
+.clientAndDate-reports__dynamic-total{
+  font-weight: bold;
+
+}
+
 .popup__opened {
     opacity: 1;
     visibility: visible;
