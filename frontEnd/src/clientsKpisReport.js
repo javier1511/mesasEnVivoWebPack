@@ -19,6 +19,8 @@ const logout = document.querySelector("#logout");
 logout.addEventListener("click", () => auth.logout());
 
 // Inputs filtros
+
+/*
 const inputKpisMobile = document.querySelector("#inputKpisMobile");
 const inputKpisName = document.querySelector("#inputKpisName");
 const inputKpisEfectivo = document.querySelector("#inputKpisEfectivo");
@@ -76,7 +78,7 @@ const getPlayersKpis = async () => {
 // ======================
 let isFiltering = false;
 
-const displayKpisPlayers = async () => {
+/*const displayKpisPlayers = async () => {
   if (isFiltering) return;
   isFiltering = true;
 
@@ -324,5 +326,5 @@ const getBalance = async () => {
   }
 }
 
-getBalance();
+getBalance();*/
 
