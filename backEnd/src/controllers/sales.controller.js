@@ -104,7 +104,7 @@ export const createSales = async (req, res) => {
   
   
 
-export const getSummaryByClient = async (req, res) => {
+/*export const getSummaryByClient = async (req, res) => {
     try {
         const summaries = await Summary.find()
             .populate('player', 'name mobile');
@@ -130,7 +130,7 @@ export const getSummaryByClient = async (req, res) => {
         console.error(error);
         res.status(500).json({ error: "Error al obtener el resumen de ventas" });
     }
-};
+};*/
 
 // Helper para evitar inyección/regex inválidos
 const escapeRegex = (s = "") => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
