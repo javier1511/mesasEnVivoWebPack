@@ -104,33 +104,72 @@ export const createSales = async (req, res) => {
   
   
 
-/*export const getSummaryByClient = async (req, res) => {
-    try {
-        const summaries = await Summary.find()
-            .populate('player', 'name mobile');
+export const getSummaryByClient = async (req, res) => {
+  try {
+    const { startDate, endDate } = req.query;
 
-        const enrichedSummaries = await Promise.all(summaries.map(async (summary) => {
-            const lastSale = await Sales.findOne({ player: summary.player._id })
-                .sort({ date: -1 }) // Orden descendente por fecha
-                .select('date');    // Solo obtenemos la fecha
-
-            const result = {
-                ...summary.toObject(),
-                lastPurchaseDate: lastSale ? lastSale.date : null
-            };
-
-            // Mostrar en consola cada resumen enriquecido
-            console.log(result);
-
-            return result;
-        }));
-
-        res.status(200).json(enrichedSummaries);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Error al obtener el resumen de ventas" });
+    if (!startDate || !endDate) {
+      return res.status(400).json({
+        error: "Debes proporcionar startDate y endDate",
+      });
     }
-};*/
+
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+      return res.status(400).json({
+        error: "Las fechas no son válidas",
+      });
+    }
+
+    start.setHours(0, 0, 0, 0);
+    end.setHours(23, 59, 59, 999);
+
+    const lastSales = await Sales.aggregate([
+      { $sort: { player: 1, date: -1 } },
+      {
+        $group: {
+          _id: "$player",
+          lastPurchaseDate: { $first: "$date" },
+        },
+      },
+      {
+        $match: {
+          lastPurchaseDate: { $gte: start, $lte: end },
+        },
+      },
+    ]);
+
+    if (lastSales.length === 0) {
+      return res.status(200).json([]);
+    }
+
+    const playerIds = lastSales.map((item) => item._id);
+
+    const summaries = await Summary.find({
+      player: { $in: playerIds },
+    })
+      .populate("player", "name mobile")
+      .lean();
+
+    const lastSalesMap = new Map(
+      lastSales.map((item) => [item._id.toString(), item.lastPurchaseDate])
+    );
+
+    const result = summaries.map((summary) => ({
+      ...summary,
+      lastPurchaseDate: lastSalesMap.get(summary.player._id.toString()) || null,
+    }));
+
+    return res.status(200).json(result);
+  } catch (error) {
+    console.error("Error en getSummaryByClient:", error);
+    return res.status(500).json({
+      error: "Error al obtener el resumen de ventas",
+    });
+  }
+};
 
 // Helper para evitar inyección/regex inválidos
 const escapeRegex = (s = "") => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");

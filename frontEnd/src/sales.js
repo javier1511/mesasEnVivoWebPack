@@ -235,212 +235,229 @@ window.onload = () => {
 
 
 
+let isSubmittingSale = false;
 
+salesMain.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-
-    salesMain.addEventListener('submit', async (event) => {
-        event.preventDefault();
-
-           // 1. Confirmación previa al envío
-    if (!confirm('¿Estás seguro de que deseas enviar esta venta?')) {
-        // Si el usuario pulsa “Cancelar”, se detiene todo el proceso
+    // Evita doble envío
+    if (isSubmittingSale) {
         return;
     }
-    
-        errorsContainer.innerHTML = '';
-    
-        const errors = validateSalesForm();
-    
-        if (errors.length > 0) {
-            errors.forEach(error => {
-                const errorSalesItem = document.createElement("div");
-                errorSalesItem.textContent = error;
-                errorsContainer.appendChild(errorSalesItem);
-            });
+
+    const submitBtn = document.querySelector("#salesSubmit");
+
+    // Confirmación previa al envío
+    if (!confirm("¿Estás seguro de que deseas enviar esta venta?")) {
+        return;
+    }
+
+    errorsContainer.innerHTML = "";
+
+    const errors = validateSalesForm();
+
+    if (errors.length > 0) {
+        errors.forEach((error) => {
+            const errorSalesItem = document.createElement("div");
+            errorSalesItem.textContent = error;
+            errorsContainer.appendChild(errorSalesItem);
+        });
+        return;
+    }
+
+    const salesFormData = {
+        player: document.querySelector("#salesId").value.toUpperCase(),
+        user: userId,
+        cash: document.querySelector("#cash").value || "0",
+        cashIn: document.querySelector("#cashIn").value || "0",
+        name: document.querySelector("#salesName").value.toUpperCase(),
+        credit: document.querySelector("#card").value || "0",
+        dollars: document.querySelector("#usd").value || "0",
+        payment: document.querySelector("#payment").value || "0",
+        date: document.querySelector("#salesDate").value,
+        time: document.querySelector("#salesTime").value
+    };
+
+    console.log("Datos que se enviarán:", salesFormData);
+
+    try {
+        isSubmittingSale = true;
+
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Guardando...";
+        }
+
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            alert("No se encontró el token. Por favor, inicia sesión nuevamente.");
             return;
         }
-    
-    
-    
-        const salesFormData = {
-            player: document.querySelector("#salesId").value.toUpperCase(),
-            user: userId,
-            cash: document.querySelector("#cash").value || "0",
-            cashIn: document.querySelector("#cashIn").value || "0",
-            name: document.querySelector('#salesName').value.toUpperCase(),
-            credit: document.querySelector('#card').value || "0",
-            dollars: document.querySelector('#usd').value || "0",
-            payment: document.querySelector("#payment").value || "0",
-            date: document.querySelector('#salesDate').value,
-            time: document.querySelector('#salesTime').value
-        };
-    
-        console.log('Datos que se enviarán:', salesFormData);
-    
-        try {
-            const token = localStorage.getItem('token');
-    
-            if (!token) {
-                alert('No se encontró el token. Por favor, inicia sesión nuevamente.');
-                return;
-            }
-    
-            const response = await fetch('http://localhost:4000/sales', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-access-token': token
-                },
-                body: JSON.stringify(salesFormData)
-            });
 
-            const data = await response.json();
-    
-            if (!response.ok) {
-                const errorData = data.error
-                alert(errorData);
-                return;
-            }
-    
-            alert('Guardado exitosamente');
-    
-            // === GENERAR TICKET ===
-            const ticketHTML = `
-             <div class="ticket">
-                   <div class="ticket__header-container">
+        const response = await fetch("http://localhost:4000/sales", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "x-access-token": token
+            },
+            body: JSON.stringify(salesFormData)
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            const errorData = data.error || data.message || "Error al guardar la venta";
+            alert(errorData);
+            return;
+        }
+
+        alert("Guardado exitosamente");
+
+        // === GENERAR TICKET ===
+        const ticketHTML = `
+            <div class="ticket">
+                <div class="ticket__header-container">
                     <img src="${logoComplete}" alt="" class="ticket__header">
                 </div>
-                  <div class="ticket__body-container">
-                      <div class="ticket__title-container">
-                          <p class="ticket__title">Fecha:</p>
-                          <p class="ticket__title">Hora:</p>
-                          <p class="ticket__title">Nombre:</p>
-                          <p class="ticket__title">Celular:</p>
-                          <p class="ticket__title">Fondo:</p>
-                          <p class="ticket__title">Efectivo:</p>
-                          <p class="ticket__title">Tarjeta:</p>
-                          <p class="ticket__title">Dolares:</p>
-                          <p class="ticket__title">Pago:</p>
-                      </div>
-                      <div class="ticket__value-container">
-                          <p class="ticket__title">${salesFormData.date}</p>
-                          <p class="ticket__title">${salesFormData.time}</p>
-                          <p class="ticket__title">${salesFormData.name}</p>
-                          <p class="ticket__title">${playerMobile}</p>
-                          <p class="ticket__title">${salesFormData.cashIn}</p>
-                          <p class="ticket__title">${salesFormData.cash}</p>
-                          <p class="ticket__title">${salesFormData.credit}</p>
-                          <p class="ticket__title">${salesFormData.dollars}</p>
-                          <p class="ticket__title">${salesFormData.payment}</p>
-                      </div>
-                  </div>
-                  <div class="ticket__text-container">
-                      <p class="ticket__text">DIAMANTE CASINO OPERADORA COMERCIALIZADORA Y ARRENDADORA
-        DE MEXICO S.A. DE C.V. PERSONA MORAL DE REGIMEN GENERAL
-        DE LEY AVENIDA HIDALGO 6806 COLONIA ARENAL TAMPICO TAMAULIPAS
-        C.P. 89344 RFC CAM970528IYA EXPEDIDO EN DIAMANTE CASINO
-        AVENIDA HIDALGO 6806 COLONIA ARENAL TAMPICO TAMAULIPAS.</p>
-                  </div>
-                  <div class="ticket__footer-container">
+
+                <div class="ticket__body-container">
+                    <div class="ticket__title-container">
+                        <p class="ticket__title">Fecha:</p>
+                        <p class="ticket__title">Hora:</p>
+                        <p class="ticket__title">Nombre:</p>
+                        <p class="ticket__title">Celular:</p>
+                        <p class="ticket__title">Fondo:</p>
+                        <p class="ticket__title">Efectivo:</p>
+                        <p class="ticket__title">Tarjeta:</p>
+                        <p class="ticket__title">Dolares:</p>
+                        <p class="ticket__title">Pago:</p>
+                    </div>
+
+                    <div class="ticket__value-container">
+                        <p class="ticket__title">${salesFormData.date}</p>
+                        <p class="ticket__title">${salesFormData.time}</p>
+                        <p class="ticket__title">${salesFormData.name}</p>
+                        <p class="ticket__title">${playerMobile || document.querySelector("#salesMobile").value}</p>
+                        <p class="ticket__title">${salesFormData.cashIn}</p>
+                        <p class="ticket__title">${salesFormData.cash}</p>
+                        <p class="ticket__title">${salesFormData.credit}</p>
+                        <p class="ticket__title">${salesFormData.dollars}</p>
+                        <p class="ticket__title">${salesFormData.payment}</p>
+                    </div>
+                </div>
+
+                <div class="ticket__text-container">
+                    <p class="ticket__text">
+                        DIAMANTE CASINO OPERADORA COMERCIALIZADORA Y ARRENDADORA
+                        DE MEXICO S.A. DE C.V. PERSONA MORAL DE REGIMEN GENERAL
+                        DE LEY AVENIDA HIDALGO 6806 COLONIA ARENAL TAMPICO TAMAULIPAS
+                        C.P. 89344 RFC CAM970528IYA EXPEDIDO EN DIAMANTE CASINO
+                        AVENIDA HIDALGO 6806 COLONIA ARENAL TAMPICO TAMAULIPAS.
+                    </p>
+                </div>
+
+                <div class="ticket__footer-container">
                     <img src="${logoLarge}" alt="" class="ticket__footer">
                 </div>
-              </div>
-            `;
-    
-            // Crear una ventana emergente para imprimir
-            const printWindow = window.open();
-    
-            if (!printWindow) {
-                alert("Por favor, permite las ventanas emergentes para continuar.");
-                return;
-            }
-    
-            printWindow.document.write(`
-                <html>
-                    <head>
-                        <title>Ticket de Venta</title>
-                  
-                    </head>
-                    <style>
-                    .body {
-            
-                        width: 100%;
-                
-                    }
+            </div>
+        `;
 
-                    
-.ticket{
-    background-color: white;
-    width: 100%;
-    
-}
+        const printWindow = window.open("", "_blank", "width=800,height=600");
 
-.ticket__header-container{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-    
-
-.ticket__title{
-    font-size: 16px;
-    font-weight: bold;
-}
-
-
-.ticket__body-container{
-    display: grid;
-    grid-template-columns: 50% 50%;
-    text-align: center;
-    padding-bottom: 10px;
-
-}
-
-.ticket__text{
-    text-align: center;
-    font-size: 16px;
-}
-
-.ticket__footer-container{
-    width: 100%;
-    display: flex;
-    justify-content: center; 
-    padding-top: 30px;
-}
-
-.ticket__footer{
-    width: 20%;
-}
-
-.ticket__value{
-    font-size: 17px;
-}
-                </style>
-                    <body>
-                        ${ticketHTML}
-                        <script>
-                            setTimeout(() => {
-                                window.print();
-                                window.close();
-                            }, 500); // Retraso para asegurar que el DOM se renderice
-                        </script>
-                    </body>
-                </html>
-            `);
-    
-            printWindow.document.close();  // Asegura que el contenido se cargue correctamente
-
-            // Recargar la página principal después de imprimir el ticket
-            printWindow.onafterprint = () => {
-                window.location.reload();
-            };
-    
-        } catch (error) {
-            console.error('Error de conexión:', error);
-            alert('Error al conectar con el servidor');
+        if (!printWindow) {
+            alert("Por favor, permite las ventanas emergentes para continuar.");
+            return;
         }
-    });
-    
+
+        printWindow.document.write(`
+            <html>
+                <head>
+                    <title>Ticket de Venta</title>
+                    <style>
+                        body {
+                            width: 100%;
+                            margin: 0;
+                            padding: 20px;
+                            font-family: Arial, sans-serif;
+                            background-color: white;
+                        }
+
+                        .ticket {
+                            background-color: white;
+                            width: 100%;
+                        }
+
+                        .ticket__header-container {
+                            width: 100%;
+                            display: flex;
+                            justify-content: center;
+                            margin-bottom: 15px;
+                        }
+
+                        .ticket__title {
+                            font-size: 16px;
+                            font-weight: bold;
+                            margin: 6px 0;
+                        }
+
+                        .ticket__body-container {
+                            display: grid;
+                            grid-template-columns: 50% 50%;
+                            text-align: center;
+                            padding-bottom: 10px;
+                        }
+
+                        .ticket__text {
+                            text-align: center;
+                            font-size: 16px;
+                            line-height: 1.4;
+                        }
+
+                        .ticket__footer-container {
+                            width: 100%;
+                            display: flex;
+                            justify-content: center;
+                            padding-top: 30px;
+                        }
+
+                        .ticket__footer {
+                            width: 20%;
+                        }
+                    </style>
+                </head>
+                <body>
+                    ${ticketHTML}
+                    <script>
+                        setTimeout(() => {
+                            window.print();
+                            window.close();
+                        }, 500);
+                    </script>
+                </body>
+            </html>
+        `);
+
+        printWindow.document.close();
+
+        printWindow.onafterprint = () => {
+            window.location.reload();
+        };
+
+    } catch (error) {
+        console.error("Error de conexión:", error);
+        alert("Error al conectar con el servidor");
+    } finally {
+        isSubmittingSale = false;
+
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Vender";
+        }
+    }
+});
+
+
     
 
     //CALCULADORA 2.0//

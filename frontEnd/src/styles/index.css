@@ -2908,6 +2908,19 @@ display: grid;
 
 }
 
+.kpis__input-button{
+   width: 15%;
+    margin: 0 auto;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #007DFF;
+    border-color: #007DFF;
+    border-radius: 5px;
+    color: white;
+}
+
+ 
+
 .popup__opened {
     opacity: 1;
     visibility: visible;

@@ -55,4 +55,6 @@ const saleSchema = new Schema({
 
 )
 
+
+saleSchema.index({ player: 1, date: -1 });
 export default model("Sale", saleSchema);
