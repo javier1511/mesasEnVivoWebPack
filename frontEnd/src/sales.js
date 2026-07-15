@@ -403,15 +403,15 @@ salesMain.addEventListener("submit", async (event) => {
 
                         .ticket__body-container {
                             display: grid;
-                            grid-template-columns: 50% 50%;
+                            grid-template-columns:1fr 1fr;
                             text-align: center;
                             padding-bottom: 10px;
+                            justify-content:center;
                         }
 
                         .ticket__text {
                             text-align: center;
-                            font-size: 16px;
-                            line-height: 1.4;
+                            font-size: 12px;
                         }
 
                         .ticket__footer-container {
